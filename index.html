@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ana Sayfa | Doğru Bütçe Doğru Kullanım - Yusuf Efe Karagöz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link id="dynamicFavicon" rel="icon" type="image/svg+xml" href="logo.svg" />
+  <link rel="shortcut icon" href="logo.svg" />
+  <link rel="stylesheet" href="style.css?v=7" />
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- ÜST MENÜ (HER SAYFADA SABİT) -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="YEK Logo" class="nav-logo" />
+        <div class="brand-text">
+          <span class="brand-title">Doğru Bütçe Doğru Kullanım</span>
+          <span class="brand-subtitle">Piyasa Uzmanı Yusuf Efe Karagöz</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-tab active">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Ana Sayfa
+        </a>
+        <a href="butce-hesapla.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Bütçe Hesapla
+        </a>
+        <a href="gorsel-analiz.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Görsel Analiz
+        </a>
+        <a href="altin-kurallar.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          5 Altın Kural
+        </a>
+        <a href="tavsiye-motoru.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Tavsiye Motoru
+        </a>
+        <a href="doviz-cevirici.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Döviz & Kur Çevirici
+        </a>
+        <a href="yek-ai.html" class="nav-tab nav-ai-link">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          YEK AI Sohbet
+        </a>
+      </nav>
+
+      <div class="nav-right-group">
+        <button type="button" id="printReportBtn" class="btn-nav-action" title="Sayfayı Yazdır / PDF Kaydet">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>Rapor Al (PDF)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Canlı Piyasa Şeridi -->
+  <div class="market-ticker-bar">
+    <div class="container ticker-container">
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-usd">$</span>
+        <span class="ticker-name">USD / TRY</span>
+        <span id="tickerUSD" class="ticker-val up">₺49,84</span>
+      </a>
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-eur">€</span>
+        <span class="ticker-name">EUR / TRY</span>
+        <span id="tickerEUR" class="ticker-val up">₺55,50</span>
+      </a>
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-tl">£</span>
+        <span class="ticker-name">GBP / TRY</span>
+        <span id="tickerGBP" class="ticker-val up">₺66,53</span>
+      </a>
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-gold">Au</span>
+        <span class="ticker-name">GRAM ALTIN</span>
+        <span id="tickerGAU" class="ticker-val gold">₺6.500</span>
+      </a>
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-btc">₿</span>
+        <span class="ticker-name">BITCOIN (TRY)</span>
+        <span id="tickerBTC" class="ticker-val gold">₺4.010.000</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- SADECE ANA SAYFA İÇERİĞİ -->
+  <main class="spa-pages-container">
+    <section class="hero-section">
+      <!-- 4K Ultra-HD Yüzen Metalik Finans Madalyonları -->
+      <div class="floating-coins-layer" aria-hidden="true">
+        <div class="floating-coin fc-tl">
+          <svg viewBox="0 0 120 120" width="84" height="84">
+            <defs>
+              <radialGradient id="tl4kBg" cx="30%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#34d399"/>
+                <stop offset="45%" stop-color="#059669"/>
+                <stop offset="100%" stop-color="#022c22"/>
+              </radialGradient>
+              <linearGradient id="tl4kRim" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#a7f3d0"/>
+                <stop offset="50%" stop-color="#10b981"/>
+                <stop offset="100%" stop-color="#047857"/>
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="54" fill="url(#tl4kBg)" stroke="url(#tl4kRim)" stroke-width="4.5"/>
+            <circle cx="60" cy="60" r="46" fill="none" stroke="#a7f3d0" stroke-width="1.4" stroke-dasharray="5 3" opacity="0.8"/>
+            <ellipse cx="60" cy="36" rx="34" ry="16" fill="rgba(255,255,255,0.22)"/>
+            <text x="60" y="78" text-anchor="middle" font-size="56" font-weight="900" fill="#ffffff" font-family="sans-serif">₺</text>
+          </svg>
+          <span>Türk Lirası (TRY)</span>
+        </div>
+
+        <div class="floating-coin fc-usd">
+          <svg viewBox="0 0 120 120" width="84" height="84">
+            <defs>
+              <radialGradient id="usd4kBg" cx="30%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#4ade80"/>
+                <stop offset="50%" stop-color="#15803d"/>
+                <stop offset="100%" stop-color="#052e16"/>
+              </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="54" fill="url(#usd4kBg)" stroke="#86efac" stroke-width="4.5"/>
+            <circle cx="60" cy="60" r="46" fill="none" stroke="#bbf7d0" stroke-width="1.4" stroke-dasharray="5 3" opacity="0.8"/>
+            <ellipse cx="60" cy="36" rx="34" ry="16" fill="rgba(255,255,255,0.22)"/>
+            <text x="60" y="78" text-anchor="middle" font-size="56" font-weight="900" fill="#ffffff" font-family="sans-serif">$</text>
+          </svg>
+          <span>ABD Doları (USD)</span>
+        </div>
+
+        <div class="floating-coin fc-btc">
+          <svg viewBox="0 0 120 120" width="88" height="88">
+            <defs>
+              <radialGradient id="btc4kBg" cx="30%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#fde047"/>
+                <stop offset="50%" stop-color="#d97706"/>
+                <stop offset="100%" stop-color="#451a03"/>
+              </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="54" fill="url(#btc4kBg)" stroke="#fef08a" stroke-width="4.5"/>
+            <circle cx="60" cy="60" r="46" fill="none" stroke="#fef08a" stroke-width="1.4" stroke-dasharray="5 3" opacity="0.85"/>
+            <ellipse cx="60" cy="36" rx="34" ry="16" fill="rgba(255,255,255,0.26)"/>
+            <text x="60" y="78" text-anchor="middle" font-size="54" font-weight="900" fill="#ffffff" font-family="sans-serif">₿</text>
+          </svg>
+          <span>Bitcoin (BTC)</span>
+        </div>
+
+        <div class="floating-coin fc-gold">
+          <svg viewBox="0 0 120 120" width="84" height="84">
+            <defs>
+              <radialGradient id="au4kBg" cx="30%" cy="25%" r="75%">
+                <stop offset="0%" stop-color="#fef08a"/>
+                <stop offset="55%" stop-color="#eab308"/>
+                <stop offset="100%" stop-color="#713f12"/>
+              </radialGradient>
+            </defs>
+            <circle cx="60" cy="60" r="54" fill="url(#au4kBg)" stroke="#fef9c3" stroke-width="4.5"/>
+            <polygon points="34,76 46,42 74,42 86,76" fill="#061017" opacity="0.88" stroke="#fde047" stroke-width="2"/>
+            <ellipse cx="60" cy="34" rx="32" ry="14" fill="rgba(255,255,255,0.28)"/>
+            <text x="60" y="66" text-anchor="middle" font-size="22" font-weight="900" fill="#fde047" font-family="sans-serif">24K AU</text>
+          </svg>
+          <span>24 Ayar Altın</span>
+        </div>
+      </div>
+
+      <div class="container hero-container">
+        <!-- YEK Logosu ve Etrafında Dünyanın Ünlü Para Birimi Sembolleri Halesi -->
+        <div class="hero-logo-wrapper hero-logo-orbit-container">
+          <div class="logo-ring-pulse"></div>
+          <div class="currency-orbit-ring" aria-label="Dünya Para Birimleri Sembolleri">
+            <span class="orbit-symbol" style="--angle: 0deg;" title="Türk Lirası">₺</span>
+            <span class="orbit-symbol" style="--angle: 25.7deg;" title="ABD Doları">$</span>
+            <span class="orbit-symbol" style="--angle: 51.4deg;" title="Euro">€</span>
+            <span class="orbit-symbol" style="--angle: 77.1deg;" title="İngiliz Sterlini">£</span>
+            <span class="orbit-symbol" style="--angle: 102.8deg;" title="Japon Yeni & Çin Yuanı">¥</span>
+            <span class="orbit-symbol" style="--angle: 128.5deg;" title="İsviçre Frangı">₣</span>
+            <span class="orbit-symbol" style="--angle: 154.2deg;" title="Bitcoin">₿</span>
+            <span class="orbit-symbol" style="--angle: 180deg;" title="Altın (Ons/Gram)">Au</span>
+            <span class="orbit-symbol" style="--angle: 205.7deg;" title="Rus Rublesi">₽</span>
+            <span class="orbit-symbol" style="--angle: 231.4deg;" title="Hindistan Rupisi">₹</span>
+            <span class="orbit-symbol" style="--angle: 257.1deg;" title="Güney Kore Wonu">₩</span>
+            <span class="orbit-symbol" style="--angle: 282.8deg;" title="Suudi Riyali">﷼</span>
+            <span class="orbit-symbol" style="--angle: 308.5deg;" title="Kanada Doları">C$</span>
+            <span class="orbit-symbol" style="--angle: 334.2deg;" title="Avustralya Doları">A$</span>
+          </div>
+          <img src="logo.svg?v=4" alt="Yusuf Efe Karagöz - YEK Logo" class="hero-logo" />
+        </div>
+
+        <div class="expert-pill">
+          <img src="logo.svg" alt="YEK" class="pill-mini-logo" />
+          <span>Finansal Planlama & Bütçe Yönetimi</span>
+        </div>
+
+        <h1 class="site-main-title">
+          Doğru Bütçe <span class="emerald-gradient-text">Doğru Kullanım</span>
+        </h1>
+
+        <p class="welcome-message">
+          Piyasa Uzmanı <strong>Yusuf Efe Karagöz</strong> ile bütçenizi doğru yönetmeye hoşgeldiniz
+        </p>
+
+        <p class="hero-subtext">
+          Gelirlerinizi, giderlerinizi ve mevcut birikiminizi analiz edelim; kalan bütçenizi <strong>Türk Lirası (₺)</strong>, <strong>Dolar ($)</strong>, <strong>Altın</strong>, <strong>Yatırım Fonları</strong> ve <strong>Bitcoin (₿)</strong> dengesinde en verimli şekilde nasıl değerlendirmeniz gerektiğini adım adım planlayalım.
+        </p>
+
+        <div class="currency-showcase-strip">
+          <div class="currency-chip chip-tl">
+            <span class="chip-symbol">₺</span>
+            <div>
+              <strong>TL Nakit Akışı</strong>
+              <small>Günlük Mevduat & PPF</small>
+            </div>
+          </div>
+          <div class="currency-chip chip-usd">
+            <span class="chip-symbol">$</span>
+            <div>
+              <strong>Dolar & Yabancı Fon</strong>
+              <small>Küresel Teknoloji & Eurobond</small>
+            </div>
+          </div>
+          <div class="currency-chip chip-gold">
+            <span class="chip-symbol">🪙</span>
+            <div>
+              <strong>Altın & Gümüş</strong>
+              <small>Enflasyon Kalkanı (%30)</small>
+            </div>
+          </div>
+          <div class="currency-chip chip-btc">
+            <span class="chip-symbol">₿</span>
+            <div>
+              <strong>Bitcoin & Kripto</strong>
+              <small>Maksimum %5 Oyun Parası</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ayrı Sayfalara Yönlendiren Aksiyon Butonları -->
+        <div class="hero-actions">
+          <a href="butce-hesapla.html" class="btn btn-primary">
+            <img src="logo.svg" alt="YEK" class="btn-logo-icon" />
+            <span>Bütçe Hesaplama Sayfasına Git</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="altin-kurallar.html" class="btn btn-secondary">
+            <img src="logo.svg" alt="YEK" class="btn-logo-icon" />
+            <span>5 Altın İlke Sayfası</span>
+          </a>
+          <a href="doviz-cevirici.html" class="btn btn-secondary">
+            <img src="logo.svg" alt="YEK" class="btn-logo-icon" />
+            <span>Döviz & Kur Çevirici</span>
+          </a>
+          <a href="yek-ai.html" class="btn btn-secondary">
+            <img src="logo.svg" alt="YEK" class="btn-logo-icon" />
+            <span>YEK AI ile Sohbet Et</span>
+          </a>
+        </div>
+
+        <div class="feature-pillars">
+          <a href="butce-hesapla.html" class="pillar-card clickable-pillar" style="text-decoration:none;">
+            <div class="pillar-icon">01</div>
+            <h3>Mevcut Bütçe & Gelir</h3>
+            <p>Toplam elinizdeki bütçeyi ve aylık düzenli/ek gelir kalemlerinizi belirleyin.</p>
+          </a>
+          <a href="gorsel-analiz.html" class="pillar-card clickable-pillar" style="text-decoration:none;">
+            <div class="pillar-icon">02</div>
+            <h3>Görsel Gider Analizi</h3>
+            <p>Zorunlu harcamalar, yaşam giderleri ve ödemelerinizi grafiklerle inceleyin.</p>
+          </a>
+          <a href="tavsiye-motoru.html" class="pillar-card clickable-pillar" style="text-decoration:none;">
+            <div class="pillar-icon">03</div>
+            <h3>Uzman Tavsiyesi & YEK AI</h3>
+            <p>Kalan bütçenizi nasıl değerlendireceğinize dair Yusuf Efe Karagöz stratejilerini alın.</p>
+          </a>
+        </div>
+
+        <!-- 4K ULTRA-HD KÜRESEL FİNANS VE PİYASA GÖRSEL VİTRİNİ -->
+        <div class="visual-4k-showcase-grid">
+          <a href="doviz-cevirici.html" class="visual-4k-card">
+            <div class="visual-4k-art">
+              <svg viewBox="0 0 420 210" width="100%" height="100%">
+                <defs>
+                  <linearGradient id="v4kEmerald" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#052e24"/>
+                    <stop offset="50%" stop-color="#041923"/>
+                    <stop offset="100%" stop-color="#02080d"/>
+                  </linearGradient>
+                  <linearGradient id="v4kCoinGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6ee7b7"/>
+                    <stop offset="50%" stop-color="#10b981"/>
+                    <stop offset="100%" stop-color="#047857"/>
+                  </linearGradient>
+                </defs>
+                <rect width="420" height="210" rx="16" fill="url(#v4kEmerald)"/>
+                <g opacity="0.18" stroke="#34d399" stroke-width="1">
+                  <line x1="0" y1="42" x2="420" y2="42"/><line x1="0" y1="84" x2="420" y2="84"/><line x1="0" y1="126" x2="420" y2="126"/><line x1="0" y1="168" x2="420" y2="168"/>
+                  <line x1="70" y1="0" x2="70" y2="210"/><line x1="140" y1="0" x2="140" y2="210"/><line x1="210" y1="0" x2="210" y2="210"/><line x1="280" y1="0" x2="280" y2="210"/><line x1="350" y1="0" x2="350" y2="210"/>
+                </g>
+                <path d="M20 170 Q95 140, 150 115 T280 75 T395 35" fill="none" stroke="#34d399" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="110" cy="105" r="46" fill="#062820" stroke="url(#v4kCoinGlow)" stroke-width="3.5"/>
+                <text x="110" y="122" text-anchor="middle" font-size="48" font-weight="900" fill="#6ee7b7">₺</text>
+                <circle cx="215" cy="95" r="52" fill="#083326" stroke="#86efac" stroke-width="4"/>
+                <text x="215" y="114" text-anchor="middle" font-size="54" font-weight="900" fill="#ffffff">$</text>
+                <circle cx="315" cy="108" r="44" fill="#0c2438" stroke="#38bdf8" stroke-width="3.5"/>
+                <text x="315" y="124" text-anchor="middle" font-size="44" font-weight="900" fill="#7dd3fc">€</text>
+              </svg>
+              <span class="badge-4k-uhd">4K ULTRA HD • FOREX</span>
+            </div>
+            <div class="visual-4k-caption">
+              <h4>Küresel Rezerv Para Birimleri (₺ • $ • € • £ • ₣ • ¥)</h4>
+              <p>Dünyadaki tüm majör para birimlerinin canlı TL karşılıkları ve döviz bazlı bütçe koruma kalkanı.</p>
+            </div>
+          </a>
+
+          <a href="altin-kurallar.html" class="visual-4k-card">
+            <div class="visual-4k-art">
+              <svg viewBox="0 0 420 210" width="100%" height="100%">
+                <defs>
+                  <linearGradient id="v4kGoldBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#2e1f05"/>
+                    <stop offset="55%" stop-color="#141008"/>
+                    <stop offset="100%" stop-color="#05080c"/>
+                  </linearGradient>
+                  <linearGradient id="goldBarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fef08a"/>
+                    <stop offset="40%" stop-color="#f59e0b"/>
+                    <stop offset="80%" stop-color="#b45309"/>
+                    <stop offset="100%" stop-color="#fde047"/>
+                  </linearGradient>
+                </defs>
+                <rect width="420" height="210" rx="16" fill="url(#v4kGoldBg)"/>
+                <!-- 4K 24 Ayar Külçe Altın & Bitcoin İllüstrasyonu -->
+                <polygon points="65,148 100,82 230,82 265,148" fill="url(#goldBarGrad)" stroke="#fef9c3" stroke-width="2.5"/>
+                <polygon points="85,134 110,92 220,92 245,134" fill="rgba(0,0,0,0.22)" stroke="#fef08a" stroke-width="1"/>
+                <text x="165" y="120" text-anchor="middle" font-size="20" font-weight="900" fill="#fffbeb" letter-spacing="2">999.9 FINE GOLD</text>
+                <circle cx="325" cy="105" r="50" fill="url(#goldBarGrad)" stroke="#ffffff" stroke-width="3"/>
+                <text x="325" y="124" text-anchor="middle" font-size="52" font-weight="900" fill="#1c1917">₿</text>
+              </svg>
+              <span class="badge-4k-uhd gold">4K ULTRA HD • EMTİA & KRİPTO</span>
+            </div>
+            <div class="visual-4k-caption">
+              <h4>24K Altın, Gümüş & Maksimum %5 Bitcoin Disiplini</h4>
+              <p>Enflasyona karşı %30 değerli maden sigortası ve spekülasyondan arındırılmış sepet mimarisi.</p>
+            </div>
+          </a>
+
+          <a href="yek-ai.html" class="visual-4k-card">
+            <div class="visual-4k-art">
+              <svg viewBox="0 0 420 210" width="100%" height="100%">
+                <defs>
+                  <linearGradient id="v4kQuantBg" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#082431"/>
+                    <stop offset="50%" stop-color="#06141f"/>
+                    <stop offset="100%" stop-color="#03070c"/>
+                  </linearGradient>
+                </defs>
+                <rect width="420" height="210" rx="16" fill="url(#v4kQuantBg)"/>
+                <!-- 4K Borsa Mum Grafikleri (Candlesticks) ve AI Sinir Ağı -->
+                <g stroke-width="2.5">
+                  <line x1="55" y1="120" x2="55" y2="175" stroke="#ef4444"/><rect x="47" y="135" width="16" height="28" rx="3" fill="#ef4444"/>
+                  <line x1="95" y1="95" x2="95" y2="160" stroke="#10b981"/><rect x="87" y="110" width="16" height="36" rx="3" fill="#10b981"/>
+                  <line x1="135" y1="80" x2="135" y2="142" stroke="#10b981"/><rect x="127" y="92" width="16" height="34" rx="3" fill="#34d399"/>
+                  <line x1="175" y1="98" x2="175" y2="150" stroke="#ef4444"/><rect x="167" y="108" width="16" height="24" rx="3" fill="#ef4444"/>
+                  <line x1="215" y1="62" x2="215" y2="128" stroke="#10b981"/><rect x="207" y="74" width="16" height="38" rx="3" fill="#10b981"/>
+                  <line x1="255" y1="44" x2="255" y2="108" stroke="#10b981"/><rect x="247" y="54" width="16" height="40" rx="3" fill="#34d399"/>
+                </g>
+                <circle cx="340" cy="105" r="48" fill="#071a24" stroke="#34d399" stroke-width="3"/>
+                <text x="340" y="102" text-anchor="middle" font-size="22" font-weight="900" fill="#fbbf24" font-family="serif">YEK</text>
+                <text x="340" y="124" text-anchor="middle" font-size="13" font-weight="800" fill="#34d399">LLM v3.0</text>
+              </svg>
+              <span class="badge-4k-uhd">4K ULTRA HD • YEK-LLM 3.0</span>
+            </div>
+            <div class="visual-4k-caption">
+              <h4>YEK AI v3.0 Makroekonomi & Borsa Terminali</h4>
+              <p>TCMB/FED faiz döngüleri, F/K ve PD/DD çarpanları ile doğal yapay zeka sohbeti.</p>
+            </div>
+          </a>
+        </div>
+
+        <!-- ANA SAYFA EĞİTİM REHBERİ: BÜTÇE NEDİR, NEDEN YAPILMALIDIR, YAPILAN HATALAR -->
+        <div class="home-knowledge-wrapper">
+          <div class="knowledge-header">
+            <span class="step-tag">FİNANSAL OKURYAZARLIK TEMELLERİ</span>
+            <h2>Piyasa Uzmanı Yusuf Efe Karagöz ile Bütçe Rehberi</h2>
+            <p>Hesaplamaya geçmeden önce paranızın kontrolünü elinize almanızı sağlayacak temel kavramları ve sık yapılan hataları inceleyin.</p>
+          </div>
+
+          <div class="knowledge-grid">
+            <article class="knowledge-card">
+              <div class="knowledge-card-top">
+                <span class="knowledge-badge badge-emerald">TEMEL KAVRAM</span>
+                <span class="knowledge-icon">📋</span>
+              </div>
+              <h3>Bütçe Nedir?</h3>
+              <p>
+                <strong>Bütçe</strong>, belirli bir dönem (genellikle 1 ay veya 1 yıl) içerisindeki <strong>tahmini gelirleriniz ile giderlerinizin</strong> dengeli bir şekilde planlanmasıdır.
+              </p>
+              <ul class="knowledge-list">
+                <li>Geçmişte harcanan paranın kaydı değil, <strong>gelecekte kazanılacak her 1 ₺'nin</strong> nereye gideceğinin önceden görevlendirilmesidir.</li>
+                <li>Kişisel ekonominizin yol haritası ve finansal pusulasıdır; gelirinizin harcamalarınız, borçlarınız ve birikimleriniz arasındaki denge tablosudur.</li>
+              </ul>
+            </article>
+
+            <article class="knowledge-card">
+              <div class="knowledge-card-top">
+                <span class="knowledge-badge badge-blue">SİSTEMATİK KONTROL</span>
+                <span class="knowledge-icon">⚙️</span>
+              </div>
+              <h3>Bütçe Yönetimi Nedir?</h3>
+              <p>
+                <strong>Bütçe Yönetimi</strong>, sadece gelir ve gideri yazmak değil; nakit akışını <strong>izleme, analiz etme, gereksiz sızıntıları kapatma ve kalan bütçeyi yatırıma yönlendirme</strong> sürecidir.
+              </p>
+              <ul class="knowledge-list">
+                <li><strong>Gelir-Gider Sınıflandırması:</strong> Harcamaları <em>Zorunlu İhtiyaçlar (%50)</em>, <em>Kişisel İstekler (%30)</em> ve <em>Tasarruf/Yatırım (%20)</em> olarak ayırmaktır.</li>
+                <li><strong>Sürdürülebilir Disiplin:</strong> Paranın sizi yönetmesi yerine, sizin paranıza hükmetmeniz ve her ay düzenli artı bakiye (pozitif nakit akışı) üretmenizdir.</li>
+              </ul>
+            </article>
+
+            <article class="knowledge-card">
+              <div class="knowledge-card-top">
+                <span class="knowledge-badge badge-gold">KRİTİK ÖNEMİ</span>
+                <span class="knowledge-icon">🛡️</span>
+              </div>
+              <h3>Bütçe Yönetimi Neden Yapılmalıdır?</h3>
+              <p>
+                Yüksek maaş kazanmak tek başına zenginlik getirmez; <strong>doru yönetilmeyen her gelir</strong> ay sonunda tükenmeye mahkumdur. Bütçe yönetimi şu 4 temel amaç için şarttır:
+              </p>
+              <ul class="knowledge-list">
+                <li><strong>1. "Ay Sonunda Param Nereye Gitti?" Sorusunu Bitirir:</strong> Görünmez harcama sızıntılarını (küçük günlük harcamalar, unutulan abonelikler) ortaya çıkarır.</li>
+                <li><strong>2. Borç ve Kredi Kartı Sarmalından Korur:</strong> Gelirden fazla harcama yapılmasını önleyerek yüksek faiz tuzaklarına düşmeyi engeller.</li>
+                <li><strong>3. Krizlere Karşı Kalkan Oluşturur:</strong> İşsizlik, sağlık veya piyasa krizlerinde sizi koruyacak <em>Acil Durum Fonunu</em> kurmanızı sağlar.</li>
+                <li><strong>4. Yatırım ve Servet İnşasını Başlatır:</strong> Enflasyona karşı paranızı koruyup bileşik getiriyle finansal özgürlüğe ulaşacak sermayeyi yaratır.</li>
+              </ul>
+            </article>
+
+            <article class="knowledge-card knowledge-card-danger">
+              <div class="knowledge-card-top">
+                <span class="knowledge-badge badge-danger">DİKKAT EDİLMESİ GEREKENLER</span>
+                <span class="knowledge-icon">⚠️</span>
+              </div>
+              <h3>Bütçe Yönetimi Yaparken Yapılan En Büyük Hatalar</h3>
+              <p>
+                Birçok insan bütçe yapmaya hevesle başlar ancak şu <strong>6 kritik hata</strong> yüzünden yarıda bırakır:
+              </p>
+              <ul class="knowledge-list error-list">
+                <li><strong>❌ Harcadıktan Sonra Kalanı Biriktirmeye Çalışmak:</strong> En büyük hatadır! Doğrusu; maaş yattığı ilk gün önce yatırım/tasarruf payını ayırıp kalan parayla ayı geçirmektir.</li>
+                <li><strong>❌ Kredi Kartı Limitini "Kendi Parası" Sanmak:</strong> Kredi kartı limiti ek gelir değildir; gelecekteki gelirinizden alınan yüksek maliyetli bir borçtur.</li>
+                <li><strong>❌ Yaşam Tarzı Enflasyonu (Lifestyle Creep):</strong> Maaş veya gelir arttığında harcamaları da aynı hızda lüksleştirip tasarruf oranını yerinde saydırmak.</li>
+                <li><strong>❌ Küçük Harcamaları Önemsiz Görmek:</strong> Her gün fark etmeden yapılan 150-200 ₺'lik gereksiz harcamalar yılda devasa bir yatırım sermayesini yok eder.</li>
+                <li><strong>❌ Acil Durum Fonu Kurmadan Riskli Yatırıma Girmek:</strong> Kenarda nakit tampon yokken tüm parayla hisse/kripto almak, ilk acil masrafta zararına satış yaptırır.</li>
+                <li><strong>❌ Aşırı Katı ve Gerçekçi Olmayan Bütçe Yapmak:</strong> Sosyal hayata ve kişisel isteklere hiç pay bırakmayan bütçeler psikolojik yorgunluk yaratır ve bozulur.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- EN ALTTA İLETİŞİM VE SOSYAL MEDYA BİLGİLERİ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="contact-footer-grid">
+        <div class="contact-brand-col">
+          <div class="footer-brand">
+            <img src="logo.svg" alt="YEK" class="footer-logo-large" />
+            <div>
+              <strong class="footer-title-text">Doğru Bütçe Doğru Kullanım</strong>
+              <span class="footer-sub-text">Piyasa Uzmanı Yusuf Efe Karagöz</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Finansal planlama, doğru bütçe yönetimi ve yatırım danışmanlığı için aşağıdaki iletişim kanallarından doğrudan ulaşabilirsiniz.
+          </p>
+        </div>
+
+        <div class="contact-links-grid">
+          <a href="mailto:yusufefekaragoz@gmail.com" class="contact-pill-item" title="E-Posta Gönder">
+            <span class="social-icon icon-email">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+              </svg>
+            </span>
+            <div class="contact-meta">
+              <small>E-Posta Adresi</small>
+              <strong>yusufefekaragoz@gmail.com</strong>
+            </div>
+          </a>
+
+          <a href="tel:+905324871963" class="contact-pill-item" title="Telefon ile Ara">
+            <span class="social-icon icon-phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+              </svg>
+            </span>
+            <div class="contact-meta">
+              <small>İletişim Numarası</small>
+              <strong>+90 (532) 487 19 63</strong>
+            </div>
+          </a>
+
+          <a href="https://wa.me/905324871963" target="_blank" rel="noopener noreferrer" class="contact-pill-item" title="WhatsApp İletişim">
+            <span class="social-icon icon-whatsapp">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.533 5.862l-1.533 5.602 5.736-1.504c1.696.906 3.631 1.422 5.691 1.422 6.627 0 12-5.373 12-12s-5.373-12-12.427-11.382z"/>
+              </svg>
+            </span>
+            <div class="contact-meta">
+              <small>WhatsApp Hattı</small>
+              <strong>+90 (532) 487 19 63</strong>
+            </div>
+          </a>
+
+          <a href="https://instagram.com/yusufefekaragoz" target="_blank" rel="noopener noreferrer" class="contact-pill-item" title="Instagram: @yusufefekaragoz">
+            <span class="social-icon icon-instagram">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </span>
+            <div class="contact-meta">
+              <small>Instagram</small>
+              <strong>@yusufefekaragoz</strong>
+            </div>
+          </a>
+
+          <a href="https://x.com/dr1teonbir" target="_blank" rel="noopener noreferrer" class="contact-pill-item" title="X: @dr1teonbir">
+            <span class="social-icon icon-x">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </span>
+            <div class="contact-meta">
+              <small>X (Twitter)</small>
+              <strong>@dr1teonbir</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p class="footer-copy">© 2026 <strong>Doğru Bütçe Doğru Kullanım</strong> — Piyasa Uzmanı Yusuf Efe Karagöz. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sağ Alt Yüzen YEK AI Hızlı Erişim Butonu -->
+  <a href="yek-ai.html" class="floating-ai-launcher" title="YEK AI ile Piyasa & Bütçe Sohbeti Yap">
+    <img src="logo.svg" alt="YEK AI" class="launcher-logo" />
+    <div class="launcher-text">
+      <strong>YEK AI'ya Sor</strong>
+      <small>Piyasa & Bütçe Sohbeti</small>
+    </div>
+  </a>
+
+  <script src="script.js?v=7"></script>
+</body>
+</html>

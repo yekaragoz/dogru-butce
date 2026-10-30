@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YEK AI v3.0 (Release) LLM | Doğru Bütçe Doğru Kullanım - Yusuf Efe Karagöz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link id="dynamicFavicon" rel="icon" type="image/svg+xml" href="logo.svg" />
+  <link rel="shortcut icon" href="logo.svg" />
+  <link rel="stylesheet" href="style.css?v=7" />
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- ÜST MENÜ -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="YEK Logo" class="nav-logo" />
+        <div class="brand-text">
+          <span class="brand-title">Doğru Bütçe Doğru Kullanım</span>
+          <span class="brand-subtitle">Piyasa Uzmanı Yusuf Efe Karagöz</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Ana Sayfa
+        </a>
+        <a href="butce-hesapla.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Bütçe Hesapla
+        </a>
+        <a href="gorsel-analiz.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Görsel Analiz
+        </a>
+        <a href="altin-kurallar.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          5 Altın Kural
+        </a>
+        <a href="tavsiye-motoru.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Tavsiye Motoru
+        </a>
+        <a href="doviz-cevirici.html" class="nav-tab">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          Döviz & Kur Çevirici
+        </a>
+        <a href="yek-ai.html" class="nav-tab nav-ai-link active">
+          <img src="logo.svg" alt="" class="link-mini-logo" />
+          YEK AI Sohbet
+        </a>
+      </nav>
+
+      <div class="nav-right-group">
+        <button type="button" id="printReportBtn" class="btn-nav-action" title="Sayfayı Yazdır / PDF Kaydet">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span>Rapor Al (PDF)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Canlı Piyasa Şeridi -->
+  <div class="market-ticker-bar">
+    <div class="container ticker-container">
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-usd">$</span>
+        <span class="ticker-name">USD / TRY</span>
+        <span id="tickerUSD" class="ticker-val up">₺34,35</span>
+      </a>
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-eur">€</span>
+        <span class="ticker-name">EUR / TRY</span>
+        <span id="tickerEUR" class="ticker-val up">₺37,25</span>
+      </a>
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-tl">£</span>
+        <span class="ticker-name">GBP / TRY</span>
+        <span id="tickerGBP" class="ticker-val up">₺44,50</span>
+      </a>
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-gold">Au</span>
+        <span class="ticker-name">GRAM ALTIN</span>
+        <span id="tickerGAU" class="ticker-val gold">₺3.060</span>
+      </a>
+      <a href="doviz-cevirici.html" class="ticker-item" style="text-decoration:none;">
+        <span class="coin-icon coin-btc">₿</span>
+        <span class="ticker-name">BITCOIN (TRY)</span>
+        <span id="tickerBTC" class="ticker-val gold">₺2.495.000</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- SADECE YEK AI v3.0 (RELEASE) LLM SAYFASI İÇERİĞİ -->
+  <main class="spa-pages-container">
+    <section class="advisor-section">
+      <div class="container">
+        <div class="yek-ai-section" style="margin-top: 0;">
+          <div class="yek-ai-header">
+            <div class="ai-title-left">
+              <div class="ai-avatar-glow">
+                <img src="logo.svg" alt="YEK AI Logo" class="ai-header-logo" />
+                <span class="ai-online-dot"></span>
+              </div>
+              <div>
+                <div class="ai-badge-inline">
+                  <span>🚀 YEK-LLM v3.0 RELEASE (PRO EDITION)</span>
+                  <span class="ai-live-tag">ÜST DÜZEY PİYASA EKONOMİSİ & GENEL ZEKA</span>
+                </div>
+                <h3>YEK AI — Büyük Dil Modeli & Makroekonomik Piyasa Zekası</h3>
+                <p>ChatGPT ve Gemini mimarisiyle güçlendirilmiş; <strong>Piyasa Ekonomisi, Merkez Bankacılığı (TCMB/FED), Enflasyon, Borsa Değerleme, Yatırım Fonları</strong> ve <strong>Yusuf Efe Karagöz</strong>'ün 5 Altın İlkesiyle eğitilmiş yeni nesil yapay zeka. Hem her konuda sohbet edin hem de derin piyasa analizi alın.</p>
+              </div>
+            </div>
+            <div class="ai-header-controls">
+              <select id="yekModelModeSelect" class="ai-model-select" title="YEK-LLM Uzmanlık Modu Seçin">
+                <option value="pro">🧠 YEK-LLM Pro 3.0 (Genel Zeka & Piyasa)</option>
+                <option value="macro">🏛️ Makroekonomist & Stratejist Modu</option>
+                <option value="wealth">🧮 Bütçe & Servet Mühendisliği Modu</option>
+              </select>
+              <button type="button" id="toggleGeminiApiBtn" class="btn-chip" title="İsteğe Bağlı Kendi Google Gemini API Anahtarınızı Bağlayın">
+                ✨ LLM Sinir Ağı: Aktif
+              </button>
+              <button type="button" id="clearAiChatBtn" class="btn-chip" title="Sohbet Geçmişini Temizle ve Yeni Oturum Aç">
+                🔄 Yeni Sohbet
+              </button>
+            </div>
+          </div>
+
+          <!-- Canlı Bütçe Bağlam Şeridi (YEK AI'nin o an bildiği rakamlar) -->
+          <div class="ai-live-context-strip">
+            <span class="ctx-item">💼 <strong>Hazır Birikim:</strong> <span id="aiCtxSavings">₺85.000</span></span>
+            <span class="ctx-item">📥 <strong>Aylık Gelir:</strong> <span id="aiCtxIncome">₺60.000</span></span>
+            <span class="ctx-item">📤 <strong>Aylık Gider:</strong> <span id="aiCtxExpense">₺44.000</span></span>
+            <span class="ctx-item">🚀 <strong>Net Yatırım Gücü:</strong> <span id="aiCtxNet">₺16.000 / ay</span></span>
+            <a href="butce-hesapla.html" class="ctx-edit-link">✏️ Rakamları Değiştir</a>
+          </div>
+
+          <div id="geminiApiConfigBox" class="gemini-api-box hidden">
+            <div class="gemini-api-inner">
+              <div>
+                <strong>⚡ Çok Katmanlı LLM Bağlantısı (Cloud LLM + Google Gemini 2.5 API):</strong>
+                <p>YEK AI v3.0 herhangi bir anahtar gerektirmeden <strong>Bulut LLM Sinir Ağı</strong> ve <strong>Yerleşik Piyasa Ekonomisi Çekirdeği</strong> ile doğrudan çalışır. Dilerseniz kendi Google Gemini API anahtarınızı da ekleyebilirsiniz.</p>
+              </div>
+              <div class="gemini-api-input-group">
+                <input type="password" id="geminiApiKeyInput" placeholder="AIzaSy... (İsteğe bağlı özel Gemini API Key)" class="text-input" />
+                <button type="button" id="saveGeminiKeyBtn" class="btn-add income-add-btn">Kaydet</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="ai-quick-prompts">
+            <span class="quick-prompt-label">Uzmanlık & Sohbet Başlıkları:</span>
+            <button type="button" class="ai-prompt-chip" data-prompt="Piyasa ekonomisi nasıl işler? Arz-talep dengesi, fiyat mekanizması ve görünmez el yatırımcıyı nasıl etkiler?">
+              🏛️ Piyasa Ekonomisi Nedir?
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="TCMB ve FED faiz kararları (parasal sıkılaşma ve faiz indirim döngüsü) borsa, altın, mevduat ve dövizi nasıl etkiler? Reel faiz nasıl hesaplanır?">
+              🏦 Merkez Bankaları (TCMB & FED) & Reel Faiz
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Enflasyon, dezenflasyon ve stagflasyon nedir? Yüksek enflasyon ortamında paramın alım gücünü hangi varlıklarla korurum?">
+              🔥 Enflasyon & Stagflasyon Analizi
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Borsada temel analiz nasıl yapılır? F/K, PD/DD, FD/FAVÖK ve Özsermaye Kârlılığı (ROE) çarpanları ne anlama gelir?">
+              📊 Borsa Değerleme (F/K, PD/DD, FD/FAVÖK)
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Eurobond nedir? Ülke CDS risk primi ve tahvil faizleri ile Eurobond fiyatları arasındaki matematiksel ilişki nasıldır?">
+              💶 Eurobond, CDS & Tahvil Matematiği
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Davranışsal finans nedir? Yatırımcıların yaptığı FOMO, panik satışı ve zarardan kaçınma hatalarını nasıl yenerim?">
+              🧠 Davranışsal Finans & Psikoloji
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Mevcut birikimim ve aylık tasarrufumla 10 yılda ne kadar servet birikir? Tablolu bileşik getiri simülasyonu yapar mısın?">
+              📈 10 Yıllık Servet Simülasyonu
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="120 ülkenin enflasyonu, merkez bankası faizleri ve ileride dünyada nasıl bir ekonomik süreç beklendiği hakkında bilgi verir misin?">
+              🌍 120 Ülke Enflasyonu & Dünya Ekonomisi
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Türkiye, ABD, Almanya, İsviçre ve Japonya ekonomilerini enflasyon ve faiz açısından karşılaştırır mısın?">
+              📊 Ülke Ekonomileri Karşılaştırması
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Selam YEK AI! Nasılsın, seninle hangi konularda sohbet edebiliriz?">
+              👋 Günlük Sohbet & Tanışma
+            </button>
+          </div>
+
+          <div id="yekAiMessages" class="yek-ai-messages"></div>
+
+          <form id="yekAiForm" class="yek-ai-input-bar">
+            <img src="logo.svg" alt="YEK" class="ai-input-logo" />
+            <input
+              type="text"
+              id="yekAiInput"
+              placeholder="YEK AI v3.0 ile ülke ekonomileri, 120 ülke enflasyonu, piyasa ekonomisi, bütçe veya günlük her konuda sohbet edin..."
+              autocomplete="off"
+            />
+            <button type="submit" id="yekAiSendBtn" class="btn-ai-send">
+              <span>Gönder</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <div class="page-nav-footer">
+          <a href="ulkeler-enflasyon.html" class="btn btn-secondary">
+            ← 120 Ülke Enflasyon Analizine Git
+          </a>
+          <a href="doviz-cevirici.html" class="btn btn-secondary">
+            Döviz & Kur Çeviriciye Git →
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- EN ALTTA İLETİŞİM VE SOSYAL MEDYA BİLGİLERİ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="contact-footer-grid">
+        <div class="contact-brand-col">
+          <div class="footer-brand">
+            <img src="logo.svg" alt="YEK" class="footer-logo-large" />
+            <div>
+              <strong class="footer-title-text">Doğru Bütçe Doğru Kullanım</strong>
+              <span class="footer-sub-text">Piyasa Uzmanı Yusuf Efe Karagöz</span>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Finansal planlama, doğru bütçe yönetimi ve yatırım danışmanlığı için aşağıdaki iletişim kanallarından doğrudan ulaşabilirsiniz.
+          </p>
+        </div>
+
+        <div class="contact-links-grid">
+          <a href="mailto:yusufefekaragoz@gmail.com" class="contact-pill-item">
+            <span class="social-icon icon-email"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span>
+            <div class="contact-meta"><small>E-Posta Adresi</small><strong>yusufefekaragoz@gmail.com</strong></div>
+          </a>
+          <a href="tel:+905324871963" class="contact-pill-item">
+            <span class="social-icon icon-phone"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></span>
+            <div class="contact-meta"><small>İletişim Numarası</small><strong>+90 (532) 487 19 63</strong></div>
+          </a>
+          <a href="https://wa.me/905324871963" target="_blank" rel="noopener noreferrer" class="contact-pill-item">
+            <span class="social-icon icon-whatsapp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.126.556 4.124 1.533 5.862l-1.533 5.602 5.736-1.504c1.696.906 3.631 1.422 5.691 1.422 6.627 0 12-5.373 12-12s-5.373-12-12.427-11.382z"/></svg></span>
+            <div class="contact-meta"><small>WhatsApp Hattı</small><strong>+90 (532) 487 19 63</strong></div>
+          </a>
+          <a href="https://instagram.com/yusufefekaragoz" target="_blank" rel="noopener noreferrer" class="contact-pill-item">
+            <span class="social-icon icon-instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></span>
+            <div class="contact-meta"><small>Instagram</small><strong>@yusufefekaragoz</strong></div>
+          </a>
+          <a href="https://x.com/dr1teonbir" target="_blank" rel="noopener noreferrer" class="contact-pill-item">
+            <span class="social-icon icon-x"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></span>
+            <div class="contact-meta"><small>X (Twitter)</small><strong>@dr1teonbir</strong></div>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <p class="footer-copy">© 2026 <strong>Doğru Bütçe Doğru Kullanım</strong> — Piyasa Uzmanı Yusuf Efe Karagöz. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="global-economies.js?v=6"></script>
+  <script src="fintech-super.js?v=6"></script>
+  <script src="ekonomi-haber-akademi.js?v=6"></script>
+  <script src="yek-llm.js?v=6"></script>
+  <script src="script.js?v=7"></script>
+</body>
+</html>
