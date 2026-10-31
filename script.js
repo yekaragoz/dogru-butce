@@ -1,3 +1,48 @@
+(function initializeThemeToggle() {
+  const root = document.documentElement;
+  const storageKey = 'yek_theme_preference';
+  let savedTheme = 'dark';
+  try {
+    savedTheme = localStorage.getItem(storageKey) === 'light' ? 'light' : 'dark';
+  } catch (error) {
+    savedTheme = 'dark';
+  }
+  root.setAttribute('data-theme', savedTheme);
+
+  function updateThemeButton(button) {
+    const isLight = root.getAttribute('data-theme') === 'light';
+    const label = isLight ? 'Koyu temaya geç' : 'Açık temaya geç';
+    button.textContent = isLight ? '☾' : '☀';
+    button.setAttribute('aria-label', label);
+    button.setAttribute('title', label);
+    button.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const navRight = document.querySelector('.navbar .nav-right-group');
+    if (!navRight || document.getElementById('themeToggleBtn')) return;
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.id = 'themeToggleBtn';
+    button.className = 'btn-theme-toggle';
+    button.setAttribute('aria-pressed', 'false');
+    updateThemeButton(button);
+
+    button.addEventListener('click', () => {
+      const nextTheme = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', nextTheme);
+      try {
+        localStorage.setItem(storageKey, nextTheme);
+      } catch (error) {
+        // Tema yalnızca bu sayfada değişir; kalıcı kayıt kullanılamıyorsa site çalışmaya devam eder.
+      }
+      updateThemeButton(button);
+    });
+
+    navRight.prepend(button);
+  });
+})();
 // Doğru Bütçe Doğru Kullanım - Piyasa Uzmanı Yusuf Efe Karagöz
 // Çok Sayfalı (Multi-Page) Mimari: Her Bölüm Ayrı HTML Sayfasında Çalışır ve Verileri localStorage Üzerinden Senkronize Eder
 
