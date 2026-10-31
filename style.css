@@ -6073,7 +6073,7 @@ body {
   /* 1. Genel Konteyner ve Yatay Taşma Koruması */
   html,
   body {
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
     max-width: 100vw !important;
     -webkit-text-size-adjust: 100%;
   }
@@ -6733,5 +6733,23 @@ body {
   .loan-main-payment strong,
   .pf-total-wealth strong {
     font-size: 1.55rem !important;
+  }
+}
+
+/* iOS Safari: keep the mobile header sticky and avoid GPU layers that can flash black while scrolling. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .navbar {
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+
+    .ambient-glow {
+      display: none !important;
+      filter: none !important;
+    }
   }
 }
