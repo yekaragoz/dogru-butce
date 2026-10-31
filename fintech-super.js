@@ -411,7 +411,7 @@ ${rows}
         micBtn.classList.remove('listening');
         micBtn.innerHTML = '🎙️';
         aiInput.placeholder =
-          'YEK AI v3.0 ile ülke ekonomileri, kredi faizleri, piyasa ekonomisi veya günlük her konuda sohbet edin...';
+          'YEK AI 4.0 Pro Edition ile ülke ekonomileri, kredi faizleri, piyasa ekonomisi veya günlük her konuda sohbet edin...';
       };
 
       recognition.onerror = () => {

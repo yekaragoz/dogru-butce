@@ -13,7 +13,7 @@ const GEMINI_API_KEY_STORAGE = 'yek_gemini_api_key_v1';
   }
   if (!window.YEK_FINTECH_SUPER && !document.querySelector('script[src*="fintech-super.js"]')) {
     const sc2 = document.createElement('script');
-    sc2.src = 'fintech-super.js?v=6';
+    sc2.src = 'fintech-super.js?v=7';
     document.head.appendChild(sc2);
   }
   if (!window.YEK_ECONOMY_NEWS_ACADEMY && !document.querySelector('script[src*="ekonomi-haber-akademi.js"]')) {
@@ -898,7 +898,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div>
               <span class="report-doc-code">RAPOR NO: YEK-${Date.now().toString().slice(-6)} • TARİH: ${nowStr}</span>
               <h1>DOĞRU BÜTÇE DOĞRU KULLANIM — KAPSAMLI FİNANSAL ANALİZ RAPORU</h1>
-              <p>Hazırlayan Sistem: <strong>Piyasa Uzmanı Yusuf Efe Karagöz Strateji Motoru & YEK-LLM v3.0</strong></p>
+              <p>Hazırlayan Sistem: <strong>Piyasa Uzmanı Yusuf Efe Karagöz Strateji Motoru & YEK AI 4.0 Pro Edition</strong></p>
             </div>
           </div>
           <div class="report-score-stamp">
@@ -1207,12 +1207,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
     } else {
-      const badgeLabel = metaOptions.engineBadge || 'YEK-LLM v3.0 RELEASE • PİYASA EKONOMİSİ & GENEL ZEKA';
+      const badgeLabel = metaOptions.engineBadge || 'YEK AI 4.0 Pro Edition RELEASE • PİYASA EKONOMİSİ & GENEL ZEKA';
       row.innerHTML = `
         <img src="logo.svg" alt="YEK AI" class="msg-avatar" />
         <div class="msg-bubble">
           <div class="msg-header-bar">
-            <span class="msg-sender-name">YEK AI v3.0 • ${badgeLabel}</span>
+            <span class="msg-sender-name">YEK AI 4.0 Pro Edition • ${badgeLabel}</span>
             <button type="button" class="msg-copy-btn" title="Yanıtı Kopyala">📋 Kopyala</button>
           </div>
           <div class="msg-body-content">${htmlContent}</div>
@@ -1265,7 +1265,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'bot',
       `Selam! Ben <strong>YEK AI</strong> 👋 Hem günlük sohbet edebileceğin hem de piyasa ekonomisi, borsa, yatırım fonları ve bütçe yönetimi üzerine konuşabileceğin yapay zeka asistanınım.`,
       {
-        engineBadge: 'YEK-LLM v3.0',
+        engineBadge: 'YEK AI 4.0 Pro Edition',
       }
     );
   }
@@ -1363,9 +1363,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const syncNote = trySyncBudgetFromChat(questionRaw) || '';
 
     const s = getLiveBudgetSnapshot();
-    const efSlice = s.currentSavings < s.minEF ? Math.round(s.positiveSavings * 0.4) : 0;
-    const investableMonthly = Math.max(0, s.positiveSavings - efSlice);
-    const excessLumpSum = Math.max(0, s.currentSavings - s.minEF);
 
     // Doğal günlük sohbet yanıtları ("Ne sormak istersiniz" olmadan)
     if (
@@ -1382,7 +1379,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (q.includes('ne yapıyorsun') || q.includes('napıyorsun') || q.includes('napiyorsun')) {
-      return `Bir yandan küresel piyasaları, merkez bankası verilerini ve döviz kurlarını takip ediyorum, bir yandan da seninle sohbet ediyorum.`;
+      return `Piyasa verisini yalnızca bu sayfada sağlanan göstergeler ve bağlam kadar değerlendirebilirim; doğrulanmış canlı akışım yoksa bunu açıkça söylerim. Şu an soruna odaklanıyorum.`;
     }
 
     if (nameMatch) {
@@ -1391,7 +1388,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (q.includes('sen kimsin') || q.includes('kimsin') || q.includes('seni kim') || q.includes('yusuf efe') || q.includes('ne işe yararsın')) {
       conversationMemory.lastTopic = 'identity';
-      return `Ben <strong>YEK AI</strong>. Piyasa Uzmanı <strong>Yusuf Efe Karagöz</strong>'ün finansal ilkeleri ve ileri düzey piyasa ekonomisi bilgi tabanıyla geliştirilmiş bir yapay zeka modeliyim. Hem normal sohbet edebiliriz hem de ekonomi ve finans analizleri yapabiliriz.`;
+      return `Ben <strong>YEK AI 4.0 Pro Edition</strong>; uygulamanın finansal bilgi çekirdeğini ve kullanılabilir olduğunda bulut dil modelini kullanan Türkçe bütçe, finansal okuryazarlık ve genel sohbet asistanıyım. Piyasa yorumlarını doğrulanmış canlı veri veya kişiye özel yatırım talimatı olarak değerlendirme.`;
     }
 
     if (q.includes('teşekkür') || q.includes('tesekkur') || q.includes('sağ ol') || q.includes('sağol') || q.includes('eyvallah') || q.includes('süper') || q.includes('harika') || q.includes('çok iyi') || q === 'tamam' || q === 'ok') {
@@ -1420,28 +1417,23 @@ document.addEventListener('DOMContentLoaded', () => {
     ) {
       conversationMemory.lastTopic = 'custom_amount';
       const amt = mentionedAmount;
-      const efPart = s.currentSavings < s.minEF && s.minEF > 0 ? Math.min(amt, s.minEF - s.currentSavings) : Math.round(amt * 0.20);
-      const invPart = Math.max(0, amt - efPart);
-      return `${syncNote}Elindeki <strong>${formatCurrency(amt)}</strong> tutar için Piyasa Uzmanı Yusuf Efe Karagöz stratejisiyle ideal dağılım:<br>
+      return `${syncNote}Elindeki <strong>${formatCurrency(amt)}</strong> tutar için herkese uygun tek bir dağılım yüzdesi yok. Önce şu başlıkları sırayla değerlendir:<br>
       <ul>
-        <li><strong>1. Güvenlik Tamponu (${formatCurrency(efPart)}):</strong> Acil nakit ihtiyacı için <strong>Para Piyasası Fonu (PPF)</strong> veya günlük vadeli mevduatta likit tutulmalı.</li>
-        <li><strong>2. Yatırım Sepeti (${formatCurrency(invPart)} — Kademeli Alım):</strong> Kalan ${formatCurrency(invPart)} tutarı 3-4 parçaya bölerek:
-          <br>• 🪙 <strong>%30 Altın & Gümüş (${formatCurrency(invPart * 0.30)}):</strong> Gram altın, ALTINS1 veya Kıymetli Maden Fonu.
-          <br>• 📈 <strong>%30 Yerli Hisse Yoğun Fon (${formatCurrency(invPart * 0.30)}):</strong> %0 stopaj avantajlı TEFAS hisse fonları.
-          <br>• 💵 <strong>%25 Yabancı Teknoloji/YZ Fonu (${formatCurrency(invPart * 0.25)}):</strong> Küresel teknoloji şirketlerine Dolar bazlı yatırım.
-          <br>• 💶 <strong>%10 Eurobond Fonu (${formatCurrency(invPart * 0.10)}):</strong> Döviz bazlı tahvil getirisi.
-          <br>• ₿ <strong>Maks. %5 Oyun Parası (${formatCurrency(invPart * 0.05)}):</strong> Bitcoin/kripto için üst sınır.
-        </li>
+        <li><strong>Hedef ve vade:</strong> Paraya ne zaman ve hangi amaçla ihtiyaç duyacağını belirle.</li>
+        <li><strong>Nakit güvenliği:</strong> Yakın dönem giderlerini, acil rezerv ihtiyacını ve yüksek maliyetli borçları hesaba kat.</li>
+        <li><strong>Risk ve likidite:</strong> Geçici değer kaybını taşıma kapasiteni ve parayı ne hızda nakde çevireceğini değerlendir.</li>
+        <li><strong>Karşılaştırma:</strong> Ürünlerin riskini, ücretini, vergisini ve işlem koşullarını güncel belgelerinden kontrol et.</li>
       </ul>`;
     }
 
     if (q.includes('ev al') || q.includes('araba') || q.includes('konut') || q.includes('peşinat') || q.includes('otomobil')) {
       conversationMemory.lastTopic = 'house_car';
-      return `${syncNote}<strong>🏠 Ev & 🚗 Araba Hedefi Stratejisi:</strong><br>
+      return `${syncNote}<strong>🏠 Ev & 🚗 Araba Hedefini Planlama:</strong><br>
       <ul>
-        <li><strong>Araba mı Yatırım mı?</strong> Otomobil sigorta, yakıt, bakım ve amortismanla gider üreten pasif bir varlıktır. İş için zorunlu değilse ana sermayenin %50'sinden fazlası bağlanmamalıdır.</li>
-        <li><strong>Konut ve Kira Çarpanı:</strong> Konut fiyatının aylık kiraya bölümü <strong>180-220 ay (15-18 yıl)</strong> altındaysa yatırım açısından caziptir.</li>
-        <li><strong>Peşinat Biriktirme:</strong> 1-2 yıl içinde ödenecek peşinat; <strong>%40 Altın + %30 Para Piyasası Fonu + %30 Döviz/Eurobond</strong> sepetinde korunmalıdır.</li>
+        <li>Toplam bedeli, hedef tarihini, peşinatı ve öngörülen aylık ödemeyi yaz.</li>
+        <li>Satın alma sonrası sigorta, bakım, yakıt, aidat, vergi ve finansman giderlerini bütçeye ekle.</li>
+        <li>Yakın zamanda kullanılacak peşinat için likidite ve fiyat dalgalanması riskini birlikte değerlendir.</li>
+        <li>Konut yatırımında kira çarpanını tek başına kullanma; boş kalma, bakım, finansman maliyeti ve satış süresini de hesaba kat.</li>
       </ul>`;
     }
 
@@ -1449,70 +1441,60 @@ document.addEventListener('DOMContentLoaded', () => {
       conversationMemory.lastTopic = 'youth';
       return `<strong>🚀 Genç Yaşta ve Küçük Tutarlarla Yatırım (Bileşik Getiri):</strong><br>
       <ul>
-        <li><strong>TEFAS Fonlarına Küçük Tutarlarla Giriş:</strong> Yatırım fonlarına 100 ₺ - 500 ₺ gibi küçük tutarlarla bile başlanabilir ve kurumsal sepetlere ortak olunur.</li>
-        <li><strong>Zaman Kaldıracı:</strong> 20'li yaşlarda başlanan düzenli yatırım, bileşik getirinin kartopu etkisiyle 30'lu yaşlarda başlayan birine göre çok daha az ana parayla daha büyük portföy oluşturur.</li>
+        <li><strong>Önce temel güvence:</strong> Gelir-gider takibi, yüksek maliyetli borçların kontrolü ve uygun bir acil rezerv yatırım kararından önce gelir.</li>
+        <li><strong>Küçük tutar:</strong> Başlangıç tutarı ve alım koşulları ürüne göre değişir; güncel fon belgelerini ve işlem alt limitlerini kontrol et.</li>
+        <li><strong>Zaman:</strong> Daha erken ve düzenli birikim daha uzun büyüme süresi sağlayabilir; sonuç katkı, ücret, vergi ve piyasa performansına bağlıdır.</li>
       </ul>`;
     }
 
     if (q.includes('altın') || q.includes('altin') || q.includes('gümüş') || q.includes('maden') || q.includes('gram') || q.includes('altins1') || q.includes('sertifika')) {
       conversationMemory.lastTopic = 'gold';
-      const goldMonthly = Math.round(investableMonthly * 0.30);
-      const goldLump = Math.round(excessLumpSum * 0.30);
-      return `${syncNote}<strong>🪙 Altın, Gümüş ve ALTINS1 Stratejisi:</strong><br>
+      return `${syncNote}<strong>🪙 Altın, Gümüş ve Sertifikaları Karşılaştırma:</strong><br>
       <ul>
-        <li><strong>Makas Çözümü (ALTINS1 & Fonlar):</strong> Banka makasından kaçınmak için Borsa İstanbul'dan <strong>Darphane Altın Sertifikası (ALTINS1)</strong> veya <strong>TEFAS Altın/Gümüş Fonları</strong> tercih edilebilir.</li>
-        <li><strong>İdeal Oran (%30):</strong> Portföyün %30'u değerli madenlere ayrılmalıdır.</li>
-        <li><strong>Bütçe Karşılığı:</strong> Aylık yatırım bütçenden <strong>${formatCurrency(goldMonthly)}</strong>, hazır birikiminden ise <strong>${formatCurrency(goldLump)}</strong> bu sepete ayrılabilir.</li>
+        <li>Fiziki ürün, banka hesabı, borsada işlem gören sertifika ve fonun sahiplik/saklama yapısını karşılaştır.</li>
+        <li>Alım-satım makası, ücret, işlem saati, likidite, vergi ve karşı taraf riskini incele.</li>
+        <li>Altın veya gümüş her dönemde enflasyona karşı koruma ya da pozitif getiri sağlamaz; tek ürüne yoğunlaşma riskini değerlendir.</li>
       </ul>`;
     }
 
     if (q.includes('tefas') || q.includes('fon') || q.includes('hisse') || q.includes('borsa') || q.includes('bist') || q.includes('stopaj') || q.includes('vergi') || q.includes('temettü')) {
       conversationMemory.lastTopic = 'funds';
-      const localEquity = Math.round(investableMonthly * 0.30);
-      const foreignTech = Math.round(investableMonthly * 0.25);
-      return `${syncNote}<strong>📈 TEFAS Yatırım Fonları, %0 Stopaj Avantajı ve Borsa:</strong><br>
+      return `${syncNote}<strong>📈 Fon ve Hisse Analizi İçin Kontrol Listesi:</strong><br>
       <ul>
-        <li><strong>Hisse Senedi Yoğun Fonlar (%30 Pay — ${formatCurrency(localEquity)}/ay):</strong> %0 Stopaj (vergi muafiyeti) avantajı sayesinde elde edilen kârdan stopaj kesilmez.</li>
-        <li><strong>Yabancı Teknoloji Fonları (%25 Pay — ${formatCurrency(foreignTech)}/ay):</strong> Küresel teknoloji ve yapay zeka şirketlerine yatırım yaparak hem Dolar kurundan hem de şirket büyümesinden getiri sağlar.</li>
+        <li>Fonun güncel yatırımcı bilgi formu/izahnamesindeki strateji, portföy dağılımı ve risk göstergesini incele.</li>
+        <li>Yönetim ücreti, toplam gider, işlem saati, valör, likidite ve vergi koşullarını karşılaştır.</li>
+        <li>Hisse analizinde iş modeli, bilanço, borç, nakit akışı, kâr kalitesi, değerleme ve sektör riskini birlikte değerlendir.</li>
+        <li>Vergi oranı ve ürün koşulları değişebileceğinden güncel resmi belgeyi kontrol et; geçmiş getiri geleceği garanti etmez.</li>
       </ul>`;
     }
 
     if (q.includes('dolar') || q.includes('döviz') || q.includes('euro') || q.includes('eurobond') || q.includes('kur') || q.includes('tahvil') || q.includes('cds')) {
       conversationMemory.lastTopic = 'forex';
-      const eurobondMonthly = Math.round(investableMonthly * 0.10);
-      const techMonthly = Math.round(investableMonthly * 0.25);
-      return `${syncNote}<strong>💵 Dolar, Eurobond ve Döviz Enflasyonu:</strong><br>
-      Nakit döviz tutmak ABD ve Avrupa enflasyonu nedeniyle reel alım gücü kaybettirir.<br>
+      return `${syncNote}<strong>💵 Döviz, Tahvil ve Kur Riskini Değerlendirme:</strong><br>
       <ul>
-        <li><strong>Eurobond Fonları (%10 Pay — ${formatCurrency(eurobondMonthly)}/ay):</strong> Döviz bazlı tahvillere yatırım yaparak hem kur artışından hem de döviz kupon faizinden yararlanır.</li>
-        <li><strong>Yabancı Hisse/Teknoloji Fonları (%25 Pay — ${formatCurrency(techMonthly)}/ay):</strong> Dolar bazında reel büyüme üretir.</li>
+        <li>Döviz nakit, tahvil ve yabancı fonlar farklı faiz, kur, kredi, likidite, ücret ve vergi riskleri taşır.</li>
+        <li>Tahvil fiyatı piyasa getirisi ve kredi riskinden etkilenir; vade boyunca ara dönem değer kaybı yaşanabilir.</li>
+        <li>İşlem öncesinde ürünün güncel koşullarını ve paraya ne zaman ihtiyaç duyacağını kontrol et.</li>
       </ul>`;
     }
 
     if (q.includes('bitcoin') || q.includes('btc') || q.includes('kripto') || q.includes('coin') || q.includes('altcoin') || q.includes('tüyo') || q.includes('spekülasyon') || q.includes('%5') || q.includes('oyun')) {
       conversationMemory.lastTopic = 'crypto';
-      const maxSpecMonthly = Math.round(investableMonthly * 0.05);
-      const maxSpecTotal = Math.round(s.currentSavings * 0.05);
-      return `${syncNote}<strong>₿ Bitcoin, Kripto ve "Maksimum %5 Oyun Parası" Kuralı:</strong><br>
+      return `${syncNote}<strong>₿ Kripto Varlık Riskleri:</strong><br>
       <ul>
-        <li><strong>Maksimum %5 Sınırı:</strong> Yüksek volatilite nedeniyle kripto varlıklara toplam portföyün en fazla %5'i ayrılmalıdır.</li>
-        <li><strong>Güvenli Limit:</strong> Aylık bütçeden en fazla <strong>${formatCurrency(maxSpecMonthly)} / ay</strong>, hazır birikimden ise en fazla <strong>${formatCurrency(maxSpecTotal)}</strong> ayrılması risk yönetimini korur.</li>
+        <li>Yüksek oynaklık, saklama/platform, siber saldırı, likidite ve düzenleme riski bulunabilir; değer tamamen kaybolabilir.</li>
+        <li>Yalnızca kaybı temel giderlerini ve borç ödemelerini bozmayacak tutarı riske at; kaldıraç ve borçla alımdan kaçın.</li>
+        <li>Site içindeki yüzde sınırını evrensel kural sayma; önce risk taşıma kapasiteni değerlendir.</li>
       </ul>`;
     }
 
     if (q.includes('acil') || q.includes('sıfırıncı') || q.includes('mevduat') || q.includes('ppf') || q.includes('para piyasası') || q.includes('likit') || q.includes('tampon') || q.includes('faiz')) {
       conversationMemory.lastTopic = 'emergency';
-      const gap = Math.max(0, s.minEF - s.currentSavings);
-      return `${syncNote}<strong>🛡️ "Sıfırıncı Adım" Acil Durum Fonu ve Para Piyasası Fonu (PPF):</strong><br>
-      Zorunlu giderlerin (${formatCurrency(s.totalNeeds)}/ay) <strong>3 ila 6 katı</strong> likit tutulmalıdır.<br>
+      return `${syncNote}<strong>🛡️ Acil Nakit Rezervi ve Kısa Vadeli Araçlar:</strong><br>
       <ul>
-        <li><strong>Hedef:</strong> 3 Aylık Minimum: <strong>${formatCurrency(s.minEF)}</strong> | 6 Aylık Tam Kalkan: <strong>${formatCurrency(s.maxEF)}</strong> (Mevcut: ${formatCurrency(s.currentSavings)}).</li>
-        <li><strong>Araç:</strong> Bankalardaki <strong>Para Piyasası Fonu (PPF)</strong> günlük bileşik getiri sağlar ve anında nakde çevrilebilir.</li>
-        <li><strong>Durum:</strong> ${
-          gap > 0
-            ? `Minimum hedefe <strong>${formatCurrency(gap)}</strong> fark bulunuyor; aylık <strong>${formatCurrency(efSlice)}</strong> ayrılması önerilir.`
-            : `3 aylık minimum tampon tamamlanmış durumda.`
-        }</li>
+        <li>Rezerv miktarını zorunlu giderlere, gelir istikrarına, bakmakla yükümlü olunan kişilere ve sigorta kapsamına göre belirle.</li>
+        <li>Likidite, anapara riski, ücret, vergi ve nakde dönüş süresini karşılaştır.</li>
+        <li>Para piyasası fonu mevduat değildir; mevduat veya fon getirisi/anaparası garanti varsayılmamalıdır.</li>
       </ul>`;
     }
 
@@ -1520,23 +1502,19 @@ document.addEventListener('DOMContentLoaded', () => {
       conversationMemory.lastTopic = 'debt';
       return `${syncNote}<strong>💳 Kredi ve Borç Kapatma (Çığ & Kartopu Yöntemi):</strong><br>
       <ul>
-        <li><strong>Çığ (Avalanche) Yöntemi:</strong> En yüksek faizli borç (kredi kartı / KMH) ilk sıraya konur ve aylık artan <strong>${formatCurrency(s.positiveSavings)}</strong> bakiye öncelikle bu borcu sıfırlamakta kullanılır.</li>
-        <li><strong>Kartopu (Snowball) Yöntemi:</strong> En küçük bakiyeli borçtan başlayarak borç kalemleri tek tek kapatılır.</li>
+        <li>Önce her borcun kalan tutarını, efektif maliyetini, asgari ödemesini, ücretini ve son ödeme tarihini yaz.</li>
+        <li><strong>Çığ:</strong> Asgari ödemelerden sonra ek tutarı en yüksek maliyetli borca yöneltmek toplam faiz maliyetini azaltmaya yardımcı olur.</li>
+        <li><strong>Kartopu:</strong> En küçük bakiyeyi önce kapatmak motivasyonu artırabilir; maliyet toplamı daha yüksek olabilir.</li>
       </ul>`;
     }
 
     if (q.includes('72') || q.includes('bileşik') || q.includes('fire') || q.includes('özgürlük') || q.includes('emekli') || q.includes('katla') || q.includes('zengin')) {
       conversationMemory.lastTopic = 'compound';
-      const doubleYears18 = (72 / 18).toFixed(1);
-      const tenYearProj = Math.round(
-        s.currentSavings * Math.pow(1 + 0.18 / 12, 120) +
-          investableMonthly * ((Math.pow(1 + 0.18 / 12, 120) - 1) / (0.18 / 12))
-      );
       return `${syncNote}<strong>🔥 72 Kuralı, Bileşik Getiri ve Finansal Özgürlük (FIRE):</strong><br>
       <ul>
-        <li><strong>72 Kuralı:</strong> Yıllık %18 reel getiriyle anapara her <strong>${doubleYears18} yılda bir 2'ye katlanır</strong>.</li>
-        <li><strong>10 Yıllık Projeksiyon:</strong> Aylık <strong>${formatCurrency(investableMonthly)}</strong> düzenli yatırımla 10 yılda reel olarak <strong>${formatCurrency(tenYearProj)}</strong> büyüklüğe ulaşılır.</li>
-        <li><strong>FIRE Hedefi:</strong> Yıllık giderin (${formatCurrency(s.annualExpense)}) 25 katı olan <strong>${formatCurrency(s.fireTarget)}</strong> portföy büyüklüğü finansal özgürlük eşiğidir.</li>
+        <li><strong>72 Kuralı:</strong> Yaklaşık ikiye katlanma süresi, varsayılan yıllık getiri yüzdesiyle 72'nin bölünmesiyle bulunur; bu kaba bir hesaplamadır, tahmin değildir.</li>
+        <li><strong>Projeksiyon:</strong> Sonuç için başlangıç tutarı, katkı, süre, varsayılan net getiri, vergi ve ücret varsayımlarını açıkça belirlemek gerekir. Reel ve nominal tutarları karıştırma.</li>
+        <li><strong>FIRE:</strong> Yıllık giderin sabit bir katını kesin emeklilik eşiği sayma; harcama, yaşam süresi, vergi ve çekim oranı sonucu değiştirir.</li>
       </ul>`;
     }
 
@@ -1544,9 +1522,9 @@ document.addEventListener('DOMContentLoaded', () => {
       conversationMemory.lastTopic = 'budget_rule';
       return `${syncNote}<strong>📐 50/30/20 Bütçe Analizi:</strong><br>
       <ul>
-        <li><strong>Zorunlu Giderler (%${s.needsRate} — ${formatCurrency(s.totalNeeds)}):</strong> İdeal üst sınır %50 (${formatCurrency(s.totalIncome * 0.5)}).</li>
-        <li><strong>İstek & Borçlar (%${s.wantsRate + s.debtRate} — ${formatCurrency(s.totalWants + s.totalDebts)}):</strong> İdeal üst sınır %30 (${formatCurrency(s.totalIncome * 0.3)}).</li>
-        <li><strong>Net Tasarruf (%${s.savingsRate} — ${formatCurrency(s.netMonthly)}):</strong> İdeal hedef en az %20 (${formatCurrency(s.totalIncome * 0.2)}).</li>
+        <li>İhtiyaç, istek ve tasarruf için %50/30/20 oranlarını başlangıç kontrol listesi olarak kullan; zorunlu bir reçete değildir.</li>
+        <li>Gelir ve giderlerini doğru kaydet; kira, borç, aile yükümlülükleri ve düzensiz harcamalara göre gerçekçi hedef belirle.</li>
+        <li>Uygulama tablosundaki aylık net fark <strong>${formatCurrency(s.netMonthly)}</strong> görünüyor; bu verinin güncel ve sana ait olduğunu doğrula.</li>
       </ul>`;
     }
 
@@ -1562,22 +1540,24 @@ document.addEventListener('DOMContentLoaded', () => {
       return generateGeminiTrainedResponse(userQuestion);
     }
 
-    const systemInstruction = `Sen "YEK AI" adında, Piyasa Uzmanı Yusuf Efe Karagöz'ün "Doğru Bütçe Doğru Kullanım" platformunun yapay zeka finans ve bütçe danışmanısın.
-Yusuf Efe Karagöz'ün 5 Altın İlkesi:
-1. Sıfırıncı Adım Acil Durum Fonu: Zorunlu giderlerin 3-6 katını Para Piyasası Fonu veya günlük mevduatta tutmak.
-2. Bileşik Getiriyi Erken Ateşlemek (72 Kuralı ve uzun vadeli kartopu etkisi).
-3. Maliyet Ortalaması (DCA): Maaş yattığı gün (ayın 1'inde) piyasa zamanlaması yapmadan otomatik alım yapmak.
-4. Riski Çeşitlendirmek: %30 Değerli Madenler (Altın/Gümüş), %30 Yerli Hisse Senedi Fonları, %25 Yabancı Teknoloji/Yapay Zeka Fonları, %10 Eurobond Fonları.
-5. Spekülasyon ve Yatırımı Ayırmak: Tüyo ve kripto paralara toplam portföyün maksimum %5'i kadar "oyun parası" ayırmak.
-
-Kullanıcının şu anki canlı bütçe verileri:
-- Mevcut Hazır Birikim: ${formatCurrency(s.currentSavings)}
-- Aylık Toplam Gelir: ${formatCurrency(s.totalIncome)}
-- Aylık Toplam Gider: ${formatCurrency(s.totalExpense)} (Zorunlu: ${formatCurrency(s.totalNeeds)}, İstek: ${formatCurrency(s.totalWants)}, Borç: ${formatCurrency(s.totalDebts)})
-- Aylık Kalan Net Bütçe: ${formatCurrency(s.netMonthly)} (Tasarruf Oranı: %${s.savingsRate})
-- 3 Aylık Minimum Acil Durum Fonu Hedefi: ${formatCurrency(s.minEF)}
-
-Yanıtlarını Türkçe, samimi, kurumsal, net TL hesaplamalarıyla ve maddeler halinde (HTML <strong>, <ul>, <li> etiketleri kullanarak) ver.`;
+    const today = new Intl.DateTimeFormat('tr-TR', { dateStyle: 'long' }).format(new Date());
+    const modelMode = yekModelModeSelect?.value || 'pro';
+    const systemInstruction = [
+      'Sen YEK AI 4.0 Pro Edition, Türkçe finansal okuryazarlık, bütçe ve genel sohbet asistanısın. Genel eğitim ve karar çerçevesi sun; lisanslı kişisel yatırım danışmanı gibi davranma.',
+      'Kısa soruya kısa, detay isteyen kullanıcıya aşamalı ve anlaşılır yanıt ver. Önce sorunun özüne cevapla; konu dışı başlık ekleme.',
+      'Kişisel finans yanıtında hedef, vade, nakit ihtiyacı, gelir istikrarı, borç maliyeti ve risk taşıma kapasitesini ayır. Eksik bilgi yanıtı değiştiriyorsa yalnızca gerekli soruları sor.',
+      'Uygulamadaki 5 Altın Kural ile 50/30/20 oranı başlangıç çerçevesidir. Sabit portföy yüzdelerini veya %5 sınırını evrensel standart gibi sunma.',
+      'Çeşitlendirme belirli varlığa özgü riski azaltabilir ama piyasa kaybını yok etmez. Geçmiş performansı garanti veya tek başına seçim ölçütü sayma.',
+      'Fonlarda güncel yatırımcı bilgi formu/izahname, portföy, risk göstergesi, ücret, valör, likidite ve vergi başlıklarını kontrol ettir. Para piyasası fonunu mevduat ya da garantili getiri olarak tanımlama.',
+      'Borç ve yatırım kararlarını karşılaştırırken zorunlu ödemeleri, sözleşmedeki gerçek maliyeti, ücretleri ve belirsiz yatırım getirisini ayır.',
+      'Güncel vergi, faiz, fon koşulu, mevzuat ve piyasa haberi sağlanan bağlamda yoksa sayı uydurma; resmi ve güncel belgeyle doğrulanması gerektiğini söyle.',
+      'Uygulama tablosu kişisel ve güncel olduğu kullanıcı tarafından doğrulanana kadar örnek/eski kayıt olabilir. Gösterge kurlarının zaman damgası teyitli değildir; kesin veya canlı fiyat diye sunma.',
+      'Hesaplamada ana para, oran, dönem, bileşiklenme ve ücret/vergi varsayımlarını belirt. Reel ve nominal getiriyi ayır; projeksiyonları senaryo olarak sun, tahmin veya garanti olarak değil.',
+      'Bugünün tarihi: ' + today + '. Bu tarih canlı veri erişimi anlamına gelmez.',
+      'Uygulama bütçesi: birikim ' + formatCurrency(s.currentSavings) + ', aylık gelir ' + formatCurrency(s.totalIncome) + ', gider ' + formatCurrency(s.totalExpense) + ', zorunlu gider ' + formatCurrency(s.totalNeeds) + ', istekler ' + formatCurrency(s.totalWants) + ', borç ödemesi ' + formatCurrency(s.totalDebts) + ', net fark ' + formatCurrency(s.netMonthly) + ', uygulamadaki 3 aylık rezerv eşiği ' + formatCurrency(s.minEF) + '. Doğrulanmış kişisel veri gibi sunma.',
+      'Uzmanlık modu: ' + (modelMode === 'macro' ? 'makroekonomik senaryolar, aktarım kanalları ve gecikmeler' : modelMode === 'wealth' ? 'nakit akışı, borç maliyeti, hedef ve varsayımlı hesaplama' : 'genel asistan; kullanıcının sorusuna uygun çerçeve'),
+      'Yanıtları Türkçe ver. Gerekiyorsa HTML <strong>, <ul>, <li> kullan; basit sorularda biçimlendirmeyi sade tut.'
+    ].join('\n');
 
     try {
       const response = await fetch(
@@ -1617,15 +1597,15 @@ Yanıtlarını Türkçe, samimi, kurumsal, net TL hesaplamalarıyla ve maddeler 
 
     const loadingRow = appendMessage(
       'bot',
-      '<div class="ai-thinking-indicator"><span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span> <em>YEK-LLM v3.0 (Piyasa Ekonomisi & Genel Zeka Sinir Ağı) yanıt üretiyor...</em></div>',
+      '<div class="ai-thinking-indicator"><span class="thinking-dot"></span><span class="thinking-dot"></span><span class="thinking-dot"></span> <em>YEK AI 4.0 Pro Edition (Piyasa Ekonomisi & Genel Zeka Sinir Ağı) yanıt üretiyor...</em></div>',
       { engineBadge: 'SİNİR AĞI İŞLENİYOR...' }
     );
 
-    if (window.YEK_LLM_V3) {
-      const result = await window.YEK_LLM_V3.generateProLLMResponse(clean, chatHistory, generateGeminiTrainedResponse);
+    if (window.YEK_LLM_V4) {
+      const result = await window.YEK_LLM_V4.generateProLLMResponse(clean, chatHistory, generateGeminiTrainedResponse);
       loadingRow.remove();
 
-      const followUps = window.YEK_LLM_V3.getSuggestedFollowUps(clean);
+      const followUps = window.YEK_LLM_V4.getSuggestedFollowUps(clean);
       appendMessage('bot', result.html, {
         engineBadge: result.engineBadge,
         followUps,
@@ -2035,28 +2015,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // ============================================================================
-// ÜYE GİRİŞİ SİSTEMİ (E-POSTA/ŞİFRE, GOOGLE, APPLE, E-DEVLET) +
-// LOCALHOST KURUCU SINIRSIZ ERİŞİM MODU + İLETİŞİM ALTI YORUMLAR BÖLÜMÜ
+// ÜYE GİRİŞİ SİSTEMİ + ANA SAYFA ERİŞİMİ + KULLANICI YORUMLARI
 // ============================================================================
 
 document.addEventListener('DOMContentLoaded', () => {
   const AUTH_USER_KEY = 'yek_auth_user_v1';
   const REGISTERED_USERS_KEY = 'yek_registered_users_v1';
-  const VISITOR_LOCK_SIM_KEY = 'yek_simulate_visitor_lock_v1';
   const COMMENTS_STORAGE_KEY = 'yek_site_comments_v1';
-
-  // 1. LOCALHOST / YEREL KURUCU KONTROLÜ
-  // Siz kendi bilgisayarınızda (localhost, 127.0.0.1 veya file://) açtığınızda
-  // şifre sorulmadan her özellikten doğrudan yararlanabilirsiniz.
-  const isOwnerLocalMachine =
-    window.location.protocol === 'file:' ||
-    window.location.hostname === 'localhost' ||
-    window.location.hostname === '127.0.0.1' ||
-    window.location.hostname === '';
-
-  function isSimulatingVisitorLock() {
-    return localStorage.getItem(VISITOR_LOCK_SIM_KEY) === 'true';
-  }
 
   function getLoggedInUser() {
     try {
@@ -2082,16 +2047,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Kullanıcının site araçlarından (YEK AI, Bütçe Hesaplama vb.) yararlanma yetkisi var mı?
   function hasAccessToSiteTools() {
-    // Eğer kullanıcı giriş yapmışsa her zaman erişebilir
-    if (getLoggedInUser()) return true;
-    // Eğer localhost/yerel bilgisayardaysak ve ziyaretçi kilidi testi kapalıysa (varsayılan) sınırsız erişim!
-    if (isOwnerLocalMachine && !isSimulatingVisitorLock()) return true;
-    return false;
+    return Boolean(getLoggedInUser());
   }
 
-  // Hangi sayfadayız? Ana sayfa (index.html) herkese normal açık, araç sayfaları ise üyelere (veya localhost kurucuya) açık
+  // Ana sayfa (index.html) herkese açık; araç sayfaları giriş yapan üyelere açıktır.
   const currentPath = window.location.pathname.toLowerCase();
   const isHomePage =
+    currentPath === '/' ||
     currentPath.endsWith('index.html') ||
     currentPath.endsWith('/dogru-butce/') ||
     currentPath.endsWith('/dogru-butce');
@@ -2174,7 +2136,7 @@ document.addEventListener('DOMContentLoaded', () => {
   `;
   document.body.appendChild(authModalBackdrop);
 
-  // 3. ÜST MENÜYE (NAVBAR) GİRİŞ BUTONU VE LOCALHOST KURUCU KONTROLÜ EKLE
+  // 3. ÜST MENÜYE (NAVBAR) GİRİŞ BUTONU EKLE
   const navRightGroup = document.querySelector('.nav-right-group');
   const authNavContainer = document.createElement('div');
   authNavContainer.className = 'yek-nav-auth-group';
@@ -2182,7 +2144,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navRightGroup.prepend(authNavContainer);
   }
 
-  // 4. ARAÇ SAYFALARINDA ZİYARETÇİ KİLİT EKRANI (KURUCU LOCALHOST'TA KAPALIDIR)
+  // 4. GİRİŞ YAPMAYAN ZİYARETÇİLER İÇİN ARAÇ SAYFASI KİLİDİ
   const gateBanner = document.createElement('div');
   gateBanner.id = 'yekVisitorGateOverlay';
   gateBanner.className = 'yek-visitor-gate-overlay hidden';
@@ -2191,18 +2153,13 @@ document.addEventListener('DOMContentLoaded', () => {
       <img src="logo.svg" alt="YEK" class="gate-logo" />
       <span class="gate-badge">🔒 ÜYE GİRİŞİ GEREKLİ</span>
       <h2>YEK AI Sohbet ve Uzman Bütçe Araçlarından Yararlanmak İçin Giriş Yapın</h2>
-      <p>Ana sayfayı incelemek serbesttir. <strong>YEK AI v3.0 LLM ile sohbet etmek</strong>, bütçe hesaplamak, 5 Altın Kural ve Döviz araçlarını kullanmak için E-Posta/Şifre, <strong>Google</strong>, <strong>Apple</strong> veya <strong>e-Devlet</strong> ile saniyeler içinde giriş yapabilirsiniz.</p>
+      <p>Ana sayfayı incelemek serbesttir. <strong>YEK AI 4.0 Pro Edition LLM ile sohbet etmek</strong>, bütçe hesaplamak, 5 Altın Kural ve Döviz araçlarını kullanmak için E-Posta/Şifre, <strong>Google</strong>, <strong>Apple</strong> veya <strong>e-Devlet</strong> ile saniyeler içinde giriş yapabilirsiniz.</p>
       <div class="gate-actions">
         <button type="button" id="gateOpenLoginBtn" class="btn btn-primary">
           🔑 Giriş Yap / Üye Ol (Google • Apple • e-Devlet • E-Posta)
         </button>
         <a href="index.html" class="btn btn-secondary">🏠 Ana Sayfaya Dön</a>
       </div>
-      ${
-        isOwnerLocalMachine
-          ? `<button type="button" id="gateRestoreOwnerBtn" class="gate-owner-bypass-btn">👑 Localhost Kurucu Moduna Geri Dön (Şifresiz Kullan)</button>`
-          : ''
-      }
     </div>
   `;
   document.body.appendChild(gateBanner);
@@ -2227,10 +2184,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('gateOpenLoginBtn')?.addEventListener('click', openAuthModal);
-  document.getElementById('gateRestoreOwnerBtn')?.addEventListener('click', () => {
-    localStorage.setItem(VISITOR_LOCK_SIM_KEY, 'false');
-    updateAuthUIAndGates();
-  });
 
   // Giriş / Kayıt Sekme Geçişi
   let currentAuthMode = 'login';
@@ -2327,58 +2280,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 5. DURUM GÜNCELLEME: LOCALHOST VIP KURUCU VEYA ÜYE GİRİŞ KONTROLÜ
+  // 5. DURUM GÜNCELLEME: ÜYE GİRİŞ KONTROLÜ
   function updateAuthUIAndGates() {
     const user = getLoggedInUser();
     const canAccess = hasAccessToSiteTools();
 
     if (authNavContainer) {
       if (user) {
-        authNavContainer.innerHTML = `
-          <div class="nav-user-pill">
-            <span class="user-dot-online"></span>
-            <span class="nav-user-name">${user.name}</span>
-            <button type="button" id="navLogoutBtn" class="nav-logout-btn" title="Çıkış Yap">Çıkış</button>
-          </div>
-        `;
+        authNavContainer.innerHTML =
+          '<div class="nav-user-pill">' +
+            '<span class="user-dot-online"></span>' +
+            '<span class="nav-user-name"></span>' +
+            '<button type="button" id="navLogoutBtn" class="nav-logout-btn" title="Çıkış Yap">Çıkış</button>' +
+          '</div>';
+        authNavContainer.querySelector('.nav-user-name').textContent = user.name || 'Üye';
         document.getElementById('navLogoutBtn')?.addEventListener('click', () => {
           setLoggedInUser(null);
         });
-      } else if (isOwnerLocalMachine && !isSimulatingVisitorLock()) {
-        // Sizin kendi bilgisayarınızda (Localhost) şifresiz tam erişim: Menüde yer kaplamayan tek ve şık buton
-        authNavContainer.innerHTML = `
-          <div class="nav-owner-vip-bar">
-            <button type="button" id="navOpenLoginModalBtn" class="btn-nav-login" title="Localhost Kurucu Modu Aktif (Şifresiz Erişim). Giriş penceresini görmek için tıklayın.">👑 Giriş Yap</button>
-            <button type="button" id="navTestVisitorLockBtn" class="btn-nav-lock-test" title="Dış ziyaretçi kilit ekranını test et">🔒</button>
-          </div>
-        `;
-        document.getElementById('navOpenLoginModalBtn')?.addEventListener('click', openAuthModal);
-        document.getElementById('navTestVisitorLockBtn')?.addEventListener('click', () => {
-          localStorage.setItem(VISITOR_LOCK_SIM_KEY, 'true');
-          updateAuthUIAndGates();
-          openAuthModal();
-        });
       } else {
-        // Dış ziyaretçi (veya Ziyaretçi Modu testi açıkken)
-        authNavContainer.innerHTML = `
-          <div class="nav-owner-vip-bar">
-            <button type="button" id="navOpenLoginModalBtn" class="btn-nav-login highlight-pulse">🔑 Giriş Yap</button>
-            ${
-              isOwnerLocalMachine
-                ? `<button type="button" id="navExitVisitorTestBtn" class="btn-nav-lock-test active-lock" title="Localhost Kurucu Moduna Dön">👑</button>`
-                : ''
-            }
-          </div>
-        `;
+        authNavContainer.innerHTML =
+          '<div class="nav-owner-vip-bar">' +
+            '<button type="button" id="navOpenLoginModalBtn" class="btn-nav-login highlight-pulse">🔑 Giriş Yap</button>' +
+          '</div>';
         document.getElementById('navOpenLoginModalBtn')?.addEventListener('click', openAuthModal);
-        document.getElementById('navExitVisitorTestBtn')?.addEventListener('click', () => {
-          localStorage.setItem(VISITOR_LOCK_SIM_KEY, 'false');
-          updateAuthUIAndGates();
-        });
       }
     }
 
-    // Eğer araç sayfasındaysak (YEK AI, Bütçe Hesapla vb.) ve erişim yoksa kilit ekranını göster
     if (!isHomePage && !canAccess) {
       gateBanner.classList.remove('hidden');
     } else {
@@ -2405,46 +2332,28 @@ document.addEventListener('DOMContentLoaded', () => {
   updateAuthUIAndGates();
 
   // ==========================================================================
-  // 6. İLETİŞİM YERİNİN ALTINA KULLANICI YORUMLARI VE DEĞERLENDİRME BÖLÜMÜ
+  // 6. İLETİŞİM YERİNİN ALTINDA KULLANICI YORUMLARI VE DEĞERLENDİRME BÖLÜMÜ
   // ==========================================================================
-  const DEFAULT_COMMENTS = [
-    {
-      id: 1,
-      name: 'Mert Demirsoy',
-      email: 'mert.demirsoy@gmail.com',
-      badge: 'Google Hesabı ile Giriş Yaptı',
-      rating: 5,
-      date: 'Bugün • 14:20',
-      text: 'YEK AI v3.0 gerçekten ChatGPT ve Gemini kalitesinde olmuş! Özellikle TCMB faiz döngüsü, reel faiz hesabı ve TEFAS hisse yoğun fonların %0 stopaj avantajı hakkında verdiği tablolu analizler muazzam. Yusuf Efe Karagöz hocanın emeğine sağlık.',
-    },
-    {
-      id: 2,
-      name: 'Zeynep Kaya',
-      email: 'zeynep.k@turkiye.gov.tr',
-      badge: 'e-Devlet Kapısı Onaylı Üye',
-      rating: 5,
-      date: 'Dün • 21:45',
-      text: 'Maaşım yattığı gün para nereye gidiyor hiç anlamıyordum. 5 Altın Kural sayfasındaki Sıfırıncı Adım Acil Durum Fonu ve her ayın 1\'inde otomatik DCA sepeti sayesinde 4 ayda ilk 95.000 ₺ Para Piyasası Fonu tamponumu kurdum!',
-    },
-    {
-      id: 3,
-      name: 'Burak Özkan',
-      email: 'burak.ozkan@icloud.com',
-      badge: 'Apple ID Onaylı Üye',
-      rating: 5,
-      date: '2 Gün Önce',
-      text: 'Döviz çevirici sayfasında kenardaki birikimimin kaç Gram Altın, kaç Dolar ve İsviçre Frangı ettiğini anlık görmek çok motive edici. Ayrıca kripto parada maksimum %5 oyun parası kuralı beni büyük bir zarardan kurtardı.',
-    },
-  ];
+  const LEGACY_FAKE_REVIEW_EMAILS = new Set([
+    'mert.demirsoy@gmail.com',
+    'zeynep.k@turkiye.gov.tr',
+    'burak.ozkan@icloud.com',
+  ]);
 
   function getStoredComments() {
     try {
       const raw = localStorage.getItem(COMMENTS_STORAGE_KEY);
-      if (!raw) return [...DEFAULT_COMMENTS];
+      if (!raw) return [];
       const parsed = JSON.parse(raw);
-      return Array.isArray(parsed) && parsed.length > 0 ? parsed : [...DEFAULT_COMMENTS];
+      if (!Array.isArray(parsed)) return [];
+
+      const genuineComments = parsed.filter(
+        (comment) => !LEGACY_FAKE_REVIEW_EMAILS.has(String(comment?.email || '').trim().toLowerCase())
+      );
+      if (genuineComments.length !== parsed.length) saveComments(genuineComments);
+      return genuineComments;
     } catch (e) {
-      return [...DEFAULT_COMMENTS];
+      return [];
     }
   }
 
@@ -2466,10 +2375,10 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="comments-eyebrow">💬 KULLANICI YORUMLARI & PLATFORM DENEYİMLERİ</span>
           <h4>Doğru Bütçe Doğru Kullanım & YEK AI Hakkında Yorumlar</h4>
         </div>
-        <div class="comments-rating-summary">
-          <span class="stars-gold">★★★★★</span>
-          <strong>4.9 / 5.0</strong>
-          <small>(Doğrulanmış Üye Değerlendirmeleri)</small>
+        <div class="comments-rating-summary" aria-live="polite">
+          <span id="commentsAverageStars" class="stars-gold">☆☆☆☆☆</span>
+          <strong id="commentsAverageScore">Henüz puan yok</strong>
+          <small id="commentsRatingCount">İlk değerlendirmeyi siz paylaşın</small>
         </div>
       </div>
 
@@ -2484,6 +2393,8 @@ document.addEventListener('DOMContentLoaded', () => {
               <option value="5">★★★★★ (5 Yıldız - Mükemmel)</option>
               <option value="4">★★★★☆ (4 Yıldız - Çok İyi)</option>
               <option value="3">★★★☆☆ (3 Yıldız - İyi)</option>
+              <option value="2">★★☆☆☆ (2 Yıldız - Geliştirilmeli)</option>
+              <option value="1">★☆☆☆☆ (1 Yıldız - Zayıf)</option>
             </select>
           </div>
         </div>
@@ -2499,36 +2410,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const commentsListEl = document.getElementById('footerCommentsList');
     const commentFormEl = document.getElementById('footerAddCommentForm');
 
+    function escapeCommentHTML(value) {
+      return String(value ?? '').replace(/[&<>"']/g, (character) => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      })[character]);
+    }
+
     function renderComments() {
       if (!commentsListEl) return;
       const list = getStoredComments();
+      const average = list.length
+        ? list.reduce((sum, item) => sum + Math.min(5, Math.max(1, Number(item.rating) || 5)), 0) / list.length
+        : 0;
+      const roundedAverage = Math.round(average);
+      const starsEl = document.getElementById('commentsAverageStars');
+      const scoreEl = document.getElementById('commentsAverageScore');
+      const countEl = document.getElementById('commentsRatingCount');
+
+      if (starsEl) starsEl.textContent = list.length ? '★'.repeat(roundedAverage) + '☆'.repeat(5 - roundedAverage) : '☆☆☆☆☆';
+      if (scoreEl) scoreEl.textContent = list.length ? average.toFixed(1).replace('.', ',') + ' / 5' : 'Henüz puan yok';
+      if (countEl) countEl.textContent = list.length ? list.length + ' değerlendirme' : 'İlk değerlendirmeyi siz paylaşın';
+
+      if (list.length === 0) {
+        commentsListEl.innerHTML = '<p class="comments-empty-state">Henüz yorum yok. İlk yorum ve puanı siz paylaşın.</p>';
+        return;
+      }
+
       commentsListEl.innerHTML = list
         .map((item) => {
-          const stars = '★'.repeat(item.rating || 5) + '☆'.repeat(5 - (item.rating || 5));
+          const rating = Math.min(5, Math.max(1, Number(item.rating) || 5));
+          const stars = '★'.repeat(rating) + '☆'.repeat(5 - rating);
+          const name = escapeCommentHTML(item.name || 'Site Üyesi');
+          const badge = escapeCommentHTML(item.badge || 'Üye');
+          const date = escapeCommentHTML(item.date || '');
+          const text = escapeCommentHTML(item.text || '');
           const initials = (item.name || 'ÜY')
             .split(' ')
-            .map((p) => p[0])
+            .map((part) => part[0])
             .join('')
             .slice(0, 2)
             .toUpperCase();
-          return `
-            <article class="user-comment-card">
-              <div class="comment-card-top">
-                <div class="comment-author-box">
-                  <div class="comment-avatar">${initials}</div>
-                  <div>
-                    <strong class="comment-author-name">${item.name}</strong>
-                    <span class="comment-auth-badge">✓ ${item.badge || 'Doğrulanmış Üye'}</span>
-                  </div>
-                </div>
-                <div class="comment-meta-right">
-                  <span class="comment-stars">${stars}</span>
-                  <small class="comment-date">${item.date}</small>
-                </div>
-              </div>
-              <p class="comment-text">"${item.text}"</p>
-            </article>
-          `;
+
+          return '<article class="user-comment-card">' +
+            '<div class="comment-card-top">' +
+              '<div class="comment-author-box">' +
+                '<div class="comment-avatar">' + escapeCommentHTML(initials) + '</div>' +
+                '<div><strong class="comment-author-name">' + name + '</strong>' +
+                '<span class="comment-auth-badge">&bull; ' + badge + '</span></div>' +
+              '</div>' +
+              '<div class="comment-meta-right"><span class="comment-stars">' + stars + '</span>' +
+              '<small class="comment-date">' + date + '</small></div>' +
+            '</div><p class="comment-text">"' + text + '"</p></article>';
         })
         .join('');
     }
@@ -2551,13 +2487,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!commentText) return;
 
         const loggedUser = getLoggedInUser();
-        const authorName =
-          nameInp.value.trim() ||
-          loggedUser?.name ||
-          (isOwnerLocalMachine ? 'Yusuf Efe Karagöz (Kurucu)' : 'Site Üyesi');
-        const authorBadge =
-          loggedUser?.method ||
-          (isOwnerLocalMachine ? 'Kurucu & Piyasa Uzmanı' : 'E-Posta Onaylı Üye');
+        const authorName = nameInp.value.trim() || loggedUser?.name || 'Site Üyesi';
+        const authorBadge = loggedUser?.method || 'Üye';
 
         const currentList = getStoredComments();
         currentList.unshift({
@@ -2589,7 +2520,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenuBtn.id = 'mobileNavToggleBtn';
     mobileMenuBtn.className = 'btn-mobile-menu-toggle';
     mobileMenuBtn.setAttribute('aria-expanded', 'false');
-    mobileMenuBtn.setAttribute('aria-label', 'Tüm Sayfalar Menüsünü Aç/Kapat');
+    navLinksContainer.id = 'primaryNavigation';
+    mobileMenuBtn.setAttribute('aria-label', 'Üst menüyü aç/kapat');
+    mobileMenuBtn.setAttribute('aria-controls', navLinksContainer.id);
     mobileMenuBtn.innerHTML = `<span class="mobile-menu-icon">☰</span><span class="mobile-menu-label">Menü</span>`;
     navRightEl.appendChild(mobileMenuBtn);
 

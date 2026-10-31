@@ -1,5 +1,5 @@
 // ============================================================================
-// YEK AI v3.0 RELEASE — BÜYÜK DİL MODELİ (LLM) & ÜST DÜZEY PİYASA EKONOMİSİ MOTORU
+// YEK AI 4.0 PRO EDITION — FİNANSAL OKURYAZARLIK, PİYASA & BÜTÇE ASİSTANI
 // Doğal İnsan Benzeri Sohbet + Üst Düzey Makroekonomi & Finans Zekası
 // ============================================================================
 
@@ -71,7 +71,7 @@
 **Piyasa ekonomisi**, üretimin, kaynak dağılımının ve fiyatların merkezi bir planlama yerine **arz (üreticiler)** ile **talep (tüketiciler)** arasındaki serbest etkileşimle belirlendiği ekonomik düzendir. **Adam Smith**'in *"Görünmez El"* kavramıyla açıkladığı bu sistemde fiyatlar, ekonomideki kıtlık ve bolluk bilgisini anlık olarak taşıyan birer sinyaldir.
 
 * **Fiyat Mekanizması:** Bir mal veya varlığa talep arttığında fiyat yükselir; bu yükseliş sermayeyi o alana çeker ve arzı artırarak yeni dengeyi kurar.
-* **Yaratıcı Yıkım (Schumpeter):** Rekabet ortamında verimsiz şirketler elenirken, teknoloji ve verimlilik üreten şirketler büyür. Borsada uzun vadeli endekslerin (S&P 500, NASDAQ, BIST) yükselmesinin temel sebebi bu kurumsal evrimdir.
+* **Yaratıcı Yıkım (Schumpeter):** Rekabet ortamında verimsiz şirketler elenirken, teknoloji ve verimlilik üreten şirketler büyür. Yaratıcı yıkım verimliliği artırabilir; ancak hiçbir endeksin veya şirketin sürekli yükseleceğini garanti etmez.
 * **Fırsat Maliyeti:** Parayı vadesiz hesapta atıl tutmanın maliyeti, vazgeçilen reel faiz veya fon getirisidir.
 * **Sermaye Ortağı Olmak:** Piyasa ekonomisinde sadece maaş kazanıp harcayan kişi sistemin tüketicisidir; aylık **${formatTRY(s.positiveSavings)}** tasarrufunu yatırım fonları ve değerli madenlere dönüştüren kişi ise üretim araçlarının ortağı olur.`
     },
@@ -83,15 +83,15 @@
 
 Merkez bankaları paranın fiyatını (**politika faizi**) ve piyasadaki likiditeyi yöneterek ekonomik döngüleri belirler:
 
-1. **Parasal Sıkılaşma (Faiz Artış Dönemi):** Enflasyonu düşürmek için kredi maliyetleri artırılır ve talep soğutulur. Bu evrede **Para Piyasası Fonları (PPF)** ve günlük mevduat yüksek reel getiri üretir; borçlu şirketlerin ise finansman gideri artar.
-2. **Parasal Gevşeme (Faiz İndirim Dönemi):** Faizler inmeye başladığında sabit getirili **Tahvil ve Eurobond** fiyatları yükselir, mevduattan çıkan nakit **Hisse Senetlerine (Borsa)**, **Gayrimenkule** ve **Altına** yönelir.
+1. **Parasal Sıkılaşma (Faiz Artış Dönemi):** Sıkılaşma kredi koşullarını zorlaştırıp talep ve enflasyon beklentilerini zaman içinde etkileyebilir. Kısa vadeli faiz araçlarının getirisi yükselebilir; ancak vergi, ücret ve enflasyon sonrası reel sonuç garanti değildir.
+2. **Parasal Gevşeme (Faiz İndirim Dönemi):** Piyasa getirileri düşerse mevcut sabit kuponlu tahvillerin fiyatı genellikle yükselir; vade, kredi riski ve beklentiler sonucu değiştirebilir. Varlıklar arası sermaye akışı otomatik veya tek yönlü değildir.
 
 #### Reel Faiz Denklemi (Fisher Formülü)
 Nominal faiz tek başına yanıltıcıdır; asıl getiri enflasyondan arındırılmış **Reel Faizdir**:
 
 $$\\text{Reel Faiz} = \\frac{1 + \\text{Nominal Faiz}}{1 + \\text{Beklenen Enflasyon}} - 1$$
 
-Yıllık bileşik getiri **%52**, beklenen enflasyon **%38** olduğunda reel getiri **+%10,14** olur.`
+Örnek varsayımında yıllık bileşik getiri **%52**, beklenen enflasyon **%38** ise reel getiri **yaklaşık %10,14** olur; bu güncel piyasa verisi değildir.`
     },
     {
       id: 'inflation_economics',
@@ -101,21 +101,22 @@ Yıllık bileşik getiri **%52**, beklenen enflasyon **%38** olduğunda reel get
 
 * **Talep Enflasyonu:** Para arzı ve kredi büyümesinin üretimden hızlı artmasıdır ($M \\times V = P \\times Y$).
 * **Maliyet Enflasyonu:** Döviz kuru geçişkenliği, enerji ve hammadde maliyetlerinin üretim fiyatlarını yukarı itmesidir.
-* **Dezenflasyon:** Fiyatların düşmesi değil, **enflasyon artış hızının yavaşlamasıdır**. Dezenflasyon sürecinde uzun vadeli tahviller ve bankacılık/holding hisseleri güçlü performans gösterir.
-* **Stagflasyon:** Ekonomik durgunluk (resesyon) ile yüksek enflasyonun aynı anda yaşanmasıdır. Stagflasyona karşı en güçlü tarihsel koruma **Altın, Gümüş ve fiyatlama gücü yüksek temel tüketim/teknoloji şirketleridir**.`
+* **Dezenflasyon:** Fiyatların düşmesi değil, **enflasyon artış hızının yavaşlamasıdır**. Tahvil ve hisse etkisi; beklenen faiz, risk primi, büyüme, kârlar ve piyasa fiyatlamasına bağlıdır; otomatik getiri sonucu çıkarılamaz.
+* **Stagflasyon:** Ekonomik durgunluk (resesyon) ile yüksek enflasyonun aynı anda yaşanmasıdır. Stagflasyon farklı varlıkları farklı etkiler; altın, emtia veya şirket hisseleri için kesin koruma ya da pozitif getiri sözü verilemez.`
     },
     {
       id: 'stock_valuation_bist_global',
-      keywords: ['temel analiz', 'f/k', 'pd/dd', 'fd/favök', 'bilanço', 'hisse değerleme', 'bist 100', 's&p 500', 'nasdaq', 'temettü', 'serbest nakit akışı', 'borsa analizi', 'ucuz hisse'],
+      keywords: ['temel analiz', 'f/k', 'pd/dd', 'fd/favök', 'bilanço', 'hisse', 'hisse senedi', 'hisse değerleme', 'bist', 'thyao', 'tüpraş', 'tuprs', 'froto', 'ford', 'aselsan', 'asels', 'bimas', 'eregl', 'kchol', 's&p 500', 'nasdaq', 'temettü', 'serbest nakit akışı', 'borsa analizi', 'ucuz hisse'],
       render: (s) => `
 ### 📊 Borsa Değerleme Çarpanları (F/K, PD/DD, FD/FAVÖK, ROE)
 
-Bir şirketin hissesini alırken ucuz mu yoksa pahalı mı olduğunu analiz etmek için kullanılan 4 temel kurumsal rasyo:
+Çarpanlar şirketi araştırmaya yardımcı olur; sektör, sermaye yapısı, döngü ve muhasebe farklılıkları nedeniyle şirketleri tek başına sıralamaz:
 
-* **F/K (Fiyat / Kazanç — P/E):** Şirketin piyasa değerinin yıllık net kârına oranıdır. Mevcut kârla şirketin kendini kaç yılda amorti ettiğini gösterir.
-* **PD/DD (Piyasa Değeri / Defter Değeri — P/B):** Piyasa değerinin şirketin net özsermayesine oranıdır. Banka ve holding değerlemesinde temel ölçüttür.
-* **FD/FAVÖK (EV/EBITDA):** Şirketin net borcunu da hesaba katarak esas faaliyet kârlılığını ölçer; sanayi şirketlerinde F/K'dan daha sağlıklı sonuç verir.
-* **ROE (Özsermaye Kârlılığı):** Şirketin özsermayesini yıllık yüzde kaç büyüttüğünü gösterir. Enflasyonun üzerinde ROE üreten ve düşük çarpanlı şirketler uzun vadede en yüksek bileşik getiriyi sağlar.`
+* **F/K (Fiyat / Kazanç — P/E):** Piyasa değerini net kâra oranlar. Tek seferlik kâr ve ekonomik döngü sonucu bozabilir; zarar yazan şirkette anlamlı olmayabilir.
+* **PD/DD (Piyasa Değeri / Defter Değeri — P/B):** Piyasa değerini defter özkaynağıyla karşılaştırır. Varlık kalitesi ve sürdürülebilir özkaynak kârlılığıyla birlikte yorumlanmalıdır.
+* **FD/FAVÖK (EV/EBITDA):** Firma değerini faiz, vergi ve amortisman öncesi kârla karşılaştırır. Yatırım harcaması, işletme sermayesi ve net borç yükünü tek başına göstermez.
+* **ROE (Özsermaye Kârlılığı):** Net kârı özkaynağa oranlar. Borçluluk, kâr kalitesi, büyüme ve değerleme birlikte incelenmelidir; düşük çarpan veya yüksek ROE tek başına ucuzluk ya da getiri garantisi değildir.
+* **Tamamlayıcı inceleme:** Nakit akışı, borç vadesi, marj eğilimi, sermaye ihtiyacı, sektör yapısı, yönetim ve değerlemeyi aynı döneme ait güncel raporlardan kontrol et.`
     },
     {
       id: 'bonds_eurobond_cds',
@@ -123,10 +124,10 @@ Bir şirketin hissesini alırken ucuz mu yoksa pahalı mı olduğunu analiz etme
       render: (s, rates) => `
 ### 💶 Eurobond, CDS Risk Primi ve Tahvil Fiyatlaması
 
-Nakit Dolar ($1 = ₺${rates.USD.toFixed(2)}) veya Euro ($1€ = ₺${rates.EUR.toFixed(2)}) tutmak, ABD ve Avrupa enflasyonu nedeniyle her yıl alım gücü kaybettirir. Döviz bazında reel getiri üretmenin yolu **Eurobond** ve **Yabancı Fonlardır**.
+Döviz nakit, ilgili para birimindeki enflasyon nedeniyle zamanla alım gücü kaybedebilir. Eurobond ve yabancı fonlar farklı kur, faiz, kredi, fiyat oynaklığı, ücret ve vergi riskleri taşır; reel getiri garantisi vermez.
 
-* **CDS (Ülke Kredi Risk Primi):** Ülkenin borç ödeyebilme güvenilirliğini ölçer. CDS yüksekken alınan Eurobond'lar yüksek döviz faizi kilitler; ülke risk primi düştüğünde ise Eurobond'un **anapara değeri yükselir**.
-* **Faiz - Tahvil Fiyatı İlişkisi:** Piyasa faizleri ile tahvil fiyatları ters orantılıdır. Faizler düştüğünde eldeki yüksek kuponlu tahvil/Eurobond'lar değer kazanır.`
+* **CDS (Ülke Kredi Risk Primi):** Ülke kredi riskine ilişkin piyasa göstergelerinden biridir; tek başına tahvilin güvenliğini veya getirisini belirlemez. Eurobond'da kredi, kur, faiz, likidite ve vade risklerini birlikte değerlendir.
+* **Faiz - Tahvil Fiyatı İlişkisi:** Piyasa getirileri ile mevcut sabit kuponlu tahvil fiyatları çoğunlukla ters yönlü hareket eder. Vade, kredi riski, kur ve beklentiler nedeniyle yatırımcının toplam sonucu farklılaşabilir.`
     },
     {
       id: 'behavioral_finance_psychology',
@@ -136,9 +137,154 @@ Nakit Dolar ($1 = ₺${rates.USD.toFixed(2)}) veya Euro ($1€ = ₺${rates.EUR.
 
 Daniel Kahneman'ın *Beklenti Teorisi*'ne göre yatırımcıların en büyük düşmanı piyasa değil, kendi duygusal tepkileridir:
 
-* **Kayıptan Kaçınma (Loss Aversion):** Kaybetmenin acısı, aynı tutarı kazanmanın sevincinden 2,25 kat daha güçlüdür. Bu durum kârda olan pozisyonların erken satılmasına, zarardaki kötü varlıkların ise inatla tutulmasına yol açar.
+* **Kayıptan Kaçınma (Loss Aversion):** Kayıptan kaçınma, yatırımcıyı zarardaki varlığı gereğinden uzun tutmaya veya kazançlı pozisyonu erken kapatmaya itebilir; bu davranış herkeste aynı ölçüde görülmez.
 * **FOMO (Fırsatı Kaçırma Korkusu):** Varlık fiyatları zirveye ulaştığında kalabalıkla birlikte en tepeden alım yapma hatasıdır.
-* **Algoritmik Çözüm (DCA):** Her ayın 1'inde maaş yattığı gün otomatik alım yapmak (**${formatTRY(s.positiveSavings)}/ay**), kararları duygulardan tamamen arındırır.`
+* **Düzenli Alım:** Önceden belirlenmiş aralıklarla yatırım yapmak zamanlama baskısını azaltabilir; zararı veya duygusal kararları ortadan kaldırmaz. Tutarın bütçeye ve hedefe uygunluğu ayrıca değerlendirilmelidir.`
+    },
+    {
+      id: 'personal_budget_framework',
+      keywords: ['bütçe', 'bütçe planı', '50/30/20', 'gelir', 'gider', 'gelir gider planı', 'gelir-gider planı', 'aylık nakit akışı', 'nakit akışı', 'aylık harcama planı', 'harcama', 'harcama planı', 'gider planı', 'kira', 'tasarruf', 'tasarruf oranı', 'birikim', 'acil', 'acil durum fonu', 'acil rezerv', 'nakit tamponu', 'mevduat', 'para piyasası', 'ppf', 'likit'],
+      render: (s) => [
+        '### 📒 Kişisel Bütçe ve Nakit Akışı Planı',
+        '',
+        'Bütçe, geçmiş harcamaları sınıflandırmanın yanında gelecek gelir ve giderleri önceden eşleştiren bir karar planıdır. Önce aylık net geliri, zorunlu giderleri, borç ödemelerini ve düzensiz yıllık giderleri ayrı yaz.',
+        '',
+        '- **Mevcut uygulama verisi:** Aylık gelir ' + formatTRY(s.totalIncome) + ', gider ' + formatTRY(s.totalExpense) + ', net fark ' + formatTRY(s.netMonthly) + '. Bu değerlerin kişisel ve güncel olduğunu doğrula; örnek ya da eski kayıt olabilir.',
+        '- **Kategoriler:** Barınma, temel faturalar, gıda ve ulaşım gibi zorunlu giderleri; isteğe bağlı harcamaları; borç ödemelerini; tasarruf ve hedef birikimlerini birbirinden ayır.',
+        '- **50/30/20:** İhtiyaç, istek ve tasarruf için başlangıç kontrol listesi olabilir; yüksek kira, aile sorumlulukları, düzensiz gelir veya borçlar varsa oranları gerçekçi biçimde uyarla.',
+        '- **Acil durum rezervi:** Birkaç aylık zorunlu gideri kolay erişilen ve riskini bildiğin araçlarda tutmayı değerlendir. Uygun miktar gelir istikrarına, bakmakla yükümlü olunan kişilere ve sigorta kapsamına göre değişir.',
+        '- **Rutin:** Maaş günü otomatik birikim talimatı oluştur; haftalık harcamaları takip et ve ay sonunda plana göre sapmaları düzelt.',
+        '',
+        'İyi bir ilk adım, son 2-3 aylık ekstreleri inceleyip sabit, değişken ve düzensiz giderleri ayırmaktır.'
+      ].join('\n')
+    },
+    {
+      id: 'debt_repayment_strategy',
+      keywords: ['borç', 'kredi', 'kart', 'ek hesap', 'kredi kartı borcu', 'kart borcumu', 'borç kapatma', 'borç planı', 'borçlarımı nasıl öderim', 'borçları hangi sırayla', 'borç çığ yöntemi', 'borç kartopu', 'borç faizi', 'asgari ödeme', 'kmh'],
+      render: () => [
+        '### 💳 Borçları Önceliklendirme',
+        '',
+        'Önce her borç için kalan ana para, efektif yıllık maliyet, ücretler, asgari ödeme ve son ödeme tarihini aynı tabloda topla. Sözleşmedeki oranları kullan; kampanya ve gecikme koşulları değişebilir.',
+        '',
+        '- **Ödemeyi aksatma:** Mümkünse tüm borçların zorunlu asgari taksitlerini ve temel yaşam giderlerini karşıla.',
+        '- **Çığ yöntemi:** Asgarilerden sonra kalan ek ödemeyi en yüksek efektif maliyetli borca yönlendir. Koşullar eşitse, toplam faiz maliyetini düşürmeye yardımcı olur.',
+        '- **Kartopu yöntemi:** En küçük bakiyeyi önce kapatmak motivasyonu artırabilir; toplam faiz maliyeti çığ yönteminden yüksek olabilir.',
+        '- **Karşılaştırma:** Yüksek maliyetli borcu kapatmanın kesinleşen tasarrufunu, getirisi belirsiz yatırım beklentisiyle karşılaştır; borç maliyetini görmezden gelerek kaldıraçlı risk alma.',
+        '',
+        'Erken ödeme ücreti, yapılandırma veya ödeme güçlüğü varsa karar vermeden önce kredi sözleşmesini ve bankanın güncel koşullarını kontrol et.'
+      ].join('\n')
+    },
+    {
+      id: 'portfolio_construction',
+      keywords: ['portföy', 'varlık dağılımı', 'portföy dağılımı', 'portföyümü çeşitlendir', 'yatırım önerisi', 'yatırım tavsiyesi', 'yatırım yap', 'yatırım dağılımı', 'birikim', 'elimde', 'çeşitlendirme', 'diversifikasyon', 'risk toleransı', 'risk profili', 'portföy dengeleme', 'yeniden dengeleme'],
+      render: () => [
+        '### 🧭 Portföy Kurma: Hedef, Vade ve Risk',
+        '',
+        'Tek bir ideal portföy yüzdesi yoktur. Önce hedefin tutarını ve tarihini, ara dönemde nakde ihtiyaç olup olmayacağını, gelir istikrarını, borçları ve geçici kayıpları taşıma kapasiteni netleştir.',
+        '',
+        '- **Vade ve likidite:** Yakın zamanda kullanılacak parayı uzun vadeli veya sert dalgalanan varlıklara bağlama; her hedefi kendi zaman çizelgesiyle değerlendir.',
+        '- **Risk kapasitesi ile risk isteği:** Dalgalanmaya katlanma isteği, zararı finansal olarak taşıyabilme kapasitesiyle aynı şey değildir. Düşük olan sınırı dikkate al.',
+        '- **Çeşitlendirme:** Varlık sınıfı, sektör, ihraççı, ülke ve para birimi boyunca yoğunlaşmayı incele. Birkaç farklı fon almak, aynı hisseleri tutuyorsa gerçek çeşitlendirme sağlamayabilir.',
+        '- **Dengeleme:** Hedef dağılımdan sapma için önceden bir eşik veya takvim belirle; vergi, alım-satım maliyeti ve likiditeyi hesaba kat.',
+        '- **Geçmiş getiri:** Tek başına geleceği göstermez. Ücret, risk, düşüş, kıyas ölçütü ve zaman aralığını beraber incele.',
+        '',
+        'Çeşitlendirme belirli bir şirket veya varlığa özgü riski azaltabilir; piyasa genelindeki kaybı ortadan kaldırmaz. Buradaki çerçeve kişiye özel al-sat talimatı değildir.'
+      ].join('\n')
+    },
+    {
+      id: 'fund_due_diligence',
+      keywords: ['fon', 'tefas', 'stopaj', 'yatırım fonu seçimi', 'fon seçimi', 'fon karşılaştırma', 'fon gider oranı', 'fon yönetim ücreti', 'yatırımcı bilgi formu', 'fon risk değeri', 'tefas fonu', 'para piyasası fonu', 'ppf riski', 'hisse', 'borsa', 'bist', 'temettü', 'vergi'],
+      render: () => [
+        '### 📑 Yatırım Fonu İnceleme Kontrol Listesi',
+        '',
+        'Fon adındaki kategori tek başına yeterli değildir. Güncel yatırımcı bilgi formu ve izahnameyi okuyup şu başlıkları karşılaştır:',
+        '',
+        '- **Amaç ve portföy:** Fonun stratejisi, varlık dağılımı, yoğunlaşma sınırları ve kıyas ölçütü.',
+        '- **Risk:** Risk-getiri göstergesi, oynaklık, düşüşler, kur ve faiz hassasiyeti; geçmiş performans geleceği garanti etmez.',
+        '- **Maliyet:** Yönetim ücreti, toplam gider oranı, komisyonlar ve alım-satım makası.',
+        '- **İşleyiş:** Alım-satım saatleri, valör, nakde dönüş süresi ve varsa işlem kısıtları.',
+        '- **Vergi:** Vergi uygulaması fon türü, yatırımcı ve yürürlükteki mevzuata göre değişebilir; güncel oranı teyit et.',
+        '',
+        'Para piyasası fonu banka mevduatı değildir ve anapara/getiri garantisi olarak sunulmamalıdır. Kısa vadeli faiz ve likidite riski dahil fonun açıklanan risklerini incele.'
+      ].join('\n')
+    },
+    {
+      id: 'macro_scenario_analysis',
+      keywords: ['makro senaryo', 'faiz senaryosu', 'faizler düşerse ne olur', 'faizler yükselirse ne olur', 'kur senaryosu', 'enflasyon senaryosu', 'makroekonomik analiz', 'ekonomik senaryo'],
+      render: () => [
+        '### 🌐 Makroekonomi İçin Senaryo Analizi',
+        '',
+        'Bir veri veya merkez bankası kararı varlık fiyatını tek başına belirlemez. Beklentiler, kararın ne kadar sürpriz olduğu, büyüme, risk primi, kur geçişkenliği ve küresel koşullar birlikte etkili olur; aktarım zaman alabilir.',
+        '',
+        '- **Baz senaryo:** Mevcut beklentiler sürerse hangi kanallar etkilenir?',
+        '- **Yukarı ve aşağı yönlü risk:** Enflasyon, faiz, kur veya büyüme beklenenden farklı olursa hangi varsayım bozulur?',
+        '- **Varlık kanalları:** Tahvil fiyatı ile piyasa getirisi çoğunlukla ters hareket eder; hisse, kur ve emtia etkisi şirket kârı, risk primi ve başlangıç fiyatlamasına bağlıdır.',
+        '- **Belirsizlik:** Senaryolar tahmin veya kesin sonuç değildir. Güncel veri yoksa bunu belirt ve sayı uydurma.',
+        '',
+        'Karar verirken tek bir tahmin yerine olası sonuçları, vade ihtiyacını ve kayıp senaryosunu karşılaştır.'
+      ].join('\n')
+    },
+    {
+      id: 'crypto_risk_management',
+      keywords: ['bitcoin', 'btc', 'kripto', 'altcoin', 'coin', 'kripto güvenliği', 'kripto riski', 'bitcoin riski', 'kripto portföy', 'kripto kaldıraç', 'kripto dolandırıcılık', 'özel anahtar'],
+      render: () => [
+        '### ₿ Kripto Varlıklarda Risk ve Güvenlik',
+        '',
+        'Kripto varlıklar yüksek oynaklık, platform/karşı taraf riski, saklama hatası, siber saldırı, likidite ve düzenleme riski taşıyabilir. Değer tamamen kaybolabilir; geçmiş fiyat artışı güvenilir getiri beklentisi değildir.',
+        '',
+        '- Yalnızca kaybı temel giderlerini ve borç ödemelerini bozmayacak tutarı riske at.',
+        '- Kaldıraç, borçla alım, bilinmeyen token, garanti getiri ve acil karar baskısını kırmızı bayrak say.',
+        '- Saklama yöntemini, erişim kurtarma planını, platformun koşullarını ve çekim likiditesini önceden araştır.',
+        '- Site içindeki yüzde sınırını evrensel yatırım kuralı gibi sunma; uygun risk limiti kişisel mali duruma bağlıdır.'
+      ].join('\n')
+    },
+    {
+      id: 'gold_and_currency_risk',
+      keywords: ['altın', 'altin', 'gümüş', 'gumus', 'döviz', 'kur', 'dolar', 'euro', 'sterlin', 'gram altın', 'altın fonu', 'altın sertifikası'],
+      render: () => [
+        '### 🪙 Altın, Döviz ve Değerli Madenleri Karşılaştırma',
+        '',
+        'Altın, döviz, fon ve sertifika aynı ürün değildir. Fiyatı etkileyen unsur, saklama ve işlem yapısı, likidite, ücret/makas, vergi ve karşı taraf riski değişebilir.',
+        '',
+        '- **Hedef:** Paranın hangi tarihte ve hangi para biriminde kullanılacağını belirle; kısa vadeli zorunlu gideri fiyatı oynak varlığa bağlama.',
+        '- **Ürün yapısı:** Fiziki altın, banka hesabı, borsada işlem gören sertifika ve yatırım fonunun sahiplik, saklama, işlem saati ve masraf koşullarını karşılaştır.',
+        '- **Kur riski:** Döviz varlığı yerel para hareketine karşı farklı sonuç verebilir; kendi para birimindeki enflasyon ve kur oynaklığı da reel sonucu etkiler.',
+        '- **Portföy etkisi:** Değerli madenler her dönemde enflasyona karşı koruma veya pozitif getiri sağlamaz. Tek bir varlığa yoğunlaşma riskini değerlendir.',
+        '',
+        'Güncel fiyat ve vergi koşullarını işlem öncesinde güvenilir, resmi veya sağlayıcının güncel belgesinden doğrula.'
+      ].join('\n')
+    },
+    {
+      id: 'compound_return_framework',
+      keywords: ['bileşik getiri', '72 kuralı', 'fire', 'finansal özgürlük', 'emekli', 'emeklilik hedefi', 'emeklilik portföyü', 'birikim hedefi', 'zengin'],
+      render: (s) => [
+        '### 📈 Bileşik Getiri ve Uzun Vadeli Hedef Planı',
+        '',
+        'Bileşik getiri, anapara ile daha önce biriken getirinin sonraki dönemlerde birlikte büyümesidir. Sonuç; katkı tutarı, süre, net getiri, ücret, vergi ve katkı zamanlamasına bağlıdır.',
+        '',
+        '- **72 kuralı:** Yaklaşık ikiye katlanma süresi = 72 / varsayılan yıllık getiri yüzdesi. Bu kaba hesaplama nominal ya da reel varsayıma göre farklı anlam taşır ve getiri tahmini değildir.',
+        '- **Reel hedef:** Enflasyon etkisini ayır; bugünün parasıyla hedef tutarı ve aylık katkının satın alma gücünü aynı birimde tut.',
+        '- **Senaryo:** Düşük, orta ve yüksek varsayım kullan; katkı artışı, vergi/ücret ve olumsuz getiri dönemlerini ayrıca göster.',
+        '- **FIRE yaklaşımı:** Yıllık harcamanın sabit bir katını kesin emeklilik eşiği sayma. Harcama, yaşam süresi, vergi, sağlık, varlık dağılımı ve çekim oranı sonucu değiştirir.',
+        '',
+        'Uygulama tablosunda aylık net fark ' + formatTRY(s.netMonthly) + ' görünüyor; hesaplamadan önce verinin güncel olduğunu doğrula.'
+      ].join('\n')
+    },
+    {
+      id: 'goal_financing_plan',
+      keywords: ['ev almak', 'ev al', 'ev peşinatı', 'konut', 'araba', 'otomobil', 'araç', 'peşinat', 'konut yatırımı', 'araba hedefi'],
+      render: (s) => [
+        '### 🏠 Konut, Araç ve Peşinat Hedefi',
+        '',
+        'Büyük bir hedefi değerlendirmek için toplam bedeli, peşinatı, hedef tarihini, düzenli ödeme kapasitesini ve satın alma sonrası bakım/işletme giderlerini birlikte hesapla.',
+        '',
+        '- **Nakit akışı:** Alım sonrası taksit, sigorta, bakım, aidat ve diğer zorunlu giderlerin bütçede kalıcı etkisini ekle.',
+        '- **Vade ve likidite:** Yakın tarihte kullanılacak peşinatı, sert fiyat dalgalanmasına açık bir varlığa bağlama riskini değerlendir.',
+        '- **Konut:** Kira çarpanı tek başına karar ölçütü değildir; boş kalma, bakım, vergi, finansman maliyeti, satış süresi ve bölge riski net kira getirisine eklenir.',
+        '- **Araç:** İş veya yaşam için gerekliliği ile değer kaybı, yakıt, bakım ve sigorta maliyetlerini karşılaştır.',
+        '',
+        'Uygulama tablosundaki aylık net fark ' + formatTRY(s.netMonthly) + ' görünmektedir. Hedef tarihini ve alım sonrası masrafları doğrulamadan kesin sepet ya da yüzde belirleme.'
+      ].join('\n')
     }
   ];
 
@@ -170,20 +316,20 @@ Daniel Kahneman'ın *Beklenti Teorisi*'ne göre yatırımcıların en büyük d�
       if (fxCalcMatch[2] === 'milyon') amt *= 1000000;
       const unit = fxCalcMatch[3];
       if (unit.includes('dolar') || unit === 'usd' || unit === '$') {
-        return `Güncel serbest piyasa kuruyla (**1 USD = ₺${rates.USD.toFixed(2)}**), **${amt.toLocaleString('tr-TR')} Dolar** tam olarak **${formatTRY(amt * rates.USD)}** etmektedir.`;
+        return 'Sayfa göstergesinde USD/TRY yaklaşık 1 USD = ₺' + rates.USD.toFixed(2) + ' (zaman damgası doğrulanmadı). ' + amt.toLocaleString('tr-TR') + ' Dolar yaklaşık ' + formatTRY(amt * rates.USD) + ' eder.';
       }
       if (unit.includes('euro') || unit === 'eur' || unit === '€') {
-        return `Güncel serbest piyasa kuruyla (**1 EUR = ₺${rates.EUR.toFixed(2)}**), **${amt.toLocaleString('tr-TR')} Euro** tam olarak **${formatTRY(amt * rates.EUR)}** etmektedir.`;
+        return 'Sayfa göstergesinde EUR/TRY yaklaşık 1 EUR = ₺' + rates.EUR.toFixed(2) + ' (zaman damgası doğrulanmadı). ' + amt.toLocaleString('tr-TR') + ' Euro yaklaşık ' + formatTRY(amt * rates.EUR) + ' eder.';
       }
       if (unit.includes('sterlin') || unit === 'gbp') {
-        return `Güncel serbest piyasa kuruyla (**1 GBP = ₺${rates.GBP.toFixed(2)}**), **${amt.toLocaleString('tr-TR')} Sterlin** tam olarak **${formatTRY(amt * rates.GBP)}** etmektedir.`;
+        return 'Sayfa göstergesinde GBP/TRY yaklaşık 1 GBP = ₺' + rates.GBP.toFixed(2) + ' (zaman damgası doğrulanmadı). ' + amt.toLocaleString('tr-TR') + ' Sterlin yaklaşık ' + formatTRY(amt * rates.GBP) + ' eder.';
       }
       if (unit.includes('çeyrek')) {
         const ceyrekRate = rates.GAU * 1.63;
-        return `Güncel altın kuruyla **${amt.toLocaleString('tr-TR')} adet Çeyrek Altın** yaklaşık **${formatTRY(amt * ceyrekRate)}** etmektedir.`;
+        return 'Sayfa altın göstergesine göre ' + amt.toLocaleString('tr-TR') + ' adet çeyrek altın yaklaşık ' + formatTRY(amt * ceyrekRate) + ' eder; gerçek işlem fiyatı makas ve ürüne göre değişir.';
       }
       if (unit.includes('altın')) {
-        return `Güncel 24 ayar Gram Altın kuruyla (**1 Gr = ₺${rates.GAU.toLocaleString('tr-TR')}**), **${amt.toLocaleString('tr-TR')} Gram Altın** tam olarak **${formatTRY(amt * rates.GAU)}** etmektedir.`;
+        return 'Sayfa göstergesinde gram altın yaklaşık ₺' + rates.GAU.toLocaleString('tr-TR') + ' (zaman damgası doğrulanmadı). ' + amt.toLocaleString('tr-TR') + ' gram yaklaşık ' + formatTRY(amt * rates.GAU) + ' eder.';
       }
     }
 
@@ -208,28 +354,33 @@ Daniel Kahneman'ın *Beklenti Teorisi*'ne göre yatırımcıların en büyük d�
       const principal = s.currentSavings;
       const monthly = s.positiveSavings > 0 ? s.positiveSavings : 10000;
 
-      const calcFV = (p, m, y, annualRate) => {
-        const r = annualRate / 12;
-        const n = y * 12;
-        return Math.round(p * Math.pow(1 + r, n) + m * ((Math.pow(1 + r, n) - 1) / r));
+      const calcFV = (p, m, y, annualRealRate) => {
+        const monthlyRate = Math.pow(1 + annualRealRate, 1 / 12) - 1;
+        const months = y * 12;
+        const contributions = monthlyRate === 0
+          ? m * months
+          : m * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate);
+        return Math.round(p * Math.pow(1 + monthlyRate, months) + contributions);
       };
 
       const totalInvested = principal + monthly * years * 12;
-      const fvConservative = calcFV(principal, monthly, years, 0.12);
-      const fvBalanced = calcFV(principal, monthly, years, 0.18);
-      const fvGrowth = calcFV(principal, monthly, years, 0.24);
+      const fvLow = calcFV(principal, monthly, years, 0);
+      const fvMiddle = calcFV(principal, monthly, years, 0.05);
+      const fvHigh = calcFV(principal, monthly, years, 0.10);
 
-      return `### 📈 ${years} Yıllık Bileşik Servet Simülasyonu (Reel Alım Gücüyle)
-
-Başlangıç sermayeniz **${formatTRY(principal)}** ve aylık düzenli **${formatTRY(monthly)}** yatırımınız için enflasyon üstü reel büyüme projeksiyonu:
-
-| Senaryo | Yıllık Reel Getiri | Toplam Ana Para Girişi | ${years} Yıl Sonunda Reel Portföy | Net Bileşik Kâr |
-| :--- | :--- | :--- | :--- | :--- |
-| **Muhafazakâr Sepet** | %12 (Reel) | ${formatTRY(totalInvested)} | **${formatTRY(fvConservative)}** | +${formatTRY(fvConservative - totalInvested)} |
-| **Dengeli Sepet (YEK Standardı)** | **%18 (Reel)** | ${formatTRY(totalInvested)} | **${formatTRY(fvBalanced)}** | **+${formatTRY(fvBalanced - totalInvested)}** |
-| **Agresif Büyüme** | %24 (Reel) | ${formatTRY(totalInvested)} | **${formatTRY(fvGrowth)}** | +${formatTRY(fvGrowth - totalInvested)} |
-
-Dengeli sepette ${years}. yıl sonunda portföyünüz bugünün alım gücüyle yaklaşık **$${Math.round(fvBalanced / rates.USD).toLocaleString('tr-TR')} USD** büyüklüğe ulaşır.`;
+      return [
+        '### 📈 ' + years + ' Yıllık Bileşik Getiri Senaryosu',
+        '',
+        'Başlangıç sermayesi ' + formatTRY(principal) + ' ve aylık katkı ' + formatTRY(monthly) + ' varsayılmıştır. Tutarlar bugünkü alım gücüyle gösterilir; aylık katkının reel olarak sabit kaldığı ve vergi/ücret olmadığı kabul edilmiştir.',
+        '',
+        '| Varsayımsal yıllık reel getiri | Yatırılan toplam | Dönem sonu senaryo değeri |',
+        '| :--- | ---: | ---: |',
+        '| %0 | ' + formatTRY(totalInvested) + ' | ' + formatTRY(fvLow) + ' |',
+        '| %5 | ' + formatTRY(totalInvested) + ' | ' + formatTRY(fvMiddle) + ' |',
+        '| %10 | ' + formatTRY(totalInvested) + ' | ' + formatTRY(fvHigh) + ' |',
+        '',
+        'Bunlar tahmin veya garanti değil, farklı varsayımların matematiksel sonucudur. Gerçek getiri negatif olabilir; enflasyon, vergi, ücret, katkı tutarı ve zamanlama sonucu değiştirir.'
+      ].join('\n');
     }
 
     return null;
@@ -246,7 +397,7 @@ Dengeli sepette ${years}. yıl sonunda portföyünüz bugünün alım gücüyle 
     // 1. KISA ONAY, TEPKİ VE GÜNLÜK DİYALOG İFADELERİ ("abi", "kanka", "aynen", "peki", "bence de", "haklısın", "güzel", "mantıklı")
     if (/^(abi|kanka|dostum|hocam|reis|kardeşim|ya|peki|aynen|bence de|haklısın|doğru|mantıklı|güzel|süper|harika|anladım|tamamdır|eyvallah|vay be|hmm|hımm|öyle mi|gerçekten mi)\b/.test(q) && q.length < 38) {
       if (q.includes('peki') || q.includes('öyle mi') || q.includes('gerçekten mi')) {
-        return `Kesinlikle öyle. İstersen bunun rakamsal veya pratik tarafını biraz daha açabiliriz, ya da aklındaki başka bir konuya geçebiliriz.`;
+        return `Devam edelim. Hangi kısmı açmamı istersin: kullandığım varsayım, rakamsal örnek ya da pratik adımlar?`;
       }
       return `Kesinlikle, aynı noktadayız! Aklına takılan veya "şunu nasıl yaparız" dediğin ne varsa doğrudan yaz, birlikte bakalım.`;
     }
@@ -265,8 +416,9 @@ Dengeli sepette ${years}. yıl sonunda portföyünüz bugünün alım gücüyle 
       q.includes('emin misin')
     ) {
       if (lastBotMsg) {
-        return `Az önce konuştuğumuz konuyu somut bir örnekle biraz daha açayım:\n\n` +
-          `Örneğin elinde **100.000 ₺** olduğunu veya her ay kenara **${formatTRY(s.positiveSavings)}** ayırdığını düşünelim. Kısa vadeli heyecanla tek bir yere (veya nakit dövize) bağladığında enflasyon ve fırsat maliyeti yüzünden reel kazanç eriyor. Ama bunu **%30 Altın + %30 Vergi Muafiyetli (%0 Stopaj) Hisse Fonu + %25 Yabancı Teknoloji + %10 Eurobond** şeklinde böldüğünde, piyasanın bir tarafı durgunsa diğer tarafı portföyü yukarı taşıyor. İşin bütün matematiksel sırrı bu dengede yatıyor.`;
+        return 'Az önceki başlığı biraz daha açalım. Uygulama tablosunda birikim ' +
+          formatTRY(s.currentSavings) + ' ve aylık net fark ' + formatTRY(s.positiveSavings) +
+          ' görünüyor; bunların güncel ve sana ait olduğunu doğrula. Önce hedef vadesini, ara dönemde nakit ihtiyacını ve geçici kayıp taşıma kapasiteni netleştir. Ardından borç maliyeti, rezerv, çeşitlendirme, ücret ve vergiyi ayrı değerlendir. Sabit portföy yüzdeleri herkes için uygun değildir.';
       }
       return `Bunu somut bir örnekle açıklayayım: Ekonomide ve günlük kararlarda tek bir faktöre bağlı kalmak riski büyütür. O yüzden her zaman hem güvenlik tamponunu (nakit akışını) korumak hem de büyüme fırsatlarına kademeli girmek en sağlam sonucu verir.`;
     }
@@ -277,7 +429,7 @@ Dengeli sepette ${years}. yıl sonunda portföyünüz bugünün alım gücüyle 
     }
 
     if (q.includes('espri') || q.includes('şaka') || q.includes('güldür') || q.includes('komik')) {
-      return `Finans dünyasından küçük bir gerçek hayat esprisi yapayım: *"Uzun vadeli yatırımcı kime denir? Kısa vadeli al-sat yapmak için girdiği hissede terste kalıp mecbur bekleyen kişiye!"* 😄 O yüzden biz her zaman "oyun parası" (%5) ile ana yatırımı birbirinden ayırıyoruz.`;
+      return `Finans dünyasından küçük bir espri: *"Uzun vadeli yatırımcı kime denir? Kısa vadeli al-sat yapıp terste kalınca uzun vadeli olduğunu söyleyene!"* 😄`;
     }
 
     if (q.includes('film') || q.includes('dizi') || q.includes('izle')) {
@@ -314,7 +466,7 @@ Borsa İstanbul'da uzun vadeli servet ve **Temettü Emekliliği** inşa ederken 
       if (top3.length > 0) {
         return `### 📰 Küresel ve Yerel Ekonomi Gündeminde Öne Çıkanlar\n\n` +
           top3.map((n) => `* **${n.regionFlag} ${n.title}:** ${n.summary} *(${n.impactBadge})*`).join('\n') +
-          `\n\nGenel tabloya baktığımızda; küresel merkez bankalarının faiz indirim döngüsü **Altın, Gümüş ve Yabancı Teknoloji Fonlarını** desteklerken, Türkiye'deki sıkı para politikası **Para Piyasası Fonları (PPF)** ve **BIST Hisse Yoğun Fonları** öne çıkarıyor.`;
+          `\n\nHaberin tarihini ve kaynağını kontrol et. Etkiyi değerlendirirken beklentiye göre ne kadar sürpriz olduğunu, aktarım kanalını ve alternatif senaryoları ayır; tek bir haber belirli bir varlığın getirisini garanti etmez.`;
       }
     }
 
@@ -350,9 +502,10 @@ Gelir kalemini büyütmek, bütçedeki tasarruf çarpanını artırmanın en hı
     if (q.includes('yapay zeka') || q.includes('yazılım') || q.includes('kodlama') || q.includes('programlama') || q.includes('teknoloji') || q.includes('python') || q.includes('javascript') || q.includes('çip') || q.includes('nvidia')) {
       return `### 🤖 Yapay Zeka, Teknoloji Ekonomisi ve Yazılım Dünyası
 
-Yapay zeka (LLM mimarileri, yarı iletken çipler ve bulut veri merkezleri) günümüz küresel ekonomisinin en büyük verimlilik devrimini gerçekleştiriyor:
-* **Teknoloji ve Yarı İletken Ekosistemi:** Mikroçip üretimi (TSMC, ASML, NVIDIA) ve bulut altyapısı (Microsoft, Google, Apple, Amazon) küresel büyümenin lokomotifidir.
-* **Portföydeki Yeri:** Yusuf Efe Karagöz'ün **5 Altın Kural** sepetinde **%25 Yabancı Teknoloji ve Yapay Zeka Fonları** ayrılmasının sebebi, bu şirketlerin Dolar bazındaki büyümesine ortak olmaktır.`;
+Yapay zeka, yarı iletkenler ve bulut altyapısı üretkenliği ve şirket maliyetlerini etkileyebilir; ekonomik etkisi sektör ve kullanım alanına göre değişir.
+* **Ekosistem:** Çip üretimi, veri merkezleri, enerji, ağ altyapısı ve yazılım birbirine bağlıdır. Şirketler arası rekabet ve sermaye ihtiyacı sonuçları etkiler.
+* **Yatırım riski:** Teknolojinin büyümesi her şirketin kâr edeceği veya hisse fiyatının yükseleceği anlamına gelmez. Değerleme, rekabet, yatırım harcaması, düzenleme ve yoğunlaşma riskini ayrıca incele.
+* **Portföy kararı:** Uygulamadaki yüzde dağılımı örnektir, evrensel hedef değildir; uygun ağırlık hedef, vade ve kayıp taşıma kapasitesine bağlıdır.`;
     }
 
     // 10. Eğitim, Kitap, Kariyer
@@ -380,8 +533,8 @@ Kendine yaptığın bilgi yatırımı, enflasyona karşı değer kaybetmeyen en 
 
     if (isQuestion) {
       return `Sorduğun **"${questionRaw}"** sorusuna doğrudan ve net bir çerçeveden yanıt vereyim:\n\n` +
-        `* **Pratik Yaklaşım:** Bu konuda karar verirken ilk bakmamız gereken kriter, kısa vadeli popülerlik yerine **uzun vadeli sürdürülebilirlik ve fayda/maliyet oranıdır**. Eğer bir adım sana zaman kazandırıyor, riskini dağıtıyor veya alım gücünü enflasyonun üzerinde koruyorsa doğru yoldasın demektir.\n` +
-        `* **Senin Tablona Göre Durum:** Mevcut **${formatTRY(s.currentSavings)}** hazır birikimin ve aylık **${formatTRY(s.positiveSavings)}** net tasarruf gücünle, tek bir noktaya tüm gücü yüklemek yerine kademeli (parçalı) hareket etmek elini her zaman güçlü tutar.`;
+        `* **Pratik Yaklaşım:** Kararı hedef, vade, maliyet, likidite ve olası kayıp senaryosuna göre değerlendir; tek bir ölçüt sonucu belirlemez.\n` +
+        `* **Uygulama verisi:** Tabloda birikim **${formatTRY(s.currentSavings)}**, aylık net fark **${formatTRY(s.positiveSavings)}** görünüyor; bunların güncel ve sana ait olduğunu doğrula. Bu değerler tek başına yatırım kararı belirlemez.`;
     }
 
     return `Bahsettiğin **"${questionRaw}"** noktası oldukça önemli. Hem günlük hayatta hem de finansal stratejide olaylara bu şekilde analitik yaklaşmak büyük fark yaratıyor. Bunun üzerine eklemek istediğin bir detay veya hesaplamamı istediğin bir senaryo varsa doğrudan yazabilirsin.`;
@@ -473,15 +626,62 @@ Kendine yaptığın bilgi yatırımı, enflasyona karşı değer kaybetmeyen en 
   function buildMasterSystemPrompt(s, rates, modelMode, userQuestion) {
     const countryContext = window.GLOBAL_ECONOMIES_120?.findCountryEconomyForAI(userQuestion) || '';
     const bankContext = window.YEK_FINTECH_SUPER?.findBankOrLoanForAI(userQuestion) || '';
-    return `Sen "YEK AI" adında, Piyasa Uzmanı Yusuf Efe Karagöz'ün geliştirdiği çok üst düzey bir yapay zeka asistanısın.
-Kullanıcı seninle konuşurken tıpkı en üst düzey bir yapay zeka (Antigravity / Gemini Pro / ChatGPT-4o) ve yakın bir finans/teknoloji dostuyla konuşuyormuş gibi hissetmelidir.
-Davranış İlkelerin:
-1. Samimi, zeki, doğrudan, sıcak ve analitik bir üslupla konuş. Robotik kalıplar, resmiyet veya geçiştirme cümleleri ASLA kurma.
-2. Mesajlarının sonunda ASLA "Başka bir sorunuz var mı?", "Size nasıl yardımcı olabilirim?" gibi müşteri temsilcisi cümleleri yazma.
-3. Kullanıcının sorduğu soru ne olursa olsun (günlük muhabbet, felsefe, spor, oyun, yazılım, iş fikri, dünya ekonomisi, 120 ülke enflasyonu, Türkiye bankaları kredi faizleri, BIST 30 temettü hisseleri, maaş/kıdem hesabı veya kişisel bütçe) önce doğrudan o sorunun cevabını ver.
-4. Finansal konularda kullanıcının canlı verilerini bil: Hazır Birikim=${formatTRY(s.currentSavings)}, Aylık Gelir=${formatTRY(s.totalIncome)}, Aylık Gider=${formatTRY(s.totalExpense)}, Aylık Net Tasarruf=${formatTRY(s.netMonthly)} (%${s.savingsRate}), Acil Fon Hedefi=${formatTRY(s.minEF)}. Kurlar: USD=₺${rates.USD}, EUR=₺${rates.EUR}, Gram Altın=₺${rates.GAU}.
-${countryContext ? `\n5. İLGİLİ ÜLKE VERİSİ:\n${countryContext}` : ''}
-${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}` : ''}`;
+    const today = new Intl.DateTimeFormat('tr-TR', { dateStyle: 'long' }).format(new Date());
+    const modeGuidance = modelMode === 'macro'
+      ? 'Uzmanlık modu: makroekonomik analiz. Veriyi beklenti, aktarım kanalı, gecikme ve baz senaryo / alternatif senaryo ayrımıyla açıkla; tek yönlü fiyat tahmini yapma.'
+      : modelMode === 'wealth'
+        ? 'Uzmanlık modu: bütçe ve hedef planı. Önce nakit akışı, borç maliyeti, kısa vadeli ihtiyaçlar ve acil rezervi değerlendir; ardından varsayımları açık bir senaryo hesapla.'
+        : 'Uzmanlık modu: genel asistan. Sorunun türünü seç ve gereksiz finans başlıkları eklemeden doğrudan cevapla.';
+    const userContext = [
+      'Uygulama bütçe tablosu (kişiye ait ve güncel olduğunu kullanıcı doğrulamadıkça örnek/eski kayıt olabilir):',
+      '- Birikim: ' + formatTRY(s.currentSavings),
+      '- Aylık gelir: ' + formatTRY(s.totalIncome),
+      '- Aylık gider: ' + formatTRY(s.totalExpense) + ' (zorunlu ' + formatTRY(s.totalNeeds) + ', isteğe bağlı ' + formatTRY(s.totalWants) + ', borç ödemesi ' + formatTRY(s.totalDebts) + ')',
+      '- Aylık net fark: ' + formatTRY(s.netMonthly) + ' (uygulama tasarruf oranı: %' + s.savingsRate + ')',
+      '- Zorunlu giderlere göre uygulamadaki acil rezerv aralığı: ' + formatTRY(s.minEF) + '–' + formatTRY(s.maxEF),
+      'Sayfada görünen gösterge değerleri (zaman damgası teyitli değildir): USD/TRY ' + rates.USD + ', EUR/TRY ' + rates.EUR + ', GBP/TRY ' + rates.GBP + ', gram altın ' + rates.GAU + ', BTC/TRY ' + rates.BTC + '. Bunları yalnızca gösterge değeri olarak kullan; kendiliğinden güncel veya kesin fiyat diye tanımlama.'
+    ].join('\n');
+    const sourceContext = [
+      countryContext ? 'İlgili ülke modülündeki veri:\n' + countryContext : '',
+      bankContext ? 'İlgili banka/kredi modülündeki veri:\n' + bankContext : ''
+    ].filter(Boolean).join('\n\n');
+
+    return [
+      'ROL VE KAPSAM',
+      'Sen YEK AI 4.0 Pro Edition, Doğru Bütçe Doğru Kullanım uygulamasının Türkçe finansal okuryazarlık, bütçe ve genel sohbet asistanısın. Genel eğitim ve karar çerçevesi sun; lisanslı kişisel yatırım danışmanı gibi davranma.',
+      'Kullanıcı adı, piyasa verisi veya kurumlarla gerçek bir bağlantın olduğunu iddia etme. Bulut modelinin adını YEK AI ürünüyle karıştırma.',
+      '',
+      'DAVRANIŞ',
+      'Sorunun özüne ilk cümlede yanıt ver. Sıcak, saygılı, açık ve doğal yaz; kullanıcı kısa sorduysa kısa, ayrıntı istediyse adım adım yanıtla.',
+      'Soruyu önce sınıflandır: bütçe, borç, yatırım ürünü, portföy, makroekonomi, hesaplama veya genel sohbet. Sadece ilgili çerçeveyi kullan.',
+      'Eksik bilgi yanıtı değiştirecekse en fazla gerekli 1-2 soruyu sor. Aksi halde varsayımlarını belirtip koşullu cevap ver.',
+      'Sohbet geçmişini bağlam için kullan; eski bir varsayımı güncel veri veya doğrulanmış kişisel bilgi sayma.',
+      '',
+      'FİNANSAL AKIL YÜRÜTME',
+      'Kişiye özel öneriden önce hedef, zaman ufku, nakit ihtiyacı, gelir istikrarı, borç maliyeti, risk taşıma kapasitesi ve risk isteğini ayır.',
+      'Tek bir ideal portföy yüzdesi, kesin getiri, al-sat talimatı veya belirli menkul kıymet garantisi verme. Sayfadaki 5 Altın Kural dağılımı ve %5 sınırı uygulama içi örnek/ilke niteliğindedir, evrensel standart değildir.',
+      '50/30/20 oranını katı reçete değil başlangıç kontrol listesi olarak anlat. Acil rezerv aralığını kişisel istikrar, zorunlu gider ve likidite ihtiyacına göre esnet.',
+      'Çeşitlendirme tek varlığa özgü riski azaltabilir ama piyasa riskini ortadan kaldırmaz. Fonları incelerken yatırımcı bilgi formu, portföy, risk göstergesi, ücretler, işlem/valör koşulları ve vergiyi dikkate al. Para piyasası fonunu mevduat veya garantili getiri diye sunma.',
+      'Borç planında tüm zorunlu ödemeleri gözet; çığ ve kartopu yöntemlerini faiz maliyeti ile motivasyon takası olarak açıkla. Değişken sözleşme ve mevzuat oranlarını uydurma.',
+      'Hisse analizinde iş modeli, bilanço, borç, nakit akışı, kâr kalitesi, sektör, yönetim ve değerlemeyi birlikte ele al. Tek bir F/K, PD/DD veya ROE oranından sonuç çıkarma.',
+      'Makro analizde beklentiler, aktarım kanalları, zaman gecikmesi ve alternatif senaryoları ayır. Faiz/kur hareketinin bütün varlıklara aynı yönde ve aynı hızda etki edeceğini varsayma.',
+      '',
+      'VERİ, HESAPLAMA VE GÜNCELLİK',
+      'Bugünün tarihi: ' + today + '. Bu tarih canlı piyasa verisine erişimin olduğu anlamına gelmez.',
+      'Uygulama bütçe alanları ve sayfa göstergeleri sağlanan bağlamdır; zaman damgası, veri kaynağı veya kişisel doğrulama görünmüyorsa güncel/kesin diye sunma. Canlı mevzuat, vergi, banka faizi, fon ücreti, ürün koşulu veya haber istenirse eldeki bağlamda doğrulanmadığını açıkça söyle ve resmi güncel belgeyi kontrol etmeyi belirt.',
+      'Sayı veya kaynak uydurma. Bir hesaplamada kullanılan ana para, oran, dönem, bileşiklenme, vergi/ücret hariç olup olmadığı ve yuvarlamayı yaz. Nominal getiri ile reel getiriyi ayır; reel getiri yaklaşık olarak (1 + nominal getiri) / (1 + enflasyon) - 1 ile bulunur.',
+      'Bileşik getiri tablolarını yalnızca varsayımsal senaryo olarak sun; varsayım getiriyi tahmin etmez ve garanti vermez. Ücret, vergi, enflasyon, katkı artışı ve zamanlama sonucu değiştirebilir.',
+      '',
+      'YANIT BİÇİMİ',
+      'Basit soruda tek bir kısa yanıt yeterlidir. Analiz gerekiyorsa önce sonuç, sonra 3-6 maddeyle gerekçe/hesap, en sonda önemli risk veya varsayımı ver.',
+      'Türkçe ve Türkiye sayı biçimini kullan. Tabloları yalnızca karşılaştırma gerçekten kolaylaşıyorsa kullan. Gereksiz uyarı metni, tekrar veya satış dili ekleme.',
+      '',
+      modeGuidance,
+      '',
+      'KULLANICI TABLOSU',
+      userContext,
+      sourceContext ? '\nEK BAĞLAM\n' + sourceContext : ''
+    ].join('\n');
   }
 
   // ==========================================================================
@@ -509,7 +709,7 @@ ${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}
       return {
         html: syncBanner + renderMarkdownToHtml(directCountryAnswer),
         rawText: directCountryAnswer,
-        engineBadge: 'YEK-LLM 3.0 • 120 ÜLKE MAKROEKONOMİ',
+        engineBadge: 'YEK AI 4.0 Pro Edition • 120 ÜLKE MAKROEKONOMİ',
       };
     }
 
@@ -519,7 +719,7 @@ ${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}
       return {
         html: syncBanner + renderMarkdownToHtml(directBankLoanAnswer),
         rawText: directBankLoanAnswer,
-        engineBadge: 'YEK-LLM 3.0 • TÜRKİYE BANKACILIK & KREDİ',
+        engineBadge: 'YEK AI 4.0 Pro Edition • TÜRKİYE BANKACILIK & KREDİ',
       };
     }
 
@@ -597,7 +797,7 @@ ${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}
             return {
               html: syncBanner + renderMarkdownToHtml(cloudText),
               rawText: cloudText,
-              engineBadge: 'YEK-LLM 3.0',
+              engineBadge: 'YEK AI 4.0 Pro Edition',
             };
           }
         } else {
@@ -606,7 +806,7 @@ ${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}
             return {
               html: syncBanner + renderMarkdownToHtml(plainText),
               rawText: plainText,
-              engineBadge: 'YEK-LLM 3.0',
+              engineBadge: 'YEK AI 4.0 Pro Edition',
             };
           }
         }
@@ -631,7 +831,7 @@ ${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}
           return {
             html: syncBanner + renderMarkdownToHtml(backupText),
             rawText: backupText,
-            engineBadge: 'YEK-LLM 3.0',
+            engineBadge: 'YEK AI 4.0 Pro Edition',
           };
         }
       }
@@ -647,7 +847,7 @@ ${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}
       return {
         html: syncBanner + renderMarkdownToHtml(mathReply),
         rawText: mathReply,
-        engineBadge: 'YEK-LLM 3.0',
+        engineBadge: 'YEK AI 4.0 Pro Edition',
       };
     }
 
@@ -657,7 +857,7 @@ ${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}
         return {
           html: syncBanner + renderMarkdownToHtml(mdOut),
           rawText: mdOut,
-          engineBadge: 'YEK-LLM 3.0',
+          engineBadge: 'YEK AI 4.0 Pro Edition',
         };
       }
     }
@@ -668,7 +868,7 @@ ${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}
         return {
           html: renderMarkdownToHtml(fallbackHtml),
           rawText: fallbackHtml.replace(/<[^>]+>/g, ''),
-          engineBadge: 'YEK-LLM 3.0',
+          engineBadge: 'YEK AI 4.0 Pro Edition',
         };
       }
     }
@@ -677,15 +877,17 @@ ${bankContext ? `\n6. İLGİLİ TÜRKİYE BANKA/KREDİ VERİSİ:\n${bankContext}
     return {
       html: syncBanner + renderMarkdownToHtml(universalOut),
       rawText: universalOut,
-      engineBadge: 'YEK-LLM 3.0',
+      engineBadge: 'YEK AI 4.0 Pro Edition',
     };
   }
 
-  window.YEK_LLM_V3 = {
+  const YEK_LLM_V4 = {
     generateProLLMResponse,
     renderMarkdownToHtml,
     getSuggestedFollowUps: () => [],
     CHAT_HISTORY_KEY,
     MODEL_MODE_KEY,
   };
+  window.YEK_LLM_V4 = YEK_LLM_V4;
+  window.YEK_LLM_V3 = YEK_LLM_V4; // Eski sayfa önbellekleriyle geriye dönük uyumluluk
 })();

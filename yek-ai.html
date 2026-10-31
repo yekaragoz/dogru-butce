@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YEK AI v3.0 (Release) LLM | Doğru Bütçe Doğru Kullanım - Yusuf Efe Karagöz</title>
+  <title>YEK AI 4.0 Pro Edition | Doğru Bütçe Doğru Kullanım - Yusuf Efe Karagöz</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link id="dynamicFavicon" rel="icon" type="image/svg+xml" href="logo.svg" />
   <link rel="shortcut icon" href="logo.svg" />
-  <link rel="stylesheet" href="style.css?v=7" />
+  <link rel="stylesheet" href="style.css?v=8" />
 </head>
 <body>
   <div class="ambient-glow glow-1"></div>
@@ -102,7 +102,7 @@
     </div>
   </div>
 
-  <!-- SADECE YEK AI v3.0 (RELEASE) LLM SAYFASI İÇERİĞİ -->
+  <!-- SADECE YEK AI 4.0 Pro Edition SAYFASI İÇERİĞİ -->
   <main class="spa-pages-container">
     <section class="advisor-section">
       <div class="container">
@@ -115,16 +115,16 @@
               </div>
               <div>
                 <div class="ai-badge-inline">
-                  <span>🚀 YEK-LLM v3.0 RELEASE (PRO EDITION)</span>
+                  <span>🚀 YEK AI 4.0 PRO EDITION</span>
                   <span class="ai-live-tag">ÜST DÜZEY PİYASA EKONOMİSİ & GENEL ZEKA</span>
                 </div>
                 <h3>YEK AI — Büyük Dil Modeli & Makroekonomik Piyasa Zekası</h3>
-                <p>ChatGPT ve Gemini mimarisiyle güçlendirilmiş; <strong>Piyasa Ekonomisi, Merkez Bankacılığı (TCMB/FED), Enflasyon, Borsa Değerleme, Yatırım Fonları</strong> ve <strong>Yusuf Efe Karagöz</strong>'ün 5 Altın İlkesiyle eğitilmiş yeni nesil yapay zeka. Hem her konuda sohbet edin hem de derin piyasa analizi alın.</p>
+                <p>Bütçe planlama, borç önceliklendirme, yatırım fonu inceleme, portföy riski, şirket analizi ve makroekonomik senaryolar için genişletilmiş bilgi çekirdeği. Yanıtlar uygulamadaki bütçe verisini kullanabilir; piyasa tahminleri garanti değildir ve kişisel risk/vaade göre değerlendirilmelidir.</p>
               </div>
             </div>
             <div class="ai-header-controls">
               <select id="yekModelModeSelect" class="ai-model-select" title="YEK-LLM Uzmanlık Modu Seçin">
-                <option value="pro">🧠 YEK-LLM Pro 3.0 (Genel Zeka & Piyasa)</option>
+                <option value="pro">🧠 YEK AI 4.0 Pro Edition (Genel Asistan)</option>
                 <option value="macro">🏛️ Makroekonomist & Stratejist Modu</option>
                 <option value="wealth">🧮 Bütçe & Servet Mühendisliği Modu</option>
               </select>
@@ -150,7 +150,7 @@
             <div class="gemini-api-inner">
               <div>
                 <strong>⚡ Çok Katmanlı LLM Bağlantısı (Cloud LLM + Google Gemini 2.5 API):</strong>
-                <p>YEK AI v3.0 herhangi bir anahtar gerektirmeden <strong>Bulut LLM Sinir Ağı</strong> ve <strong>Yerleşik Piyasa Ekonomisi Çekirdeği</strong> ile doğrudan çalışır. Dilerseniz kendi Google Gemini API anahtarınızı da ekleyebilirsiniz.</p>
+                <p>YEK AI 4.0 Pro Edition, <strong>yerleşik finans bilgi çekirdeği</strong> ve kullanılabilir olduğunda <strong>bulut dil modeli</strong> ile çalışır. İsteğe bağlı Gemini API anahtarı bağlayabilirsiniz. Gösterge verileri zaman damgası doğrulanmadıkça kesin veya canlı fiyat sayılmaz.</p>
               </div>
               <div class="gemini-api-input-group">
                 <input type="password" id="geminiApiKeyInput" placeholder="AIzaSy... (İsteğe bağlı özel Gemini API Key)" class="text-input" />
@@ -191,6 +191,15 @@
             <button type="button" class="ai-prompt-chip" data-prompt="Selam YEK AI! Nasılsın, seninle hangi konularda sohbet edebiliriz?">
               👋 Günlük Sohbet & Tanışma
             </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Hedefim, vadem, aylık tasarrufum ve risk toleransımı dikkate alarak portföy riskini nasıl değerlendireceğimi anlat. Sabit yüzdeleri evrensel kural gibi sunma.">
+              🧭 Portföy Riski & Çeşitlendirme
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Bir TEFAS yatırım fonunu seçmeden önce yatırımcı bilgi formunda hangi risk, portföy, ücret, valör, likidite ve vergi bilgilerini karşılaştırmalıyım?">
+              📑 Fon İnceleme Kontrol Listesi
+            </button>
+            <button type="button" class="ai-prompt-chip" data-prompt="Borçlarımı çığ ve kartopu yöntemleriyle nasıl karşılaştırırım? Hesaplamak için hangi borç bilgileri gerekir?">
+              💳 Borç Ödeme Planı
+            </button>
           </div>
 
           <div id="yekAiMessages" class="yek-ai-messages"></div>
@@ -200,7 +209,7 @@
             <input
               type="text"
               id="yekAiInput"
-              placeholder="YEK AI v3.0 ile ülke ekonomileri, 120 ülke enflasyonu, piyasa ekonomisi, bütçe veya günlük her konuda sohbet edin..."
+              placeholder="YEK AI 4.0 Pro Edition ile bütçe, borç, fon analizi, portföy riski, makro senaryolar ve günlük sohbet hakkında konuşun..."
               autocomplete="off"
             />
             <button type="submit" id="yekAiSendBtn" class="btn-ai-send">
@@ -272,9 +281,9 @@
   </footer>
 
   <script src="global-economies.js?v=6"></script>
-  <script src="fintech-super.js?v=6"></script>
+  <script src="fintech-super.js?v=7"></script>
   <script src="ekonomi-haber-akademi.js?v=6"></script>
-  <script src="yek-llm.js?v=6"></script>
-  <script src="script.js?v=7"></script>
+  <script src="yek-llm.js?v=8"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>
