@@ -92,8 +92,8 @@
     if (gamesReturnLink) gamesReturnLink.classList.toggle('hidden', !selected);
     if (gamesPageTitle) gamesPageTitle.textContent = selected === 'wheel' ? 'Günlük Çark' : selected === 'value' ? 'Değer Tahmin' : 'Oyunlar';
     if (gamesPageDescription) gamesPageDescription.textContent = selected
-      ? 'Bu oyun ayrı bir sekmede açık. Diğer oyunları seçmek için oyun listesine dönebilirsin.'
-      : 'Bir oyun seç; her oyun ayrı bir sekmede açılır.';
+      ? 'Diğer oyunları seçmek için oyun listesine dönebilirsin.'
+      : 'Oynamak istediğin oyunu seçerek hemen başlayabilirsin.';
   }
 
   function getWheelStorageKey(email) {
