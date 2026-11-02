@@ -53,7 +53,7 @@ const GEMINI_API_KEY_STORAGE = 'yek_gemini_api_key_v1';
 (function ensureGlobalEconomiesLoaded() {
   if (!window.GLOBAL_ECONOMIES_120 && !document.querySelector('script[src*="global-economies.js"]')) {
     const sc = document.createElement('script');
-    sc.src = 'global-economies.js?v=6';
+    sc.src = 'global-economies.js?v=7';
     document.head.appendChild(sc);
   }
   if (!window.YEK_FINTECH_SUPER && !document.querySelector('script[src*="fintech-super.js"]')) {
@@ -63,7 +63,7 @@ const GEMINI_API_KEY_STORAGE = 'yek_gemini_api_key_v1';
   }
   if (!window.YEK_ECONOMY_NEWS_ACADEMY && !document.querySelector('script[src*="ekonomi-haber-akademi.js"]')) {
     const sc3 = document.createElement('script');
-    sc3.src = 'ekonomi-haber-akademi.js?v=6';
+    sc3.src = 'ekonomi-haber-akademi.js?v=7';
     document.head.appendChild(sc3);
   }
 })();
@@ -71,6 +71,7 @@ const GEMINI_API_KEY_STORAGE = 'yek_gemini_api_key_v1';
 const DEFAULT_BUDGET_DATA = {
   currentSavings: 85000,
   goal: 'balanced',
+  goalAmount: 0,
   incSalary: 52000,
   incSide: 8000,
   incPassive: 0,
@@ -167,6 +168,7 @@ function computeBudgetSnapshot(raw) {
   const data = raw || getStoredBudgetRaw();
   const currentSavings = Math.max(0, Number(data.currentSavings) || 0);
   const goal = data.goal || 'balanced';
+  const goalAmount = Math.max(0, Number(data.goalAmount) || 0);
 
   const incSalary = Math.max(0, Number(data.incSalary) || 0);
   const incSide = Math.max(0, Number(data.incSide) || 0);
@@ -218,6 +220,7 @@ function computeBudgetSnapshot(raw) {
   return {
     currentSavings,
     goal,
+    goalAmount,
     totalIncome,
     totalExpense,
     totalNeeds,
@@ -272,6 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const fillSampleBtn = document.getElementById('fillSampleBtn');
   const resetFormBtn = document.getElementById('resetFormBtn');
+  const exportBudgetBackupBtn = document.getElementById('exportBudgetBackupBtn');
+  const importBudgetBackupBtn = document.getElementById('importBudgetBackupBtn');
+  const importBudgetBackupFile = document.getElementById('importBudgetBackupFile');
   const printReportBtn = document.getElementById('printReportBtn');
   const printReportBtnBottom = document.getElementById('printReportBtnBottom');
 
@@ -309,6 +315,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const payload = {
       currentSavings: Math.max(0, Number(currentSavingsInput.value) || 0),
       goal: financialGoalSelect ? financialGoalSelect.value : 'balanced',
+      goalAmount: Math.max(0, Number(document.getElementById('savingsGoalAmount')?.value) || 0),
       incSalary: Math.max(0, Number(document.getElementById('incSalary')?.value) || 0),
       incSide: Math.max(0, Number(document.getElementById('incSide')?.value) || 0),
       incPassive: Math.max(0, Number(document.getElementById('incPassive')?.value) || 0),
@@ -338,6 +345,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!currentSavingsInput) return;
     const saved = getStoredBudgetRaw();
     currentSavingsInput.value = saved.currentSavings;
+    const savingsGoalAmountInput = document.getElementById('savingsGoalAmount');
+    if (savingsGoalAmountInput) savingsGoalAmountInput.value = saved.goalAmount || 0;
     if (financialGoalSelect && saved.goal) {
       financialGoalSelect.value = saved.goal;
     }
@@ -740,11 +749,37 @@ document.addEventListener('DOMContentLoaded', () => {
       .join('');
   }
 
+  function updateSavingsGoalProgress(snapshot) {
+    const progressBar = document.getElementById('savingsGoalProgress');
+    const progressFill = document.getElementById('savingsGoalProgressFill');
+    const progressText = document.getElementById('savingsGoalProgressText');
+    if (!progressBar || !progressFill || !progressText) return;
+
+    const target = Math.max(0, Number(snapshot.goalAmount) || 0);
+    const current = Math.max(0, Number(snapshot.currentSavings) || 0);
+    const percent = target > 0 ? Math.min(100, Math.round((current / target) * 100)) : 0;
+    progressFill.style.width = percent + '%';
+
+    let message = 'Mevcut birikimini gör. Hedef tutarını girerek ilerlemeyi takip et.';
+    if (target > 0 && current >= target) {
+      message = 'Hedef tamamlandı: ' + formatCurrency(current) + ' / ' + formatCurrency(target) + '.';
+    } else if (target > 0) {
+      message = formatCurrency(current) + ' / ' + formatCurrency(target) + ' (' + percent + '%); kalan ' + formatCurrency(target - current) + '.';
+    } else {
+      message = 'Mevcut birikimin: ' + formatCurrency(current) + '. Bir hedef tutarı belirle.';
+    }
+
+    progressBar.setAttribute('aria-valuenow', String(percent));
+    progressBar.setAttribute('aria-valuetext', message);
+    progressText.textContent = message;
+  }
+
   // Ana Hesaplama Yöneticisi
   function calculateBudget() {
     const raw = currentSavingsInput ? syncDomToStorage() : getStoredBudgetRaw();
     const snap = computeBudgetSnapshot(raw);
     updateSummaryBar(snap);
+    updateSavingsGoalProgress(snap);
     updateVisualAnalysis(snap);
     updateFivePrinciples(snap);
     updateSmartRecommendationEngine(snap);
@@ -825,6 +860,84 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   if (financialGoalSelect) financialGoalSelect.addEventListener('change', calculateBudget);
+
+  if (exportBudgetBackupBtn && currentSavingsInput) {
+    exportBudgetBackupBtn.addEventListener('click', () => {
+      try {
+        const backup = {
+          format: 'dogru-butce-budget-backup',
+          version: 1,
+          exportedAt: new Date().toISOString(),
+          data: syncDomToStorage(),
+        };
+        const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'dogru-butce-yedek-' + new Date().toISOString().slice(0, 10) + '.json';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        if (autoSaveStatus) autoSaveStatus.textContent = '✓ Bütçe yedeği indirildi.';
+      } catch (error) {
+        if (autoSaveStatus) autoSaveStatus.textContent = 'Yedek oluşturulamadı. Tarayıcı indirme iznini kontrol et.';
+      }
+    });
+  }
+
+  if (importBudgetBackupBtn && importBudgetBackupFile && currentSavingsInput) {
+    importBudgetBackupBtn.addEventListener('click', () => importBudgetBackupFile.click());
+    importBudgetBackupFile.addEventListener('change', async () => {
+      const file = importBudgetBackupFile.files?.[0];
+      if (!file) return;
+
+      try {
+        if (file.size > 1024 * 1024) throw new Error('Yedek dosyası 1 MB sınırını aşıyor.');
+        const backup = JSON.parse(await file.text());
+        if (backup?.format !== 'dogru-butce-budget-backup' || backup?.version !== 1 || !backup.data || typeof backup.data !== 'object' || Array.isArray(backup.data)) {
+          throw new Error('Bu dosya desteklenen Doğru Bütçe yedeği değil.');
+        }
+
+        const source = backup.data;
+        const clean = { ...DEFAULT_BUDGET_DATA };
+        const moneyKeys = ['currentSavings', 'goalAmount', 'incSalary', 'incSide', 'incPassive', 'expRent', 'expBills', 'expGroceries', 'expTransport', 'expDebt', 'expLifestyle'];
+        moneyKeys.forEach((key) => {
+          const value = source[key] === undefined ? DEFAULT_BUDGET_DATA[key] : Number(source[key]);
+          if (!Number.isFinite(value) || value < 0 || value > 1000000000000) throw new Error('Yedekte geçersiz bir tutar var.');
+          clean[key] = value;
+        });
+
+        const allowedGoals = ['balanced', 'investment', 'debt', 'emergency'];
+        clean.goal = allowedGoals.includes(source.goal) ? source.goal : DEFAULT_BUDGET_DATA.goal;
+        const cleanItems = (items, kind) => {
+          if (items === undefined) return [];
+          if (!Array.isArray(items) || items.length > 100) throw new Error('Yedekte çok fazla özel kalem var.');
+          return items.map((item) => {
+            if (!item || typeof item !== 'object') throw new Error('Yedekte geçersiz bir kalem var.');
+            const name = String(item.name || '').trim().replace(/[<>"'`]/g, '').slice(0, 80);
+            const amount = Number(item.amount);
+            if (!name || !Number.isFinite(amount) || amount < 0 || amount > 1000000000000) throw new Error('Yedekte geçersiz bir kalem adı veya tutarı var.');
+            if (kind === 'expense' && !['need', 'want', 'debt'].includes(item.category)) throw new Error('Yedekte geçersiz bir gider kategorisi var.');
+            return kind === 'expense' ? { name, category: item.category, amount } : { name, amount };
+          });
+        };
+        clean.customIncomes = cleanItems(source.customIncomes, 'income');
+        clean.customExpenses = cleanItems(source.customExpenses, 'expense');
+
+        if (!window.confirm('Seçilen yedek mevcut bütçe kaydının yerine yüklensin mi?')) return;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(clean));
+        populateCalculatorInputsFromStorage();
+        calculateBudget();
+        if (autoSaveStatus) autoSaveStatus.textContent = '✓ Yedek başarıyla yüklendi.';
+      } catch (error) {
+        if (autoSaveStatus) autoSaveStatus.textContent = error.message || 'Yedek okunamadı.';
+      } finally {
+        importBudgetBackupFile.value = '';
+      }
+    });
+  }
+
   if (addIncomeBtn) addIncomeBtn.addEventListener('click', () => addCustomIncome());
   if (addExpenseBtn) addExpenseBtn.addEventListener('click', () => addCustomExpense());
 
@@ -1637,6 +1750,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const clean = text.trim();
     if (!clean) return;
 
+    const aiAccess = window.YEKRewards?.getAccess();
+    if (aiAccess && !aiAccess.allowed) {
+      updateAiAccessUI();
+      appendMessage('bot', 'Şu an kullanılabilir sohbet süren kalmadı. Günlük 30 dakikalık hakkın her gün eklenir; sanal borsa oyunundaki eşik ödülleri de sınırsız sohbet süresi açar.');
+      return;
+    }
+
     appendMessage('user', clean);
     aiInput.value = '';
 
@@ -1689,6 +1809,70 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   showWelcomeMessage();
+
+  const aiAllowanceMessage = document.getElementById('yekAiAllowanceMessage');
+  const aiControls = [aiInput, aiForm.querySelector('button[type="submit"]'), ...promptChips];
+  let lastAiAllowanceTick = Date.now();
+
+  function formatAccessDuration(seconds) {
+    if (!Number.isFinite(seconds)) return 'sınırsız';
+    const safeSeconds = Math.max(0, Math.floor(seconds));
+    const hours = Math.floor(safeSeconds / 3600);
+    const minutes = Math.floor((safeSeconds % 3600) / 60);
+    if (hours > 0) return `${hours} sa ${minutes} dk`;
+    if (minutes > 0) return `${minutes} dk`;
+    return '1 dk’dan az';
+  }
+
+  function updateAiAccessUI() {
+    if (!aiAllowanceMessage || !window.YEKRewards) return;
+    const access = window.YEKRewards.getAccess();
+    let message = '';
+
+    if (access.mode === 'login') {
+      message = 'Sohbet süreni görmek ve kullanmak için giriş yap.';
+    } else if (access.mode === 'trial') {
+      message = `24 saatlik ücretsiz başlangıç erişimin açık · ${formatAccessDuration(access.remainingSeconds)} kaldı.`;
+    } else if (access.mode === 'bonus') {
+      message = `Borsa ödülüyle sınırsız sohbet erişimin açık · ${formatAccessDuration(access.remainingSeconds)} kaldı.`;
+    } else if (access.mode === 'lifetime') {
+      message = 'Sanal borsa ödülün sayesinde ömür boyu sınırsız sohbet erişimin açık.';
+    } else if (access.allowed) {
+      message = `Biriken günlük sohbet süren: ${formatAccessDuration(access.remainingSeconds)}. Bu süre YEK AI sayfası açık ve görünürken azalır.`;
+    } else {
+      message = 'Kullanılabilir sohbet süren kalmadı. Günlük yeni hak yarın eklenir; Borsa Oyunu ödülleriyle sınırsız süre açabilirsin.';
+    }
+
+    aiAllowanceMessage.textContent = message;
+    aiControls.forEach((control) => {
+      if (control) control.disabled = !access.allowed;
+    });
+  }
+
+  updateAiAccessUI();
+  window.addEventListener('yek-auth-state-changed', updateAiAccessUI);
+  window.addEventListener('yek-rewards-updated', updateAiAccessUI);
+  document.addEventListener('visibilitychange', () => {
+    lastAiAllowanceTick = Date.now();
+    updateAiAccessUI();
+  });
+
+  window.setInterval(() => {
+    const now = Date.now();
+    if (document.visibilityState !== 'visible') {
+      lastAiAllowanceTick = now;
+      return;
+    }
+
+    const elapsed = Math.min(2, Math.floor((now - lastAiAllowanceTick) / 1000));
+    lastAiAllowanceTick = now;
+    const email = window.YEKRewards?.getCurrentEmail();
+    if (email && elapsed > 0) {
+      const access = window.YEKRewards.getAccess(email);
+      if (access.mode === 'daily') window.YEKRewards.spendDailySeconds(email, elapsed);
+    }
+    updateAiAccessUI();
+  }, 1000);
 });
 
 // =========================================================
@@ -1872,7 +2056,33 @@ document.addEventListener('DOMContentLoaded', () => {
   const worldCurrenciesGrid = document.getElementById('worldCurrenciesGrid');
   const userBudgetFxGrid = document.getElementById('userBudgetFxGrid');
   const fxLastUpdateBadge = document.getElementById('fxLastUpdateBadge');
+  const fxProviderUpdateTime = document.getElementById('fxProviderUpdateTime');
+  const fxAutoRefreshStatus = document.getElementById('fxAutoRefreshStatus');
   const refreshRatesBtn = document.getElementById('refreshRatesBtn');
+  const FX_RATE_CACHE_KEY = 'dogru_butce_fx_rate_cache_v1';
+  const FX_LAST_REQUEST_KEY = 'dogru_butce_fx_last_request_v1';
+  const FX_MIN_REQUEST_INTERVAL_MS = 60 * 60 * 1000;
+  let fxAutoRefreshTimer = null;
+  let fxRefreshDueWhileHidden = false;
+  let marketDataProvenanceNote = document.getElementById('marketDataProvenance');
+  if (!marketDataProvenanceNote && tickerBarEl) {
+    marketDataProvenanceNote = document.createElement('p');
+    marketDataProvenanceNote.id = 'marketDataProvenance';
+    marketDataProvenanceNote.className = 'market-data-provenance';
+    marketDataProvenanceNote.setAttribute('role', 'note');
+    marketDataProvenanceNote.innerHTML = '<span>Kur kaynağı: <a href="https://www.exchangerate-api.com/docs/free" target="_blank" rel="noopener noreferrer">ExchangeRate-API Open Access</a> (günlük referans verisi).</span><span id="marketDataUpdatedTime">Son veri zamanı bekleniyor.</span><span id="marketDataAutoRefresh">Otomatik kontrol, sayfa açıkken çalışır.</span><span>Altın ve Bitcoin, USD/TRY üzerinden türetilen uygulama içi yaklaşık değerlerdir; canlı kotasyon değildir.</span>';
+    tickerBarEl.insertAdjacentElement('afterend', marketDataProvenanceNote);
+  }
+
+  function formatProviderTimestamp(value) {
+    const date = new Date(value);
+    if (!Number.isFinite(date.getTime())) return '';
+    return new Intl.DateTimeFormat('tr-TR', {
+      dateStyle: 'medium',
+      timeStyle: 'short',
+      timeZone: 'Europe/Istanbul',
+    }).format(date);
+  }
 
   function formatDecimalCurrency(val, decimals = 2, suffix = '') {
     const n = Number(val) || 0;
@@ -1918,13 +2128,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const resultTry = amount * curr.tryRate;
       fxResultLabel.textContent = `${amount} ${curr.code} → TÜRK LİRASI (TRY) KARŞILIĞI`;
       fxResultValue.textContent = formatDecimalCurrency(resultTry, 2);
-      fxUnitRateInfo.textContent = `Güncel Serbest Piyasa Kuru: 1 ${curr.code} (${curr.symbol}) = ${formatDecimalCurrency(curr.tryRate, curr.tryRate < 1 ? 3 : 2)}`;
+      fxUnitRateInfo.textContent = `Referans kur: 1 ${curr.code} (${curr.symbol}) = ${formatDecimalCurrency(curr.tryRate, curr.tryRate < 1 ? 3 : 2)}`;
     } else {
       const resultForeign = curr.tryRate > 0 ? amount / curr.tryRate : 0;
       const dec = curr.code === 'BTC' ? 6 : 2;
       fxResultLabel.textContent = `₺${amount} TRY → ${curr.code} (${curr.name}) KARŞILIĞI`;
       fxResultValue.textContent = formatDecimalCurrency(resultForeign, dec, curr.symbol);
-      fxUnitRateInfo.textContent = `Güncel Serbest Piyasa Kuru: 1 ${curr.code} = ${formatDecimalCurrency(curr.tryRate, curr.tryRate < 1 ? 3 : 2)}`;
+      fxUnitRateInfo.textContent = `Referans kur: 1 ${curr.code} = ${formatDecimalCurrency(curr.tryRate, curr.tryRate < 1 ? 3 : 2)}`;
     }
 
     // Seçili para biriminin detaylı beklenti ve yön analizini göster
@@ -1968,9 +2178,21 @@ document.addEventListener('DOMContentLoaded', () => {
         .join('');
 
       worldCurrenciesGrid.querySelectorAll('.fx-rate-card').forEach((card) => {
-        card.addEventListener('click', () => {
+        const selectCard = () => {
           fxCurrencySelect.value = card.dataset.code;
           renderCurrencyConverter();
+        };
+        const currencyName = card.querySelector('.fx-currency-name')?.textContent || card.dataset.code;
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', 'Dönüştürücüde ' + currencyName + ' seç');
+        card.setAttribute('aria-pressed', card.dataset.code === fxCurrencySelect.value ? 'true' : 'false');
+        card.addEventListener('click', selectCard);
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            selectCard();
+          }
         });
       });
     }
@@ -2002,44 +2224,176 @@ document.addEventListener('DOMContentLoaded', () => {
       .join('');
   }
 
-  async function fetchLiveExchangeRates() {
-    try {
-      if (fxLastUpdateBadge) {
-        fxLastUpdateBadge.textContent = '⏳ Güncel piyasa kurları senkronize ediliyor...';
+  async function fetchLiveExchangeRates(manual = false) {
+    const now = Date.now();
+    const cached = readCachedFxRates();
+    const cachedNextUpdate = cached ? getFxNextUpdateTime(cached) : 0;
+
+    if (cached && cachedNextUpdate > now) {
+      applyFxRateData(cached.rates);
+      updateFxProviderStatus(cached, true);
+      if (manual) {
+        setFxAutoRefreshMessage('Sağlayıcıda yeni veri henüz yok. Sonraki otomatik kontrol: ' + formatProviderTimestamp(cachedNextUpdate) + ' (Türkiye saati).');
       }
-      const res = await fetch('https://open.er-api.com/v6/latest/TRY');
-      if (res.ok) {
-        const data = await res.json();
-        if (data && data.rates) {
-          const apiUsdTry = data.rates.USD ? 1 / data.rates.USD : 0;
-          // Yalnızca API verisi gerçek güncel piyasa bandındaysa (> 45 TL) uygula, aksi halde araştırılmış gerçek serbest piyasa kurlarını koru
-          if (apiUsdTry >= 45) {
-            worldCurrencies.forEach((item) => {
-              if (item.code !== 'GAU' && item.code !== 'BTC' && data.rates[item.code]) {
-                const rateInTry = 1 / data.rates[item.code];
-                if (rateInTry > 0) {
-                  item.tryRate = rateInTry;
-                }
-              }
-            });
-            const liveUsd = getCurrencyObj('USD').tryRate;
-            getCurrencyObj('GAU').tryRate = Math.round(liveUsd * 130.42);
-            getCurrencyObj('BTC').tryRate = Math.round(liveUsd * 80450);
-          }
-        }
-      }
-      if (fxLastUpdateBadge) {
-        const nowStr = new Date().toLocaleTimeString('tr-TR', { hour: '2-digit', minute: '2-digit' });
-        fxLastUpdateBadge.textContent = `✓ Serbest Piyasa Kurları Güncel (${nowStr})`;
-      }
-    } catch (e) {
-      if (fxLastUpdateBadge) {
-        fxLastUpdateBadge.textContent = '✓ Gerçek Serbest Piyasa Kurları Aktif';
-      }
+      scheduleFxAutoRefresh(cachedNextUpdate);
+      updateMarketTicker();
+      renderCurrencyConverter();
+      return;
     }
+
+    let lastRequestAt = 0;
+    try {
+      lastRequestAt = Number(localStorage.getItem(FX_LAST_REQUEST_KEY)) || 0;
+    } catch (error) {
+      // localStorage engellenirse ağ isteği yine denenir.
+    }
+    if (lastRequestAt && now - lastRequestAt < FX_MIN_REQUEST_INTERVAL_MS) {
+      const retryAt = lastRequestAt + FX_MIN_REQUEST_INTERVAL_MS;
+      if (cached) {
+        applyFxRateData(cached.rates);
+        updateFxProviderStatus(cached, true);
+        setFxAutoRefreshMessage('Kaydedilmiş kur verisi gösteriliyor; sağlayıcıya tekrar kontrol ' + formatProviderTimestamp(retryAt) + ' (Türkiye saati) civarında yapılacak.');
+      } else {
+        setFxAutoRefreshMessage('Kur servisine yapılan son kontrolün üzerinden bir saat geçince otomatik olarak yeniden denenecek.');
+        if (fxLastUpdateBadge) fxLastUpdateBadge.textContent = 'Otomatik kur kontrolü bekleniyor…';
+      }
+      scheduleFxAutoRefresh(retryAt);
+      updateMarketTicker();
+      renderCurrencyConverter();
+      return;
+    }
+
+    if (fxLastUpdateBadge) fxLastUpdateBadge.textContent = 'Kur referans verisi alınıyor…';
+    setFxAutoRefreshMessage('Kur servisi kontrol ediliyor…');
+    try {
+      try {
+        localStorage.setItem(FX_LAST_REQUEST_KEY, String(now));
+      } catch (error) {
+        // Ağ isteğini sürdür; yerel istek sınırı bu tarayıcıda saklanamıyor.
+      }
+
+      const response = await fetch('https://open.er-api.com/v6/latest/TRY');
+      if (!response.ok) throw new Error('Kur servisi yanıt vermedi.');
+      const data = await response.json();
+      const providerTimestamp = formatProviderTimestamp(data?.time_last_update_utc);
+      const apiUsdTry = Number(data?.rates?.USD) > 0 ? 1 / Number(data.rates.USD) : 0;
+      if (data?.result !== 'success' || !data.rates || !providerTimestamp || !Number.isFinite(apiUsdTry) || apiUsdTry <= 0) {
+        throw new Error('Kur yanıtı eksik veya geçersiz.');
+      }
+
+      const cachePayload = {
+        rates: data.rates,
+        time_last_update_utc: data.time_last_update_utc,
+        time_next_update_utc: data.time_next_update_utc,
+      };
+      try {
+        localStorage.setItem(FX_RATE_CACHE_KEY, JSON.stringify(cachePayload));
+      } catch (error) {
+        // Kur verisini kullan; yalnızca tarayıcılar arası önbellek kullanılamıyor.
+      }
+
+      applyFxRateData(cachePayload.rates);
+      updateFxProviderStatus(cachePayload, false);
+      scheduleFxAutoRefresh(getFxNextUpdateTime(cachePayload));
+    } catch (error) {
+      const lastKnownRates = readCachedFxRates();
+      if (lastKnownRates) {
+        applyFxRateData(lastKnownRates.rates);
+        updateFxProviderStatus(lastKnownRates, true);
+        setFxAutoRefreshMessage('Son kaydedilen referans kurlar gösteriliyor; bağlantı gelince otomatik yeniden denenecek.');
+      } else {
+        const statusText = 'Canlı referans verisi alınamadı; ekrandaki yedek kur değerlerinin kaynağı ve güncelleme tarihi doğrulanamıyor.';
+        const globalUpdateTime = document.getElementById('marketDataUpdatedTime');
+        if (globalUpdateTime) globalUpdateTime.textContent = statusText;
+        if (fxProviderUpdateTime) fxProviderUpdateTime.textContent = 'doğrulanamıyor; yedek değerler kullanılıyor.';
+        if (fxLastUpdateBadge) fxLastUpdateBadge.textContent = 'Canlı kur verisi alınamadı; yedek değerler gösteriliyor.';
+        setFxAutoRefreshMessage('Bağlantı yok; sayfa açıkken bir saat sonra yeniden denenecek.');
+      }
+      scheduleFxAutoRefresh(Date.now() + FX_MIN_REQUEST_INTERVAL_MS);
+    }
+
     updateMarketTicker();
     renderCurrencyConverter();
   }
+
+  function readCachedFxRates() {
+    try {
+      const cached = JSON.parse(localStorage.getItem(FX_RATE_CACHE_KEY) || 'null');
+      if (!cached || !cached.rates || typeof cached.rates !== 'object' || Array.isArray(cached.rates) || !formatProviderTimestamp(cached.time_last_update_utc)) return null;
+      if (!(Number(cached.rates.USD) > 0)) return null;
+      return cached;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function applyFxRateData(rates) {
+    worldCurrencies.forEach((item) => {
+      if (item.code === 'GAU' || item.code === 'BTC') return;
+      const unitsPerTry = Number(rates?.[item.code]);
+      const rateInTry = unitsPerTry > 0 ? 1 / unitsPerTry : 0;
+      if (Number.isFinite(rateInTry) && rateInTry > 0) item.tryRate = rateInTry;
+    });
+    const referenceUsdTry = getCurrencyObj('USD').tryRate;
+    getCurrencyObj('GAU').tryRate = Math.round(referenceUsdTry * 130.42);
+    getCurrencyObj('BTC').tryRate = Math.round(referenceUsdTry * 80450);
+  }
+
+  function getFxNextUpdateTime(data) {
+    const providerNextUpdate = new Date(data?.time_next_update_utc).getTime();
+    if (Number.isFinite(providerNextUpdate)) return providerNextUpdate;
+    const lastUpdate = new Date(data?.time_last_update_utc).getTime();
+    return Number.isFinite(lastUpdate) ? lastUpdate + 24 * 60 * 60 * 1000 : Date.now() + 24 * 60 * 60 * 1000;
+  }
+
+  function updateFxProviderStatus(data, fromCache) {
+    const providerTimestamp = formatProviderTimestamp(data?.time_last_update_utc);
+    const nextUpdateTimestamp = formatProviderTimestamp(data?.time_next_update_utc) || formatProviderTimestamp(getFxNextUpdateTime(data));
+    const statusText = 'Son sağlayıcı güncellemesi: ' + providerTimestamp + ' (Türkiye saati).' + (fromCache ? ' Tarayıcı önbelleğinden gösteriliyor.' : '');
+    const globalUpdateTime = document.getElementById('marketDataUpdatedTime');
+    if (globalUpdateTime) globalUpdateTime.textContent = statusText;
+    if (fxProviderUpdateTime) fxProviderUpdateTime.textContent = providerTimestamp + ' (Türkiye saati).';
+    if (fxLastUpdateBadge) fxLastUpdateBadge.textContent = 'Referans kur verisi: ' + providerTimestamp;
+    setFxAutoRefreshMessage('Otomatik yenileme açık. Sağlayıcının sonraki veri zamanı: ' + nextUpdateTimestamp + ' (Türkiye saati); sayfa açıkken kontrol edilir.');
+  }
+
+  function setFxAutoRefreshMessage(message) {
+    if (fxAutoRefreshStatus) fxAutoRefreshStatus.textContent = message;
+    const globalAutoRefresh = document.getElementById('marketDataAutoRefresh');
+    if (globalAutoRefresh) globalAutoRefresh.textContent = message;
+  }
+
+  function scheduleFxAutoRefresh(nextUpdateAt) {
+    if (fxAutoRefreshTimer) window.clearTimeout(fxAutoRefreshTimer);
+    const retryAt = Number(nextUpdateAt) + 60 * 1000;
+    const scheduledAt = Number.isFinite(retryAt) ? retryAt : Date.now() + FX_MIN_REQUEST_INTERVAL_MS;
+    const delay = Math.max(60 * 1000, scheduledAt - Date.now());
+    fxAutoRefreshTimer = window.setTimeout(() => {
+      if (document.visibilityState === 'visible') {
+        fetchLiveExchangeRates();
+      } else {
+        fxRefreshDueWhileHidden = true;
+      }
+    }, delay);
+  }
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && fxRefreshDueWhileHidden) {
+      fxRefreshDueWhileHidden = false;
+      fetchLiveExchangeRates();
+    }
+  });
+
+  window.addEventListener('storage', (event) => {
+    if (event.key !== FX_RATE_CACHE_KEY) return;
+    const cached = readCachedFxRates();
+    if (!cached) return;
+    applyFxRateData(cached.rates);
+    updateFxProviderStatus(cached, true);
+    scheduleFxAutoRefresh(getFxNextUpdateTime(cached));
+    updateMarketTicker();
+    renderCurrencyConverter();
+  });
 
   if (fxAmountInput) fxAmountInput.addEventListener('input', renderCurrencyConverter);
   if (fxCurrencySelect) fxCurrencySelect.addEventListener('change', renderCurrencyConverter);
@@ -2050,9 +2404,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   if (refreshRatesBtn) {
-    refreshRatesBtn.addEventListener('click', fetchLiveExchangeRates);
+    refreshRatesBtn.addEventListener('click', () => fetchLiveExchangeRates(true));
   }
 
+  const initialCachedRates = readCachedFxRates();
+  if (initialCachedRates) {
+    applyFxRateData(initialCachedRates.rates);
+    updateFxProviderStatus(initialCachedRates, true);
+  }
   updateMarketTicker();
   renderCurrencyConverter();
   fetchLiveExchangeRates();
@@ -2088,6 +2447,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // ignore
     }
     updateAuthUIAndGates();
+    if (userObj?.email) window.YEKRewards?.ensureForUser(userObj.email);
+    window.dispatchEvent(new CustomEvent('yek-auth-state-changed', { detail: { email: userObj?.email || '' } }));
   }
 
   // Kullanıcının site araçlarından (YEK AI, Bütçe Hesaplama vb.) yararlanma yetkisi var mı?
@@ -2183,6 +2544,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 3. ÜST MENÜYE (NAVBAR) GİRİŞ BUTONU EKLE
   const navRightGroup = document.querySelector('.nav-right-group');
+  const mainNavLinks = document.querySelector('.nav-links');
+  if (mainNavLinks && !mainNavLinks.querySelector('[data-yek-games-link]')) {
+    const gamesNavLink = document.createElement('a');
+    gamesNavLink.href = 'oyunlar.html';
+    gamesNavLink.className = 'nav-tab';
+    gamesNavLink.setAttribute('data-yek-games-link', 'true');
+    const gamesNavIcon = document.createElement('img');
+    gamesNavIcon.src = 'logo.svg';
+    gamesNavIcon.alt = '';
+    gamesNavIcon.className = 'link-mini-logo';
+    gamesNavLink.appendChild(gamesNavIcon);
+    gamesNavLink.appendChild(document.createTextNode('Oyunlar'));
+    if (window.location.pathname.toLowerCase().endsWith('oyunlar.html')) gamesNavLink.classList.add('active');
+    mainNavLinks.insertBefore(gamesNavLink, mainNavLinks.querySelector('.nav-ai-link'));
+  }
   const authNavContainer = document.createElement('div');
   authNavContainer.className = 'yek-nav-auth-group';
   if (navRightGroup) {
@@ -2329,6 +2705,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateAuthUIAndGates() {
     const user = getLoggedInUser();
     const canAccess = hasAccessToSiteTools();
+    if (user?.email) window.YEKRewards?.ensureForUser(user.email);
 
     if (authNavContainer) {
       if (user) {

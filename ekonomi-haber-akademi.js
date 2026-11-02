@@ -375,12 +375,12 @@
         <div class="news-spotlight-card">
           <div class="news-spot-meta">
             <span class="news-flag-badge">${item.regionFlag} ${item.category}</span>
-            <span class="news-time-tag">⚡ ${item.timeTag}</span>
+            <span class="news-time-tag">📘 Eğitim senaryosu</span>
           </div>
           <h3>${item.title}</h3>
           <p class="news-spot-summary">${item.summary}</p>
           <div class="news-spot-expert-box">
-            <strong>🎙️ Piyasa Uzmanı Yusuf Efe Karagöz Analizi:</strong>
+            <strong>🎙️ Eğitim amaçlı senaryo notu:</strong>
             <p>${item.fullAnalysis}</p>
             <span class="news-impact-pill">${item.impactBadge}</span>
           </div>
@@ -400,7 +400,7 @@
           <article class="world-news-card ${n.id === selectedNewsItem?.id ? 'active-news-card' : ''}" data-id="${n.id}">
             <div class="world-news-card-top">
               <span>${n.regionFlag} ${n.category}</span>
-              <small>${n.timeTag.split('•')[0]}</small>
+              <small>Eğitim örneği</small>
             </div>
             <h4>${n.title}</h4>
             <p>${n.summary}</p>
@@ -414,7 +414,7 @@
         .join('');
 
       newsGridEl.querySelectorAll('.world-news-card').forEach((card) => {
-        card.addEventListener('click', () => {
+        const activateCard = () => {
           const id = parseInt(card.dataset.id, 10);
           const found = WORLD_ECONOMY_NEWS.find((x) => x.id === id);
           if (found) {
@@ -422,7 +422,18 @@
             renderNewsSpotlight(found);
             newsGridEl.querySelectorAll('.world-news-card').forEach((el) => el.classList.remove('active-news-card'));
             card.classList.add('active-news-card');
-            newsSpotlightBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+            newsSpotlightBox.scrollIntoView({ behavior, block: 'nearest' });
+          }
+        };
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', 'Eğitim içeriğini aç: ' + (card.querySelector('h4')?.textContent || 'ekonomi senaryosu'));
+        card.addEventListener('click', activateCard);
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            activateCard();
           }
         });
       });

@@ -16,7 +16,7 @@
     document.documentElement.dataset.theme = 'dark';
   }
 </script>
-  <link rel="stylesheet" href="style.css?v=9" />
+  <link rel="stylesheet" href="style.css?v=11" />
 </head>
 <body>
   <div class="ambient-glow glow-1"></div>
@@ -134,7 +134,10 @@
               </svg>
               Verileri Sıfırla
             </button>
-            <span id="autoSaveStatus" class="autosave-pill">✓ Otomatik Kayıt Aktif</span>
+            <button type="button" id="exportBudgetBackupBtn" class="btn-chip" title="Bütçenin JSON yedeğini indir">⬇️ Yedeği İndir</button>
+            <button type="button" id="importBudgetBackupBtn" class="btn-chip" title="Daha önce indirdiğin bütçe yedeğini yükle">⬆️ Yedek Yükle</button>
+            <input type="file" id="importBudgetBackupFile" accept=".json,application/json" hidden aria-label="Bütçe yedek dosyası seç" />
+            <span id="autoSaveStatus" class="autosave-pill" role="status" aria-live="polite">✓ Otomatik Kayıt Aktif</span>
           </div>
         </div>
 
@@ -165,6 +168,27 @@
             <small class="input-hint">Tavsiye motoru stratejisini bu hedefe göre özelleştirir.</small>
           </div>
         </div>
+
+        <section class="savings-goal-tracker" aria-labelledby="savingsGoalTitle">
+          <div class="savings-goal-copy">
+            <span class="step-tag">HEDEF TAKİBİ</span>
+            <h3 id="savingsGoalTitle">Birikim hedefin</h3>
+            <p>Mevcut birikimini hedef tutarınla karşılaştır. Hedef tutarını sen belirlersin.</p>
+          </div>
+          <div class="savings-goal-input-col">
+            <label for="savingsGoalAmount">Birikim hedefi tutarı</label>
+            <div class="currency-input-wrapper">
+              <span class="currency-symbol">₺</span>
+              <input type="number" id="savingsGoalAmount" class="budget-input" min="0" step="1000" placeholder="Örn. 150000" value="0" />
+            </div>
+          </div>
+          <div class="savings-goal-progress-wrap">
+            <div id="savingsGoalProgress" class="savings-goal-progress-track" role="progressbar" aria-label="Birikim hedefi ilerlemesi" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="Hedef tutarı belirlenmedi">
+              <div id="savingsGoalProgressFill" class="savings-goal-progress-fill"></div>
+            </div>
+            <p id="savingsGoalProgressText" role="status" aria-live="polite">Mevcut birikimini gör. Hedef tutarını girerek ilerlemeyi takip et.</p>
+          </div>
+        </section>
 
         <div class="income-expense-grid">
           <div class="finance-panel income-panel">
@@ -437,6 +461,8 @@
     </div>
   </a>
 
-  <script src="script.js?v=11"></script>
+  <script src="yek-rewards.js?v=2"></script>
+  <script src="yek-stock-game.js?v=4"></script>
+  <script src="script.js?v=16"></script>
 </body>
 </html>

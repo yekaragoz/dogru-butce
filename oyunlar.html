@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YEK oyun alanında günlük çarkı çevir ve ülkelerin para birimlerini canlı kur verileriyle karşılaştır." />
+  <title>Oyunlar | Doğru Bütçe Doğru Kullanım</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+  <script>
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem('yek_theme_preference') === 'light' ? 'light' : 'dark';
+    } catch (error) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  </script>
+  <link rel="stylesheet" href="style.css?v=14" />
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="YEK Logo" class="nav-logo" />
+        <div class="brand-text">
+          <span class="brand-title">Doğru Bütçe Doğru Kullanım</span>
+          <span class="brand-subtitle">Piyasa Uzmanı Yusuf Efe Karagöz</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Ana menü">
+        <a href="index.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Ana Sayfa</a>
+        <a href="butce-hesapla.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Bütçe Hesapla</a>
+        <a href="gorsel-analiz.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Görsel Analiz</a>
+        <a href="altin-kurallar.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />5 Altın Kural</a>
+        <a href="tavsiye-motoru.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Tavsiye Motoru</a>
+        <a href="doviz-cevirici.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Döviz & Kur Çevirici</a>
+        <a href="oyunlar.html" class="nav-tab active" data-yek-games-link="true" aria-current="page"><img src="logo.svg" alt="" class="link-mini-logo" />Oyunlar</a>
+        <a href="yek-ai.html" class="nav-tab nav-ai-link"><img src="logo.svg" alt="" class="link-mini-logo" />YEK AI Sohbet</a>
+      </nav>
+      <div class="nav-right-group">
+        <button type="button" id="printReportBtn" class="btn-nav-action" title="Sayfayı yazdır / PDF kaydet">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Rapor Al (PDF)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="market-ticker-bar">
+    <div class="container ticker-container">
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-usd">$</span><span class="ticker-name">USD / TRY</span><span id="tickerUSD" class="ticker-val up">₺49,84</span></a>
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-eur">€</span><span class="ticker-name">EUR / TRY</span><span id="tickerEUR" class="ticker-val up">₺55,50</span></a>
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-tl">£</span><span class="ticker-name">GBP / TRY</span><span id="tickerGBP" class="ticker-val up">₺66,53</span></a>
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-gold">Au</span><span class="ticker-name">GRAM ALTIN</span><span id="tickerGAU" class="ticker-val gold">₺6.500</span></a>
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-btc">₿</span><span class="ticker-name">BITCOIN (TRY)</span><span id="tickerBTC" class="ticker-val gold">₺4.010.000</span></a>
+    </div>
+  </div>
+
+  <main class="games-page">
+    <section class="games-hero">
+      <div class="container">
+        <span class="step-tag">🎮 YEK OYUN ALANI · SANAL BAKİYE</span>
+        <h1 id="gamesPageTitle">Oyunlar</h1>
+        <p id="gamesPageDescription">Bir oyun seç; her oyun ayrı bir sekmede açılır.</p>
+        <div class="games-local-note" role="note"><strong>Yerel prototip:</strong> Oyun, puan ve sanal cüzdan verileri bu tarayıcıda saklanır. Gerçek para veya yatırım içermez.</div>
+      </div>
+    </section>
+
+    <div class="container">
+      <div id="gamesGuestNotice" class="stock-game-login-note games-guest-notice">
+        <strong>Oyunları kullanmak için giriş yap</strong>
+        <p>Üst menüden giriş yaptığında günlük çark ve Değer Tahmin açılır. Kaldığın tahmin oyunu aynı tarayıcıda saklanır.</p>
+      </div>
+
+      <div id="gamesAuthContent" class="games-auth-content hidden">
+        <a id="gamesReturnLink" class="games-back-link hidden" href="oyunlar.html">← Oyunlara dön</a>
+
+        <section id="gamesHub" class="games-game-grid" aria-label="Oyun seç">
+          <a href="oyunlar.html?game=wheel" target="_blank" rel="noopener noreferrer" class="games-game-card">
+            <span class="games-game-icon" aria-hidden="true">🎡</span>
+            <span class="step-tag">GÜNDE 1 HAK</span>
+            <strong>Günlük Çark</strong>
+            <span class="games-game-description">Borsa sanal nakdi ve YEK AI sohbet dakikaları için küçük artı/eksi sonuçları çevir.</span>
+            <span class="games-card-action">Yeni sekmede aç ↗</span>
+          </a>
+          <a href="oyunlar.html?game=value" target="_blank" rel="noopener noreferrer" class="games-game-card">
+            <span class="games-game-icon" aria-hidden="true">🌍</span>
+            <span class="step-tag">250 RASTGELE TUR</span>
+            <strong>Değer Tahmin</strong>
+            <span class="games-game-description">Ülkelerin para birimlerini karşılaştır; doğru tahminde +€2, yanlışta −€1 kazan.</span>
+            <span class="games-card-action">Yeni sekmede aç ↗</span>
+          </a>
+          <a href="borsa-oyunu.html" target="_blank" rel="noopener noreferrer" class="games-game-card">
+            <span class="games-game-icon" aria-hidden="true">📈</span>
+            <span class="step-tag">25 HAYALİ ŞİRKET</span>
+            <strong>Sanal Borsa Oyunu</strong>
+            <span class="games-game-description">Hayali hisseleri alıp sat; portföy hedeflerine ulaşarak YEK AI sohbet ödüllerini aç.</span>
+            <span class="games-card-action">Yeni sekmede aç ↗</span>
+          </a>
+        </section>
+
+        <section id="wheelGamePanel" class="games-panel hidden" aria-labelledby="wheelTitle">
+          <div class="games-panel-heading">
+            <div><span class="step-tag">GÜNDE 1 HAK</span><h2 id="wheelTitle">Günlük çark</h2></div>
+            <span id="wheelDailyStatus" class="games-status-pill">Hazırlanıyor…</span>
+          </div>
+          <p class="games-panel-copy">Borsa sanal nakdi ve bankalı YEK AI günlük dakikaları için küçük artı/eksi sonuçlardan biri çıkar. Sonuçlar sanaldır.</p>
+          <div class="wheel-layout">
+            <div class="wheel-stage">
+              <span class="wheel-pointer" aria-hidden="true"></span>
+              <div id="prizeWheel" class="prize-wheel" role="img" aria-label="Sekiz bölümlü günlük ödül çarkı">
+                <canvas id="prizeWheelCanvas" width="480" height="480" aria-hidden="true"></canvas>
+                <div id="prizeWheelLabels" class="prize-wheel-labels" aria-hidden="true"></div>
+                <span class="prize-wheel-hub" aria-hidden="true">YEK</span>
+              </div>
+            </div>
+            <div class="wheel-actions">
+              <strong class="wheel-action-title">Şansını dene</strong>
+              <p>Günde bir kez çevirebilirsin. Borsa kayıpları mevcut sanal nakdinle sınırlıdır. Sohbet dakikası eksi sonuçları günlük bankalı dakikadan düşer.</p>
+              <button type="button" id="spinWheelButton" class="btn btn-primary">Günlük çarkı çevir</button>
+              <p id="wheelResult" class="games-live-result" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </section>
+
+        <section id="valueGamePanel" class="games-panel value-game-panel hidden" aria-labelledby="valueGuessTitle">
+          <div class="games-panel-heading">
+            <div><span class="step-tag">250 RASTGELE TUR</span><h2 id="valueGuessTitle">Değer Tahmin</h2></div>
+            <span id="valueRateStatus" class="games-status-pill">Kur verisi alınıyor…</span>
+          </div>
+          <p class="games-panel-copy">İki ülkeden hangisinin bir birim para birimi daha değerli? Doğru tahmin <strong>+€2</strong>, yanlış tahmin <strong>−€1</strong>. Ülke çiftleri site listesindeki 120 ülkeden seçilir; bir oturumda aynı ülke tekrar çıkabilir.</p>
+          <div id="valueGuessSetup" class="value-game-setup">
+            <div class="value-game-entry-card">
+              <div><span>Başlangıç bütçesi</span><strong>€10</strong></div>
+              <p>Giriş tutarı güncel kur anlık görüntüsüyle Borsa sanal nakdinden düşülür. Oyunu istediğin an bitirip kalan bakiyeyi Borsa sanal nakdine aktarabilirsin.</p>
+            </div>
+            <p id="valueGuessSetupMessage" class="games-live-result" role="status" aria-live="polite">Kur verisi bekleniyor…</p>
+            <button type="button" id="startValueGuessButton" class="btn btn-primary" disabled>€10 ile oyuna başla</button>
+          </div>
+
+          <div id="valueGuessPlay" class="value-game-play hidden">
+            <div class="value-game-scorebar">
+              <div><span>Oyun bakiyesi</span><strong id="valueGuessBalance">€10,00</strong></div>
+              <div><span>Tur</span><strong id="valueGuessProgress">1 / 250</strong></div>
+              <div><span>Doğru</span><strong id="valueGuessCorrect">0</strong></div>
+              <div><span>Yanlış</span><strong id="valueGuessWrong">0</strong></div>
+            </div>
+            <p class="value-question-prompt">Daha değerli olan para birimini seç:</p>
+            <div class="value-country-pair">
+              <article id="valueCountryLeft" class="value-country-card"></article>
+              <span class="value-country-versus" aria-hidden="true">VS</span>
+              <article id="valueCountryRight" class="value-country-card"></article>
+            </div>
+            <div class="value-choice-actions">
+              <button type="button" class="btn btn-secondary" data-value-choice="left">Soldakini seç</button>
+              <button type="button" class="btn btn-secondary" data-value-choice="right">Sağdakini seç</button>
+            </div>
+            <div id="valueGuessComparison" class="value-comparison-reveal hidden" role="status" aria-live="polite"></div>
+            <p id="valueGuessFeedback" class="games-live-result" role="status" aria-live="polite"></p>
+            <div class="value-game-footer-actions">
+              <span id="valueGuessEndStatus" class="value-game-end-status"></span>
+              <button type="button" id="cashOutValueGuessButton" class="btn btn-primary">Oyunu bitir ve bakiyeyi al</button>
+            </div>
+          </div>
+          <div class="value-game-attribution">Kur kaynağı: <a href="https://www.exchangerate-api.com/" target="_blank" rel="noopener noreferrer">ExchangeRate-API</a>. Karşılaştırma, oturum başındaki USD referans kur anlık görüntüsünü kullanır.</div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="container"><p class="footer-desc">Oyunlardaki tüm bakiyeler ve ödüller sanaldır; gerçek para, getiri veya yatırım önerisi sunulmaz.</p></div></footer>
+
+  <script src="yek-rewards.js?v=2"></script>
+  <script src="yek-stock-game.js?v=4"></script>
+  <script src="global-economies.js?v=7"></script>
+  <script src="yek-games.js?v=2"></script>
+  <script src="script.js?v=16"></script>
+</body>
+</html>

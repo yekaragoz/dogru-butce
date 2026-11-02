@@ -419,7 +419,7 @@ ${rows}`;
         .join('');
 
       countriesGridEl.querySelectorAll('.country-inf-card').forEach((card) => {
-        card.addEventListener('click', () => {
+        const activateCard = () => {
           const id = parseInt(card.dataset.id, 10);
           const found = ALL_120_COUNTRIES.find((x) => x.id === id);
           if (found) {
@@ -427,7 +427,18 @@ ${rows}`;
             renderSpotlight(found);
             countriesGridEl.querySelectorAll('.country-inf-card').forEach((el) => el.classList.remove('active-country-card'));
             card.classList.add('active-country-card');
-            selectedCountrySpotlight.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+            selectedCountrySpotlight.scrollIntoView({ behavior, block: 'nearest' });
+          }
+        };
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', 'Ülke makroekonomi örneğini aç: ' + (card.querySelector('h4')?.textContent || 'ülke'));
+        card.addEventListener('click', activateCard);
+        card.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            activateCard();
           }
         });
       });

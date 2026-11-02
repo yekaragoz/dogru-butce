@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Hayali hisseler ve sanal bütçeyle borsa simülasyonu oyna, YEK AI sohbet süresi ödüllerini keşfet." />
+  <title>Sanal Borsa Oyunu | Doğru Bütçe Doğru Kullanım</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+  <script>
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem('yek_theme_preference') === 'light' ? 'light' : 'dark';
+    } catch (error) {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  </script>
+  <link rel="stylesheet" href="style.css?v=12" />
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="logo.svg" alt="YEK Logo" class="nav-logo" />
+        <div class="brand-text">
+          <span class="brand-title">Doğru Bütçe Doğru Kullanım</span>
+          <span class="brand-subtitle">Piyasa Uzmanı Yusuf Efe Karagöz</span>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Ana menü">
+        <a href="index.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Ana Sayfa</a>
+        <a href="butce-hesapla.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Bütçe Hesapla</a>
+        <a href="gorsel-analiz.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Görsel Analiz</a>
+        <a href="altin-kurallar.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />5 Altın Kural</a>
+        <a href="tavsiye-motoru.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Tavsiye Motoru</a>
+        <a href="doviz-cevirici.html" class="nav-tab"><img src="logo.svg" alt="" class="link-mini-logo" />Döviz & Kur Çevirici</a>
+        <a href="yek-ai.html" class="nav-tab nav-ai-link"><img src="logo.svg" alt="" class="link-mini-logo" />YEK AI Sohbet</a>
+      </nav>
+      <div class="nav-right-group">
+        <button type="button" id="printReportBtn" class="btn-nav-action" title="Sayfayı yazdır / PDF kaydet">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <span>Rapor Al (PDF)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="market-ticker-bar">
+    <div class="container ticker-container">
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-usd">$</span><span class="ticker-name">USD / TRY</span><span id="tickerUSD" class="ticker-val up">₺49,84</span></a>
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-eur">€</span><span class="ticker-name">EUR / TRY</span><span id="tickerEUR" class="ticker-val up">₺55,50</span></a>
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-tl">£</span><span class="ticker-name">GBP / TRY</span><span id="tickerGBP" class="ticker-val up">₺66,53</span></a>
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-gold">Au</span><span class="ticker-name">GRAM ALTIN</span><span id="tickerGAU" class="ticker-val gold">₺6.500</span></a>
+      <a href="doviz-cevirici.html" class="ticker-item"><span class="coin-icon coin-btc">₿</span><span class="ticker-name">BITCOIN (TRY)</span><span id="tickerBTC" class="ticker-val gold">₺4.010.000</span></a>
+    </div>
+  </div>
+
+  <main class="spa-pages-container">
+    <section class="stock-game-section">
+      <div class="container">
+        <header class="section-header stock-game-intro">
+          <span class="step-tag">🎮 SANAL PORTFÖY CHALLENGE</span>
+          <h1>Sanal Borsa Oyunu</h1>
+          <p>Siteye giriş yaptığın her yeni günde hesabına <strong>300$ sanal bütçe</strong> eklenir. Harcanmayan nakit sonraki günlere kalır. 25 hayali şirketin hisselerini alıp sat; portföyün büyüdükçe YEK AI sohbet süresi ödülleri kazan.</p>
+        </header>
+
+        <div id="stockGameGuestNotice" class="stock-game-login-note">
+          <strong>Oyuna giriş gerekli</strong>
+          <p>Oyunu ve sanal portföyünü açmak için üst menüden giriş yap.</p>
+        </div>
+
+        <div id="stockGameApp" class="hidden">
+            <div class="stock-game-local-notice" role="note">
+            <strong>Prototip bilgisi:</strong> Bu demo gerçek para veya gerçek şirket hissesi kullanmaz. Günlük 300$ harcanmadıkça nakit bakiyende kalır. Oyun puanları ve sohbet hakları bu tarayıcıda tutulur; gerçek kullanıcı hesabıyla eşitlenmez.
+          </div>
+
+          <div class="stock-game-summary-grid" aria-label="Sanal portföy özeti">
+            <article class="stock-summary-card"><span>💵 Sanal nakit</span><strong id="stockGameCash">$0.00</strong></article>
+            <article class="stock-summary-card"><span>📊 Hisselerin değeri</span><strong id="stockGameSharesValue">$0.00</strong></article>
+            <article class="stock-summary-card primary"><span>🏆 Toplam portföy</span><strong id="stockGamePortfolioValue">$0.00</strong></article>
+            <article class="stock-summary-card ai-reward"><span>✨ YEK AI hakkı</span><strong id="stockGameAiAccess">—</strong></article>
+          </div>
+
+          <div class="stock-game-status-row">
+            <p id="stockGameDailyGiftStatus" class="stock-daily-gift-status" role="status" aria-live="polite">Günlük sanal bütçe hazırlanıyor.</p>
+            <p id="stockGameNextRound" class="stock-next-round">Sanal piyasa turu yaklaşık her dakika değişir.</p>
+          </div>
+          <p id="stockGameFeedback" class="stock-game-feedback" role="status" aria-live="polite"></p>
+
+          <div class="stock-game-main-grid">
+            <section class="stock-game-panel" aria-labelledby="stockMarketTitle">
+              <div class="stock-game-panel-header">
+                <div><span class="step-tag">RASTGELE FİYAT TURU</span><h2 id="stockMarketTitle">Hayali hisseler</h2></div>
+                <span class="stock-market-live">● Simülasyon</span>
+              </div>
+              <p class="stock-game-panel-desc">25 hayali şirketin fiyatları oyun içi rastgele simülasyonla yaklaşık dakikada bir değişir. Gerçek şirket veya piyasa fiyatı değildir.</p>
+              <div id="stockMarketGrid" class="virtual-stock-grid"></div>
+            </section>
+
+            <aside class="stock-game-side-column">
+              <section class="stock-game-panel" aria-labelledby="stockRewardsTitle">
+                <div class="stock-game-panel-header"><div><span class="step-tag">YEK AI ÖDÜLLERİ</span><h2 id="stockRewardsTitle">Portföy hedefleri</h2></div></div>
+                <p class="stock-game-panel-desc">Toplam sanal portföy değeri hedefe ilk kez ulaştığında ödül açılır.</p>
+                <div id="stockGameRewards" class="stock-rewards-list"></div>
+              </section>
+
+              <section class="stock-game-panel" aria-labelledby="stockHoldingsTitle">
+                <div class="stock-game-panel-header"><div><span class="step-tag">VARLIKLARIN</span><h2 id="stockHoldingsTitle">Portföyüm</h2></div></div>
+                <div id="stockHoldingsGrid" class="stock-holdings-list"></div>
+              </section>
+
+              <section class="stock-game-panel" aria-labelledby="stockTransactionsTitle">
+                <div class="stock-game-panel-header"><div><span class="step-tag">SON İŞLEMLER</span><h2 id="stockTransactionsTitle">İşlem geçmişi</h2></div></div>
+                <div id="stockGameTransactions" class="stock-transactions-list"></div>
+              </section>
+            </aside>
+          </div>
+
+          <div class="stock-game-ai-link"><span>Ödüllerle sohbet süreni artır.</span><a href="yek-ai.html" class="btn btn-primary">YEK AI Sohbete Git →</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container"><p class="footer-desc">Sanal Borsa Oyunu eğitim ve eğlence amaçlı bir simülasyondur. Gerçek yatırım, alım-satım veya getiri sunmaz.</p></div></footer>
+
+  <script src="yek-rewards.js?v=2"></script>
+  <script src="yek-stock-game.js?v=4"></script>
+  <script src="script.js?v=16"></script>
+</body>
+</html>

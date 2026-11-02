@@ -16,7 +16,7 @@
     document.documentElement.dataset.theme = 'dark';
   }
 </script>
-  <link rel="stylesheet" href="style.css?v=9" />
+  <link rel="stylesheet" href="style.css?v=11" />
 </head>
 <body>
   <div class="ambient-glow glow-1"></div>
@@ -115,14 +115,21 @@
       <div class="container">
         <div class="section-header">
           <span class="step-tag">KÜRESEL PİYASALAR, KUR TAHMİNLERİ & CANLI ÇEVİRİCİ</span>
-          <h2>Dünya Para Birimleri, Gerçek Piyasa Kurları & Yön Analizi</h2>
-          <p>Dünyada en çok kullanılan para birimlerini, Altın ve Bitcoin'i güncel serbest piyasa kurlarıyla anında <strong>Türk Lirasına (₺)</strong> çevirin ve her para birimi için <strong>artış / sabit / azalış beklentisi analizlerini</strong> inceleyin.</p>
+          <h2>Döviz Kurları ve Bütçe Çevirici</h2>
+          <p>Günlük referans kurlarıyla döviz karşılıklarını hesaplayın. Kurlar karşılaştırma amaçlıdır; banka, döviz bürosu veya işlem fiyatını göstermez.</p>
           <div class="quick-actions">
-            <span id="fxLastUpdateBadge" class="autosave-pill">⚡ Gerçek Serbest Piyasa Kurları Aktif</span>
+            <span id="fxLastUpdateBadge" class="autosave-pill">Kur kaynağı bekleniyor…</span>
             <button type="button" id="refreshRatesBtn" class="btn-chip">
-              Kurları Güncelle
+              Kurları Kontrol Et
             </button>
           </div>
+          <p id="fxDataSourceNote" class="data-provenance">
+            <span>Kaynak: <a href="https://www.exchangerate-api.com/docs/free" target="_blank" rel="noopener noreferrer">ExchangeRate-API Open Access</a> günlük referans kurları.</span>
+            <span>Son sağlayıcı güncellemesi: <time id="fxProviderUpdateTime">bekleniyor.</time></span>
+            <span id="fxAutoRefreshStatus" role="status" aria-live="polite">Otomatik yenileme, sayfa açıkken sağlayıcının sonraki veri zamanında çalışır.</span>
+            <span>Altın ve Bitcoin, USD/TRY üzerinden türetilen uygulama içi yaklaşık değerlerdir; canlı kotasyon değildir.</span>
+            <span>Kur kartlarındaki yön ve aralıklar doğrulanmış piyasa tahmini değildir.</span>
+          </p>
         </div>
 
         <div class="fx-converter-card">
@@ -177,7 +184,7 @@
         </div>
 
         <div class="world-currencies-header">
-          <h3>🌍 Dünyanın En Ünlü Para Birimleri & Varlıkları (Güncel TL Kurları)</h3>
+          <h3>🌍 Para Birimleri ve Varlıklar (Gösterge Kurları)</h3>
           <p>Herhangi bir para birimi kartına tıklayarak yukarıdaki çeviricide hemen seçebilirsiniz.</p>
         </div>
 
@@ -249,6 +256,8 @@
     </div>
   </a>
 
-  <script src="script.js?v=11"></script>
+  <script src="yek-rewards.js?v=2"></script>
+  <script src="yek-stock-game.js?v=4"></script>
+  <script src="script.js?v=16"></script>
 </body>
 </html>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 160" role="img" aria-labelledby="title desc">
+  <title id="title">3 boyutlu sanal borsa grafiği</title>
+  <desc id="desc">Perspektifli ızgara, hacim sütunları ve dalgalı fiyat çizgisi içeren dekoratif finans grafiği.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#163c39" />
+      <stop offset=".48" stop-color="#10262b" />
+      <stop offset="1" stop-color="#08131d" />
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity=".13" />
+      <stop offset=".45" stop-color="#ffffff" stop-opacity=".025" />
+      <stop offset="1" stop-color="#000000" stop-opacity=".1" />
+    </linearGradient>
+    <linearGradient id="area" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34d399" stop-opacity=".37" />
+      <stop offset="1" stop-color="#34d399" stop-opacity="0" />
+    </linearGradient>
+    <linearGradient id="trend" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#34d399" />
+      <stop offset=".65" stop-color="#8df0c4" />
+      <stop offset="1" stop-color="#fbbf24" />
+    </linearGradient>
+    <linearGradient id="barFront" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#37d9a0" />
+      <stop offset="1" stop-color="#087c62" />
+    </linearGradient>
+    <linearGradient id="barSide" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#075744" />
+      <stop offset="1" stop-color="#042d2b" />
+    </linearGradient>
+    <linearGradient id="barTop" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b1ffe0" />
+      <stop offset="1" stop-color="#26bd87" />
+    </linearGradient>
+    <filter id="softGlow" x="-40%" y="-70%" width="180%" height="240%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+    <filter id="shadow" x="-20%" y="-25%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="8" stdDeviation="9" flood-color="#000000" flood-opacity=".4" />
+    </filter>
+  </defs>
+
+  <g filter="url(#shadow)">
+    <rect x="8" y="7" width="404" height="146" rx="25" fill="url(#panel)" stroke="#73e8b5" stroke-opacity=".48" stroke-width="1.5" />
+    <rect x="10" y="9" width="400" height="142" rx="23" fill="url(#glass)" />
+    <path d="M29 10h254c-23 9-51 14-84 14H30Z" fill="#ffffff" fill-opacity=".055" />
+    <path d="M11 120 84 151h277l48-28v16a14 14 0 0 1-14 14H31a20 20 0 0 1-20-20Z" fill="#020a10" fill-opacity=".26" />
+  </g>
+
+  <g opacity=".62" font-family="Arial,sans-serif" font-size="8" font-weight="700" letter-spacing="1.2" fill="#a6c5c1">
+    <text x="29" y="27">YEK · SANAL PİYASA</text>
+    <text x="354" y="27" fill="#6be8b0">3D GRAFİK</text>
+  </g>
+
+  <g stroke="#a3c4c1" stroke-opacity=".15" stroke-width=".8" stroke-dasharray="3 5">
+    <path d="M32 43H375M32 62H375M32 81H375M32 100H375" />
+    <path d="M62 37v70m50-70v70m50-70v70m50-70v70m50-70v70m50-70v70" />
+  </g>
+
+  <path d="M32 105 344 105 382 126 69 126Z" fill="#071a20" stroke="#5dd9a8" stroke-opacity=".32" />
+  <g stroke="#4ab990" stroke-opacity=".23" stroke-width=".8">
+    <path d="m32 105 37 21m28-21 37 21m28-21 37 21m28-21 37 21m28-21 37 21m-282-11h313m-292 10h312" />
+    <path d="m79 106 37 20m49-20 37 20m49-20 37 20m49-20 37 20" />
+  </g>
+
+  <g opacity=".94">
+    <path d="M52 104V88m46 16V78m46 26V84m46 20V64m46 40V70m46 34V55m46 49V43" stroke="#81e8bd" stroke-opacity=".7" stroke-width="2" />
+    <g>
+      <path d="M58 82 64 76 82 76 76 82Z" fill="url(#barTop)"/><path d="M58 82h18v22H58Z" fill="url(#barFront)"/><path d="m76 82 6-6v22l-6 6Z" fill="url(#barSide)"/>
+      <path d="M104 70 110 64 128 64 122 70Z" fill="url(#barTop)"/><path d="M104 70h18v34h-18Z" fill="url(#barFront)"/><path d="m122 70 6-6v30l-6 10Z" fill="url(#barSide)"/>
+      <path d="M150 77 156 71 174 71 168 77Z" fill="url(#barTop)"/><path d="M150 77h18v27h-18Z" fill="url(#barFront)"/><path d="m168 77 6-6v27l-6 6Z" fill="url(#barSide)"/>
+      <path d="M196 54 202 48 220 48 214 54Z" fill="url(#barTop)"/><path d="M196 54h18v50h-18Z" fill="url(#barFront)"/><path d="m214 54 6-6v48l-6 8Z" fill="url(#barSide)"/>
+      <path d="M242 61 248 55 266 55 260 61Z" fill="url(#barTop)"/><path d="M242 61h18v43h-18Z" fill="url(#barFront)"/><path d="m260 61 6-6v41l-6 8Z" fill="url(#barSide)"/>
+      <path d="M288 46 294 40 312 40 306 46Z" fill="url(#barTop)"/><path d="M288 46h18v58h-18Z" fill="url(#barFront)"/><path d="m306 46 6-6v55l-6 9Z" fill="url(#barSide)"/>
+    </g>
+  </g>
+
+  <path d="M30 91 68 82 96 87 126 66 154 73 184 55 213 62 244 43 270 50 299 34 328 39 362 20V105H30Z" fill="url(#area)" />
+  <path d="m30 91 38-9 28 5 30-21 28 7 30-18 29 7 31-19 26 7 29-16 29 5 34-19" fill="none" stroke="#34d399" stroke-opacity=".55" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" filter="url(#softGlow)" />
+  <path d="m30 91 38-9 28 5 30-21 28 7 30-18 29 7 31-19 26 7 29-16 29 5 34-19" fill="none" stroke="url(#trend)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="362" cy="20" r="8" fill="#fbbf24" fill-opacity=".2" filter="url(#softGlow)" />
+  <circle cx="362" cy="20" r="4.4" fill="#fbbf24" stroke="#fff2bf" stroke-width="1.7" />
+
+  <path d="m323 45 5 5 10-12" fill="none" stroke="#f8d984" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity=".82" />
+</svg>
